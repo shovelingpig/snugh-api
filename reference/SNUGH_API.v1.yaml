@@ -1,0 +1,251 @@
+openapi: 3.0.0
+info:
+  title: SNUGH_API
+  version: '1.0'
+  description: SNUGH Website 개발을 위한 API Docs입니다.
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/users/{userId}':
+    parameters:
+      - schema:
+          type: integer
+        name: userId
+        in: path
+        required: true
+        description: Id of an existing user.
+    get:
+      summary: Get User Info by User ID
+      tags: []
+      responses:
+        '200':
+          description: User Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                Get User Alice Smith:
+                  value:
+                    id: 142
+                    firstName: Alice
+                    lastName: Smith
+                    email: alice.smith@gmail.com
+                    dateOfBirth: '1997-10-31'
+                    emailVerified: true
+                    signUpDate: '2019-08-24'
+        '404':
+          description: User Not Found
+      operationId: get-users-userId
+      description: Retrieve the information of the user with the matching user ID.
+    patch:
+      summary: Update User Information
+      operationId: patch-users-userId
+      responses:
+        '200':
+          description: User Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                Updated User Rebecca Baker:
+                  value:
+                    id: 13
+                    firstName: Rebecca
+                    lastName: Baker
+                    email: rebecca@gmail.com
+                    dateOfBirth: '1985-10-02'
+                    emailVerified: false
+                    createDate: '2019-08-24'
+        '404':
+          description: User Not Found
+        '409':
+          description: Email Already Taken
+      description: Update the infromation of an existing user.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+                  description: 'If a new email is given, the user''s email verified property will be set to false.'
+                dateOfBirth:
+                  type: string
+            examples:
+              Update First Name:
+                value:
+                  firstName: Rebecca
+              Update Email:
+                value:
+                  email: rebecca@gmail.com
+              Update Last Name & Date of Birth:
+                value:
+                  lastName: Baker
+                  dateOfBirth: '1985-10-02'
+        description: Patch user properties to update.
+  /user:
+    post:
+      summary: Create New User
+      operationId: post-user
+      responses:
+        '200':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                New User Bob Fellow:
+                  value:
+                    id: 12
+                    firstName: Bob
+                    lastName: Fellow
+                    email: bob.fellow@gmail.com
+                    dateOfBirth: '1996-08-24'
+                    emailVerified: false
+                    createDate: '2020-11-18'
+        '400':
+          description: Missing Required Information
+        '409':
+          description: Email Already Taken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+                dateOfBirth:
+                  type: string
+                  format: date
+              required:
+                - firstName
+                - lastName
+                - email
+                - dateOfBirth
+            examples:
+              Create User Bob Fellow:
+                value:
+                  firstName: Bob
+                  lastName: Fellow
+                  email: bob.fellow@gmail.com
+                  dateOfBirth: '1996-08-24'
+        description: Post the necessary fields for the API to create a new user.
+      description: Create a new user.
+  /requirement:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                example-1: {}
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      operationId: get-requirement
+      description: 'plan_id에 해당하는 Plan의 졸업요건을 모두 조회합니다. Query Params의 type 값이 all이면 나와 관계된 모든 졸업요건을, credit이면 학점 관련 졸업요건만을, etc이면 학점 기타 졸업요건만을 반환합니다.'
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: plan_id
+          required: true
+          description: 졸업요건을 조회하고 싶은 Plan의 ID
+        - schema:
+            type: string
+            enum:
+              - all
+              - credit
+              - etc
+          in: query
+          name: type
+          required: true
+          description: 조회하고 싶은 졸업요건의 종류
+    put:
+      summary: ''
+      operationId: put-requirement
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      description: plan_id에 해당하는 Plan에서 기타 졸업요건의 충족 여부를 User가 직접 체크하거나 체크 해제할 때 사용합니다. body의 is_fulfilled 값에 따라 체크 여부가 변경됩니다. requirement_id에 해당하는 졸업요건이 기타 졸업요건이 아닌 학점 관련 졸업요건일 시에는 에러 코드가 반환됩니다.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          multipart/form-data:
+            schema:
+              description: ''
+              type: object
+              properties:
+                idiot:
+                  type: array
+                  items:
+                    required: []
+                    properties: {}
+              required:
+                - idiot
+        description: ''
+  /requirement/progress:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: get-requirement-progress
+      description: |-
+        기준학점 대비 이수학점 비율을 나타내는 원형 프로그레스바 표시에 사용합니다. 전체/전필/전선/교양별 각각
+
+        1. 기준학점 양
+        2. 이수학점 양
+        3. 1과 2의 비율
+
+        을 모두 반환합니다.
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: plan_id
+          description: 진행사항을 조회하고 싶은 Plan의 ID
+          required: true
+components:
+  schemas: {}
