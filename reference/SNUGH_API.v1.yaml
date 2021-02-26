@@ -6,145 +6,269 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  '/users/{userId}':
-    parameters:
-      - schema:
-          type: integer
-        name: userId
-        in: path
-        required: true
-        description: Id of an existing user.
-    get:
-      summary: Get User Info by User ID
-      tags: []
-      responses:
-        '200':
-          description: User Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                Get User Alice Smith:
-                  value:
-                    id: 142
-                    firstName: Alice
-                    lastName: Smith
-                    email: alice.smith@gmail.com
-                    dateOfBirth: '1997-10-31'
-                    emailVerified: true
-                    signUpDate: '2019-08-24'
-        '404':
-          description: User Not Found
-      operationId: get-users-userId
-      description: Retrieve the information of the user with the matching user ID.
-    patch:
-      summary: Update User Information
-      operationId: patch-users-userId
-      responses:
-        '200':
-          description: User Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                Updated User Rebecca Baker:
-                  value:
-                    id: 13
-                    firstName: Rebecca
-                    lastName: Baker
-                    email: rebecca@gmail.com
-                    dateOfBirth: '1985-10-02'
-                    emailVerified: false
-                    createDate: '2019-08-24'
-        '404':
-          description: User Not Found
-        '409':
-          description: Email Already Taken
-      description: Update the infromation of an existing user.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                  description: 'If a new email is given, the user''s email verified property will be set to false.'
-                dateOfBirth:
-                  type: string
-            examples:
-              Update First Name:
-                value:
-                  firstName: Rebecca
-              Update Email:
-                value:
-                  email: rebecca@gmail.com
-              Update Last Name & Date of Birth:
-                value:
-                  lastName: Baker
-                  dateOfBirth: '1985-10-02'
-        description: Patch user properties to update.
-  /user:
+  /user/:
     post:
       summary: Create New User
       operationId: post-user
       responses:
-        '200':
+        '201':
           description: User Created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                New User Bob Fellow:
-                  value:
-                    id: 12
-                    firstName: Bob
-                    lastName: Fellow
-                    email: bob.fellow@gmail.com
-                    dateOfBirth: '1996-08-24'
-                    emailVerified: false
-                    createDate: '2020-11-18'
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  username:
+                    type: string
+                    minLength: 1
+                  full_name:
+                    type: string
+                    minLength: 1
+                  first_name:
+                    type: string
+                    minLength: 1
+                  last_name:
+                    type: string
+                    minLength: 1
+                  student_id:
+                    type: string
+                    minLength: 1
+                  status:
+                    type: number
+                  major:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        type:
+                          type: integer
+                  token:
+                    type: string
+                    minLength: 1
+                required:
+                  - id
+                  - username
+                  - full_name
+                  - first_name
+                  - last_name
+                  - student_id
+                  - status
+                  - major
+                  - token
+              examples: {}
         '400':
-          description: Missing Required Information
-        '409':
-          description: Email Already Taken
+          description: |-
+            1. 모든 Required Body 항목을 채우지 않았을 때
+            2. 이미 있는 유저일 때(student_id로 확인)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: Required fields missing
+                example-2:
+                  value:
+                    error: existing user
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                firstName:
+                username:
                   type: string
-                lastName:
+                password:
                   type: string
-                email:
+                student_id:
                   type: string
-                dateOfBirth:
+                first_name:
                   type: string
-                  format: date
+                last_name:
+                  type: string
+                major_id:
+                  type: array
+                  items:
+                    type: integer
+                status:
+                  type: integer
               required:
-                - firstName
-                - lastName
-                - email
-                - dateOfBirth
-            examples:
-              Create User Bob Fellow:
-                value:
-                  firstName: Bob
-                  lastName: Fellow
-                  email: bob.fellow@gmail.com
-                  dateOfBirth: '1996-08-24'
+                - username
+                - password
+                - student_id
+                - first_name
+                - last_name
+                - major_id
+                - status
+            examples: {}
+          application/xml:
+            schema:
+              description: ''
+              type: object
+              properties:
+                username:
+                  type: string
+                  minLength: 1
+                password:
+                  type: string
+                  minLength: 1
+                first_name:
+                  type: string
+                  minLength: 1
+                last_name:
+                  type: string
+                  minLength: 1
+                status:
+                  type: number
+                student_id:
+                  type: string
+                  minLength: 1
+                major_id:
+                  type: array
+                  items:
+                    type: integer
+              required:
+                - username
+                - password
+                - first_name
+                - last_name
+                - status
+                - student_id
+                - major_id
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
-  /requirement:
+    put:
+      summary: ''
+      operationId: put-user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  full_name:
+                    type: string
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  student_id:
+                    type: string
+                  status:
+                    type: integer
+                  major:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        type:
+                          type: integer
+        '401':
+          description: Unauthorized
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                student_id:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                status:
+                  type: integer
+    parameters: []
+    get:
+      summary: ''
+      operationId: get-user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  full_name:
+                    type: string
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  student_id:
+                    type: string
+                  status:
+                    type: integer
+                  major:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        type:
+                          type: integer
+        '401':
+          description: Unauthorized
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+    delete:
+      summary: ''
+      operationId: delete-user
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+  /requirement/:
     get:
       summary: Your GET endpoint
       tags: []
@@ -219,7 +343,8 @@ paths:
               required:
                 - idiot
         description: ''
-  /requirement/progress:
+    parameters: []
+  /requirement/progress/:
     get:
       summary: Your GET endpoint
       tags: []
@@ -246,6 +371,513 @@ paths:
           in: query
           name: plan_id
           description: 진행사항을 조회하고 싶은 Plan의 ID
+          required: true
+    parameters: []
+  /user/login/:
+    put:
+      summary: login
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  full_name:
+                    type: string
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  student_id:
+                    type: string
+                  status:
+                    type: integer
+                  major:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        type:
+                          type: integer
+                  token:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    id: 0
+                    username: string
+                    full_name: string
+                    first_name: string
+                    last_name: string
+                    student_id: string
+                    status: 0
+                    major:
+                      id: 0
+                      name: string
+                      type: 0
+                    token: string
+        '400':
+          description: |-
+            Bad Request
+            1. body에 username이 없을 때
+            2. body에 password가 없을 때
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: username missing
+                example-2:
+                  value:
+                    error: password missing
+        '403':
+          description: 'username에 해당하는 유저가 없거나 username은 맞지만, 비밀번호가 틀렸을 때'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: Wrong username or wrong password
+      operationId: put-user-login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+            examples:
+              example-1:
+                value:
+                  username: string
+                  password: string
+    parameters: []
+  /user/logout/:
+    get:
+      summary: log out
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-user-logout
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentification
+          required: true
+  /user/major/:
+    get:
+      summary: get all majors or search using keywords
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  major:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        type:
+                          type: integer
+      operationId: get-user-major
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: name
+          description: 포함하는 major_name 검색
+          required: true
+    delete:
+      summary: delete usermajor
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  major:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        type:
+                          type: integer
+        '400':
+          description: |-
+            1. parameter에 major_id가 없을 때
+            2. major_id에 해당하는 major을 현재 유저가 듣고 있지 않을 때
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: major_id missing
+                example-2:
+                  value:
+                    error: wrong major_id
+        '401':
+          description: No Token
+        '404':
+          description: parameter에 major_id가 있지만 해당하는 Major을 찾을 수 없을 때
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: No major with the given major_id
+      operationId: delete-user-major
+      description: ''
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+        - schema:
+            type: integer
+          in: query
+          name: major_id
+          required: true
+          description: 삭제할 major의 id
+    post:
+      summary: post usermajor
+      tags: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  major:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        type:
+                          type: integer
+        '400':
+          description: params에 major_id가 없을 때
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: major_id missing
+        '401':
+          description: 'Token이 주어지지 않았을 때 '
+        '404':
+          description: body에 major_id가 있지만 해당하는 Major을 찾을 수 없을 때
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: No major with the given major_id
+      operationId: post-user-major
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+        - schema:
+            type: integer
+          in: query
+          name: major_id
+          description: 추가할 major의 id
+          required: true
+      description: '현재 세션의 유저에 전공을 추가합니다. '
+    parameters: []
+  /plan/major/:
+    post:
+      summary: planmajor post
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  plans:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        major:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                              name:
+                                type: string
+                              type:
+                                type: integer
+        '400':
+          description: |-
+            1. query_params에 major_id가 없을 때
+            2. query_params에 plan_id가 없을 때
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                'example-1 ':
+                  value:
+                    error: major_id missing
+                example-2:
+                  value:
+                    error: plan_id missing
+        '401':
+          description: No token
+        '404':
+          description: ' body에 major_id와 plan_id가 있지만 해당하는 Major을 찾을 수 없을 때'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: No major matching the given major_id and plan_id
+      operationId: post-plan-major
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: major_id
+          required: true
+          description: 추가하려는 major의 id
+        - schema:
+            type: string
+          in: query
+          name: plan_id
+          description: major을 추가하려는 plan의 id
+          required: true
+    delete:
+      summary: planmajor delete
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  plans:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        major:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                              name:
+                                type: string
+                              type:
+                                type: integer
+        '400':
+          description: |-
+            1. body에 major_id가 없을 때
+            2. body에 plan_id가 없을 때
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: major_id missing
+                example-2:
+                  value:
+                    error: plan_id missing
+        '401':
+          description: Unauthorized
+        '404':
+          description: body에 major_id와 plan_id가 있지만 해당하는 Major을 찾을 수 없을 때
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: No major matching the given major_id and plan_id
+      operationId: delete-plan-major
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: major_id
+          required: true
+          description: 삭제하려는 major의 id
+        - schema:
+            type: string
+          in: query
+          name: plan_id
+          required: true
+          description: major을 삭제하려는 plan의 id
+    get:
+      summary: planmajor get
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  major:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        type:
+                          type: integer
+        '400':
+          description: parameter의 plan_id에 해당하는 plan이 없을 때
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: wrong plan_id
+        '401':
+          description: Unauthorized
+      operationId: get-plan-major
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: plan_id
+          description: 조회하려는 plan
           required: true
 components:
   schemas: {}
