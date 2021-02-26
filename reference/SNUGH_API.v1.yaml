@@ -247,5 +247,840 @@ paths:
           name: plan_id
           description: 진행사항을 조회하고 싶은 Plan의 ID
           required: true
+  /plan:
+    get:
+      summary: 'Get all plans '
+      tags: []
+      operationId: get-plan
+      description: 유저의 메인 보드의 모든 계획을 조회합니다.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                uniqueItems: true
+                minItems: 0
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    plan_name:
+                      type: string
+                      minLength: 1
+                    recent_scroll:
+                      type: number
+                    semesters:
+                      type: array
+                      uniqueItems: true
+                      minItems: 0
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: number
+                          plan:
+                            type: number
+                          year:
+                            type: number
+                          semester_type:
+                            type: number
+                          is_complete:
+                            type: boolean
+                          major_requirement_credits:
+                            type: number
+                          major_elective_credits:
+                            type: number
+                          general_credits:
+                            type: number
+                          lectures:
+                            type: array
+                            uniqueItems: true
+                            minItems: 0
+                            items:
+                              type: object
+                              properties:
+                                lecture_id:
+                                  type: number
+                                semesterlecture_id:
+                                  type: number
+                                lecture_name:
+                                  type: string
+                                  minLength: 1
+                                credit:
+                                  type: number
+                                is_open:
+                                  type: boolean
+                                open_semester:
+                                  type: number
+                              required:
+                                - lecture_id
+                                - semesterlecture_id
+                                - lecture_name
+                                - credit
+                                - is_open
+                                - open_semester
+                        required:
+                          - id
+                          - plan
+                          - year
+                          - semester_type
+                          - is_complete
+                          - major_requirement_credits
+                          - major_elective_credits
+                          - general_credits
+                  required:
+                    - id
+                    - plan_name
+                    - recent_scroll
+                    - semesters
+    post:
+      summary: 'Create a plan '
+      tags: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  plan_name:
+                    type: string
+                    minLength: 1
+                  recent_scroll:
+                    type: number
+                  semesters:
+                    type: array
+                    uniqueItems: true
+                    minItems: 0
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        plan:
+                          type: number
+                        year:
+                          type: number
+                        semester_type:
+                          type: number
+                        is_complete:
+                          type: boolean
+                        major_requirement_credits:
+                          type: number
+                        major_elective_credits:
+                          type: number
+                        general_credits:
+                          type: number
+                        lectures:
+                          type: array
+                          uniqueItems: true
+                          minItems: 0
+                          items:
+                            type: object
+                            properties:
+                              lecture_id:
+                                type: number
+                              semesterlecture_id:
+                                type: number
+                              lecture_name:
+                                type: string
+                                minLength: 1
+                              credit:
+                                type: number
+                              is_open:
+                                type: boolean
+                              open_semester:
+                                type: number
+                            required:
+                              - lecture_id
+                              - semesterlecture_id
+                              - lecture_name
+                              - credit
+                              - is_open
+                              - open_semester
+                      required:
+                        - id
+                        - plan
+                        - year
+                        - semester_type
+                        - is_complete
+                        - major_requirement_credits
+                        - major_elective_credits
+                        - general_credits
+                required:
+                  - id
+                  - plan_name
+                  - recent_scroll
+                  - semesters
+      operationId: post-plan
+      description: 유저의 메인 보드에 계획을 추가합니다. 한 번에 하나의 계획씩 추가됩니다.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                user_id:
+                  type: number
+                plan_name:
+                  type: string
+                  minLength: 1
+                recent_scroll:
+                  type: number
+              required:
+                - user_id
+            examples:
+              example-1:
+                value:
+                  id: 0
+                  plan_name: string
+                  recent_scroll: 0
+                  semesters:
+                    - id: 0
+                      plan: 0
+                      year: 0
+                      semester_type: 0
+                      is_complete: true
+                      major_requirement_credits: 0
+                      major_elective_credits: 0
+                      general_credits: 0
+                      lectures:
+                        - lecture_id: 0
+                          semesterlecture_id: 0
+                          lecture_name: string
+                          credit: 0
+                          is_open: true
+                          open_semester: 0
+          application/xml:
+            schema:
+              description: ''
+              type: object
+              properties:
+                user_id:
+                  type: number
+                plan_name:
+                  type: string
+                  minLength: 1
+                recent_scroll:
+                  type: number
+              required:
+                - user_id
+  '/plan/{plan_id}':
+    parameters:
+      - schema:
+          type: string
+        name: plan_id
+        in: path
+        required: true
+    put:
+      summary: Modify a plan
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  plan_name:
+                    type: string
+                    minLength: 1
+                  recent_scroll:
+                    type: number
+                  semesters:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - plan
+                        - year
+                        - semester_type
+                        - is_complete
+                        - major_requirement_credits
+                        - major_elective_credits
+                        - general_credits
+                      properties:
+                        id:
+                          type: number
+                        plan:
+                          type: number
+                        year:
+                          type: number
+                        semester_type:
+                          type: number
+                        is_complete:
+                          type: boolean
+                        major_requirement_credits:
+                          type: number
+                        major_elective_credits:
+                          type: number
+                        general_credits:
+                          type: number
+                        lectures:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - lecture_id
+                              - semesterlecture_id
+                              - lecture_name
+                              - credit
+                              - is_open
+                              - open_semester
+                            properties:
+                              lecture_id:
+                                type: number
+                              semesterlecture_id:
+                                type: number
+                              lecture_name:
+                                type: string
+                                minLength: 1
+                              credit:
+                                type: number
+                              is_open:
+                                type: boolean
+                              open_semester:
+                                type: number
+                required:
+                  - id
+                  - plan_name
+                  - recent_scroll
+                  - semesters
+              examples:
+                example-1:
+                  value:
+                    id: 0
+                    plan_name: string
+                    recent_scroll: 0
+                    semesters:
+                      - id: 0
+                        plan: 0
+                        year: 0
+                        semester_type: 0
+                        is_complete: true
+                        major_requirement_credits: 0
+                        major_elective_credits: 0
+                        general_credits: 0
+                        lectures:
+                          - lecture_id: 0
+                            semesterlecture_id: 0
+                            lecture_name: string
+                            credit: 0
+                            is_open: true
+                            open_semester: 0
+      operationId: put-plan-plan_id
+      description: 계획을 수정합니다. 계획의 이름 또는 가로 좌표를 수정할 수 있습니다.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                plan_name:
+                  type: string
+                  minLength: 1
+                recent_scroll:
+                  type: number
+              required:
+                - plan_name
+                - recent_scroll
+    delete:
+      summary: Delete a plan
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: delete-plan-plan_id
+      description: 유저의 메인 보드에서 계획을 삭제합니다.
+    get:
+      summary: 'Get a plan '
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  plan_name:
+                    type: string
+                    minLength: 1
+                  recent_scroll:
+                    type: number
+                  semesters:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - plan
+                        - year
+                        - semester_type
+                        - is_complete
+                        - major_requirement_credits
+                        - major_elective_credits
+                        - general_credits
+                      properties:
+                        id:
+                          type: number
+                        plan:
+                          type: number
+                        year:
+                          type: number
+                        semester_type:
+                          type: number
+                        is_complete:
+                          type: boolean
+                        major_requirement_credits:
+                          type: number
+                        major_elective_credits:
+                          type: number
+                        general_credits:
+                          type: number
+                        lectures:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - lecture_id
+                              - semesterlecture_id
+                              - lecture_name
+                              - credit
+                              - is_open
+                              - open_semester
+                            properties:
+                              lecture_id:
+                                type: number
+                              semesterlecture_id:
+                                type: number
+                              lecture_name:
+                                type: string
+                                minLength: 1
+                              credit:
+                                type: number
+                              is_open:
+                                type: boolean
+                              open_semester:
+                                type: number
+                required:
+                  - id
+                  - plan_name
+                  - recent_scroll
+                  - semesters
+              examples:
+                example-1:
+                  value:
+                    id: 0
+                    plan_name: string
+                    recent_scroll: 0
+                    semesters:
+                      - id: 0
+                        plan: 0
+                        year: 0
+                        semester_type: 0
+                        is_complete: true
+                        major_requirement_credits: 0
+                        major_elective_credits: 0
+                        general_credits: 0
+                        lectures:
+                          - lecture_id: 0
+                            semesterlecture_id: 0
+                            lecture_name: string
+                            credit: 0
+                            is_open: true
+                            open_semester: 0
+      operationId: get-plan-plan_id
+      description: '유저의 메인 보드의 계획을 조회합니다.  '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+  /semester:
+    post:
+      summary: Create a semester
+      tags: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  year:
+                    type: number
+                  is_complete:
+                    type: boolean
+                  semester_type:
+                    type: number
+                  plan:
+                    type: number
+                required:
+                  - id
+                  - year
+                  - is_complete
+                  - semester_type
+                  - plan
+      operationId: post-semester
+      description: '유저의 현재 계획에 학기를 추가합니다. 한 번에 하나의 학기씩 추가됩니다. '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                plan:
+                  type: number
+                year:
+                  type: number
+                semester_type:
+                  type: number
+                is_complete:
+                  type: boolean
+              required:
+                - plan
+                - year
+                - semester_type
+                - is_complete
+  '/semester/{semester_id}':
+    parameters:
+      - schema:
+          type: string
+        name: semester_id
+        in: path
+        required: true
+    put:
+      summary: Modify a semester
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  year:
+                    type: number
+                  is_complete:
+                    type: boolean
+                  semester_type:
+                    type: number
+                  plan:
+                    type: number
+                required:
+                  - id
+                  - year
+                  - is_complete
+                  - semester_type
+                  - plan
+      operationId: put-semester-semester_id
+      description: '유저 계획의 해당 학기를 수정합니다. '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                year:
+                  type: number
+                semester_type:
+                  type: number
+                is_complete:
+                  type: boolean
+    delete:
+      summary: Delete a semester
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: delete-semester-semester_id
+      description: '유저 계획의 학기를 삭제합니다.  '
+    get:
+      summary: Get a semester
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  plan:
+                    type: number
+                  year:
+                    type: number
+                  semester_type:
+                    type: number
+                  is_complete:
+                    type: boolean
+                  major_requirement_credits:
+                    type: number
+                  major_elective_credits:
+                    type: number
+                  general_credits:
+                    type: number
+                  lectures:
+                    type: array
+                    uniqueItems: true
+                    minItems: 0
+                    items:
+                      type: object
+                      properties:
+                        lecture_id:
+                          type: number
+                        semesterlecture_id:
+                          type: number
+                        lecture_name:
+                          type: string
+                          minLength: 1
+                        credit:
+                          type: number
+                        is_open:
+                          type: boolean
+                        open_semester:
+                          type: number
+                      required:
+                        - lecture_id
+                        - semesterlecture_id
+                        - lecture_name
+                        - credit
+                        - is_open
+                        - open_semester
+                required:
+                  - id
+                  - plan
+                  - year
+                  - semester_type
+                  - is_complete
+                  - major_requirement_credits
+                  - major_elective_credits
+                  - general_credits
+                  - lectures
+      operationId: get-semester-semester_id
+      description: '유저의 현재 계획의 학기를 조회해 해당 학기의 수업들을 나열합니다. '
+  /lecture:
+    post:
+      summary: Add lectures
+      tags: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  plan:
+                    type: number
+                  semester:
+                    type: number
+                  lectures:
+                    type: array
+                    uniqueItems: true
+                    minItems: 0
+                    items:
+                      type: object
+                      properties:
+                        lecture_id:
+                          type: number
+                        semester_lecture_id:
+                          type: number
+                        lecture_name:
+                          type: string
+                          minLength: 1
+                        credit:
+                          type: number
+                        is_open:
+                          type: boolean
+                        open_semester:
+                          type: number
+                      required:
+                        - lecture_id
+                        - semester_lecture_id
+                        - lecture_name
+                        - credit
+                        - is_open
+                        - open_semester
+                required:
+                  - plan
+                  - semester
+                  - lectures
+      operationId: post-lecture
+      description: '유저의 학기별 테이블에 강의를 추가합니다. 한번에 복수의 수업 추가가 가능합니다. '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                semester_id:
+                  type: number
+                lecture_id:
+                  type: array
+                  items:
+                    type: integer
+                recent_sequence:
+                  type: array
+                  items:
+                    type: integer
+              required:
+                - semester_id
+                - lecture_id
+                - recent_sequence
+    get:
+      summary: Search lectures
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  lectures:
+                    type: array
+                    uniqueItems: true
+                    minItems: 0
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        lecture_name:
+                          type: string
+                          minLength: 1
+                        credit:
+                          type: number
+                        is_open:
+                          type: boolean
+                        open_semester:
+                          type: number
+                      required:
+                        - id
+                        - lecture_name
+                        - credit
+                        - is_open
+                        - open_semester
+                required:
+                  - lectures
+      operationId: get-lecture
+      description: '강의를 검색합니다. 1) 전필/전선/교양 별로 강의를 불러올 수 있고, 2) 강의 이름에 포함된 키워드를 통해 검색이 가능합니다.'
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: lecture_type
+          description: '전공 필수, 전공 선택, 교양 수업을 구분합니다'
+        - schema:
+            type: string
+          in: query
+          name: search_keyword
+          description: 이름 안에 검색 키워드가 들어있는 강의들을 검색합니다.
+  '/lecture/{lecture_id}':
+    parameters:
+      - schema:
+          type: string
+        name: lecture_id
+        in: path
+        required: true
+    delete:
+      summary: Delete a lecture
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: delete-lecture-lecture_id
+      description: '유저의 현재 학기별 테이블에서 강의를 삭제합니다.  '
+    put:
+      summary: Modify a lecture
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  lecture_type:
+                    type: number
+                  lecture_type_detail:
+                    type: number
+                  lecture_type_detail_detail:
+                    type: number
+                  recent_sequence:
+                    type: number
+                  semester:
+                    type: number
+                  lecture:
+                    type: number
+                required:
+                  - id
+                  - lecture_type
+                  - lecture_type_detail
+                  - lecture_type_detail_detail
+                  - recent_sequence
+                  - semester
+                  - lecture
+      operationId: put-lecture-lecture_id
+      description: 유저의 학기별 테이블에 포함된 강의를 수정합니다. year와 semester_type를 수정해 강의를 다른 학기별 테이블로 이동시킬 수 있습니다. url에 들어가는 id는 수정되는 학기별 강의인 SemesterLecture의 id입니다.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+          application/xml:
+            schema:
+              description: ''
+              type: object
+              properties:
+                semester:
+                  type: number
 components:
   schemas: {}
