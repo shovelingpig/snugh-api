@@ -154,8 +154,50 @@ paths:
           content:
             application/json:
               schema:
+                description: ''
                 type: object
-                properties: {}
+                properties:
+                  requirements:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - description
+                        - is_fulfilled
+                        - is_credit_requirement
+                        - requirement_type
+                        - requirement_type_detail
+                        - requirement_type_detail_detail
+                        - required_credit
+                        - earned_credit
+                      properties:
+                        id:
+                          type: number
+                        description:
+                          type: string
+                        is_fulfilled:
+                          type: string
+                          minLength: 1
+                        is_credit_requirement:
+                          type: string
+                          minLength: 1
+                        requirement_type:
+                          type: string
+                          minLength: 1
+                        requirement_type_detail:
+                          type: string
+                          minLength: 1
+                        requirement_type_detail_detail:
+                          type: string
+                          minLength: 1
+                        required_credit:
+                          type: number
+                        earned_credit:
+                          type: number
+                required:
+                  - requirements
               examples:
                 example-1: {}
             application/xml:
@@ -191,6 +233,54 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  requirements:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - description
+                        - is_fulfilled
+                        - is_credit_requirement
+                        - requirement_type
+                        - requirement_type_detail
+                        - requirement_type_detail_detail
+                        - required_credit
+                        - earned_credit
+                      properties:
+                        id:
+                          type: number
+                        description:
+                          type: string
+                          minLength: 1
+                        is_fulfilled:
+                          type: string
+                          minLength: 1
+                        is_credit_requirement:
+                          type: string
+                          minLength: 1
+                        requirement_type:
+                          type: string
+                          minLength: 1
+                        requirement_type_detail:
+                          type: string
+                          minLength: 1
+                        requirement_type_detail_detail:
+                          type: string
+                          minLength: 1
+                        required_credit:
+                          type: number
+                        earned_credit:
+                          type: number
+                required:
+                  - requirements
         '400':
           description: Bad Request
         '401':
@@ -200,8 +290,28 @@ paths:
         content:
           application/json:
             schema:
+              description: ''
               type: object
-              properties: {}
+              properties:
+                data:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - plan_id
+                      - requirement_id
+                      - is_fulfilled
+                    properties:
+                      plan_id:
+                        type: number
+                      requirement_id:
+                        type: number
+                      is_fulfilled:
+                        type: string
+                        minLength: 1
+              required:
+                - data
           application/xml:
             schema:
               type: object
@@ -218,7 +328,11 @@ paths:
                     properties: {}
               required:
                 - idiot
-        description: ''
+          text/html:
+            schema:
+              type: object
+              properties: {}
+        description: "{\n    \"data\" : [{\n\t\t\t  \"plan_id\" : 1,\n\t\t    \"requirement_id\" : 1,\n\t\t    \"is_fulfilled\" : \"True\"\n     }, {\n     \t\t\t  \"plan_id\" : 1,\n\t\t    \"requirement_id\" : 2,\n\t\t    \"is_fulfilled\" : \"False\"\n     }\n    ]\n}"
   /requirement/progress:
     get:
       summary: Your GET endpoint
@@ -229,8 +343,66 @@ paths:
           content:
             application/json:
               schema:
+                description: ''
                 type: object
-                properties: {}
+                properties:
+                  all:
+                    type: object
+                    properties:
+                      required_credit:
+                        type: number
+                      earned_credit:
+                        type: number
+                      progress:
+                        type: number
+                    required:
+                      - required_credit
+                      - earned_credit
+                      - progress
+                  major_requirement:
+                    type: object
+                    properties:
+                      required_credit:
+                        type: number
+                      earned_credit:
+                        type: number
+                      progress:
+                        type: number
+                    required:
+                      - required_credit
+                      - earned_credit
+                      - progress
+                  major_elective:
+                    type: object
+                    properties:
+                      required_credit:
+                        type: number
+                      earned_credit:
+                        type: number
+                      progress:
+                        type: number
+                    required:
+                      - required_credit
+                      - earned_credit
+                      - progress
+                  general:
+                    type: object
+                    properties:
+                      required_credit:
+                        type: number
+                      earned_credit:
+                        type: number
+                      progress:
+                        type: number
+                    required:
+                      - required_credit
+                      - earned_credit
+                      - progress
+                required:
+                  - all
+                  - major_requirement
+                  - major_elective
+                  - general
       operationId: get-requirement-progress
       description: |-
         기준학점 대비 이수학점 비율을 나타내는 원형 프로그레스바 표시에 사용합니다. 전체/전필/전선/교양별 각각
