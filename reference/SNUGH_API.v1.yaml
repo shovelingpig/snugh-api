@@ -21,23 +21,16 @@ paths:
                 properties:
                   id:
                     type: number
-                  username:
+                  email:
                     type: string
                     minLength: 1
                   full_name:
                     type: string
                     minLength: 1
-                  first_name:
-                    type: string
-                    minLength: 1
-                  last_name:
-                    type: string
-                    minLength: 1
-                  student_id:
-                    type: string
-                    minLength: 1
+                  year:
+                    type: integer
                   status:
-                    type: number
+                    type: integer
                   major:
                     type: array
                     items:
@@ -54,11 +47,9 @@ paths:
                     minLength: 1
                 required:
                   - id
-                  - username
+                  - email
                   - full_name
-                  - first_name
-                  - last_name
-                  - student_id
+                  - year
                   - status
                   - major
                   - token
@@ -87,15 +78,13 @@ paths:
             schema:
               type: object
               properties:
-                username:
+                email:
                   type: string
                 password:
                   type: string
-                student_id:
-                  type: string
-                first_name:
-                  type: string
-                last_name:
+                year:
+                  type: integer
+                full_name:
                   type: string
                 major_id:
                   type: array
@@ -104,11 +93,10 @@ paths:
                 status:
                   type: integer
               required:
-                - username
+                - email
                 - password
-                - student_id
-                - first_name
-                - last_name
+                - year
+                - full_name
                 - major_id
                 - status
             examples: {}
@@ -161,15 +149,11 @@ paths:
                 properties:
                   id:
                     type: integer
-                  username:
+                  email:
                     type: string
                   full_name:
                     type: string
-                  first_name:
-                    type: string
-                  last_name:
-                    type: string
-                  student_id:
+                  year:
                     type: string
                   status:
                     type: integer
@@ -201,11 +185,9 @@ paths:
               properties:
                 password:
                   type: string
-                student_id:
+                year:
                   type: string
-                first_name:
-                  type: string
-                last_name:
+                full_name:
                   type: string
                 status:
                   type: integer
@@ -223,15 +205,11 @@ paths:
                 properties:
                   id:
                     type: integer
-                  username:
+                  email:
                     type: string
                   full_name:
                     type: string
-                  first_name:
-                    type: string
-                  last_name:
-                    type: string
-                  student_id:
+                  year:
                     type: string
                   status:
                     type: integer
@@ -387,16 +365,12 @@ paths:
                 properties:
                   id:
                     type: integer
-                  username:
+                  email:
                     type: string
                   full_name:
                     type: string
-                  first_name:
-                    type: string
-                  last_name:
-                    type: string
-                  student_id:
-                    type: string
+                  year:
+                    type: integer
                   status:
                     type: integer
                   major:
@@ -466,12 +440,12 @@ paths:
             schema:
               type: object
               properties:
-                username:
+                email:
                   type: string
                 password:
                   type: string
               required:
-                - username
+                - email
                 - password
             examples:
               example-1:
