@@ -57,7 +57,7 @@ paths:
         '400':
           description: |-
             1. 모든 Required Body 항목을 채우지 않았을 때
-            2. 이미 있는 유저일 때(student_id로 확인)
+            2. 이미 있는 유저일 때(email로 확인)
           content:
             application/json:
               schema:
