@@ -154,50 +154,42 @@ paths:
           content:
             application/json:
               schema:
+                type: array
                 description: ''
-                type: object
-                properties:
-                  requirements:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - id
-                        - description
-                        - is_fulfilled
-                        - is_credit_requirement
-                        - requirement_type
-                        - requirement_type_detail
-                        - requirement_type_detail_detail
-                        - required_credit
-                        - earned_credit
-                      properties:
-                        id:
-                          type: number
-                        description:
-                          type: string
-                        is_fulfilled:
-                          type: string
-                          minLength: 1
-                        is_credit_requirement:
-                          type: string
-                          minLength: 1
-                        requirement_type:
-                          type: string
-                          minLength: 1
-                        requirement_type_detail:
-                          type: string
-                          minLength: 1
-                        requirement_type_detail_detail:
-                          type: string
-                          minLength: 1
-                        required_credit:
-                          type: number
-                        earned_credit:
-                          type: number
-                required:
-                  - requirements
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  required:
+                    - id
+                    - description
+                    - is_fulfilled
+                    - is_credit_requirement
+                    - requirement_type
+                    - requirement_type_detail
+                    - requirement_type_detail_detail
+                    - required_credit
+                    - earned_credit
+                  properties:
+                    id:
+                      type: number
+                    description:
+                      type: string
+                      minLength: 1
+                    is_fulfilled:
+                      type: boolean
+                    is_credit_requirement:
+                      type: boolean
+                    requirement_type:
+                      type: number
+                    requirement_type_detail:
+                      type: number
+                    requirement_type_detail_detail:
+                      type: number
+                    required_credit:
+                      type: number
+                    earned_credit:
+                      type: number
               examples:
                 example-1: {}
             application/xml:
@@ -236,51 +228,42 @@ paths:
           content:
             application/json:
               schema:
+                type: array
                 description: ''
-                type: object
-                properties:
-                  requirements:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - id
-                        - description
-                        - is_fulfilled
-                        - is_credit_requirement
-                        - requirement_type
-                        - requirement_type_detail
-                        - requirement_type_detail_detail
-                        - required_credit
-                        - earned_credit
-                      properties:
-                        id:
-                          type: number
-                        description:
-                          type: string
-                          minLength: 1
-                        is_fulfilled:
-                          type: string
-                          minLength: 1
-                        is_credit_requirement:
-                          type: string
-                          minLength: 1
-                        requirement_type:
-                          type: string
-                          minLength: 1
-                        requirement_type_detail:
-                          type: string
-                          minLength: 1
-                        requirement_type_detail_detail:
-                          type: string
-                          minLength: 1
-                        required_credit:
-                          type: number
-                        earned_credit:
-                          type: number
-                required:
-                  - requirements
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  required:
+                    - id
+                    - description
+                    - is_fulfilled
+                    - is_credit_requirement
+                    - requirement_type
+                    - requirement_type_detail
+                    - requirement_type_detail_detail
+                    - required_credit
+                    - earned_credit
+                  properties:
+                    id:
+                      type: number
+                    description:
+                      type: string
+                      minLength: 1
+                    is_fulfilled:
+                      type: boolean
+                    is_credit_requirement:
+                      type: boolean
+                    requirement_type:
+                      type: number
+                    requirement_type_detail:
+                      type: number
+                    requirement_type_detail_detail:
+                      type: number
+                    required_credit:
+                      type: number
+                    earned_credit:
+                      type: number
         '400':
           description: Bad Request
         '401':
@@ -332,7 +315,7 @@ paths:
             schema:
               type: object
               properties: {}
-        description: "{\n    \"data\" : [{\n\t\t\t  \"plan_id\" : 1,\n\t\t    \"requirement_id\" : 1,\n\t\t    \"is_fulfilled\" : \"True\"\n     }, {\n     \t\t\t  \"plan_id\" : 1,\n\t\t    \"requirement_id\" : 2,\n\t\t    \"is_fulfilled\" : \"False\"\n     }\n    ]\n}"
+        description: ''
   /requirement/progress:
     get:
       summary: Your GET endpoint
