@@ -1082,5 +1082,13 @@ paths:
               properties:
                 semester:
                   type: number
+          multipart/form-data:
+            schema:
+              description: ''
+              type: object
+              properties:
+                semester:
+                  type: number
+        description: ''
 components:
   schemas: {}
