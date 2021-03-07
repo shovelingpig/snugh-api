@@ -68,7 +68,7 @@ paths:
               examples:
                 example-1:
                   value:
-                    error: Required fields missing
+                    error: (없는 항목들) missing
                 example-2:
                   value:
                     error: existing user
@@ -469,41 +469,6 @@ paths:
           description: Token Authentification
           required: true
   /user/major/:
-    get:
-      summary: get all majors or search using keywords
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  major:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        name:
-                          type: string
-                        type:
-                          type: integer
-      operationId: get-user-major
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          required: true
-        - schema:
-            type: string
-          in: query
-          name: name
-          description: 포함하는 major_name 검색
-          required: true
     delete:
       summary: delete usermajor
       tags: []
@@ -1689,5 +1654,45 @@ paths:
               properties:
                 semester:
                   type: number
+  /major/:
+    get:
+      summary: 모든 전공 조회
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  major:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        type:
+                          type: integer
+              examples:
+                example-1:
+                  value:
+                    major:
+                      - id: 0
+                        name: string
+                        type: 0
+        '403':
+          description: Token 인증 실패
+      operationId: get-major
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: ' Authorization'
+          required: true
+          description: Token 인증
 components:
   schemas: {}
