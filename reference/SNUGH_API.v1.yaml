@@ -1040,8 +1040,6 @@ paths:
                 plan_name:
                   type: string
                   minLength: 1
-                recent_scroll:
-                  type: number
               required:
                 - user_id
             examples:
