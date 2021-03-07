@@ -1694,5 +1694,13 @@ paths:
           name: ' Authorization'
           required: true
           description: Token 인증
+        - schema:
+            type: string
+          in: query
+          name: name
+          description: 전공 검색어
+      description: |-
+        모든 전공 조회 기능. 
+        검색어를 param에 넣어서 검색도 가능
 components:
   schemas: {}
