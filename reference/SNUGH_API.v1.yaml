@@ -1679,8 +1679,11 @@ paths:
         content:
           application/json:
             schema:
+              description: ''
               type: object
-              properties: {}
+              properties:
+                semester:
+                  type: number
           application/xml:
             schema:
               description: ''
