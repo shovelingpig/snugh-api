@@ -957,6 +957,8 @@ paths:
                 properties:
                   id:
                     type: number
+                  user:
+                    type: number
                   plan_name:
                     type: string
                     minLength: 1
@@ -1023,9 +1025,33 @@ paths:
                         - general_credits
                 required:
                   - id
+                  - user
                   - plan_name
                   - recent_scroll
                   - semesters
+              examples:
+                example-1:
+                  value:
+                    id: 0
+                    plan_name: string
+                    recent_scroll: 0
+                    semesters:
+                      - id: 0
+                        plan: 0
+                        year: 0
+                        semester_type: 0
+                        is_complete: true
+                        major_requirement_credits: 0
+                        major_elective_credits: 0
+                        general_credits: 0
+                        lectures:
+                          - lecture_id: 0
+                            semesterlecture_id: 0
+                            lecture_name: string
+                            credit: 0
+                            is_open: true
+                            open_semester: 0
+                    user: 0
       operationId: post-plan
       description: 유저의 메인 보드에 계획을 추가합니다. 한 번에 하나의 계획씩 추가됩니다.
       requestBody:
@@ -1035,35 +1061,14 @@ paths:
               description: ''
               type: object
               properties:
-                user_id:
+                user:
                   type: number
                 plan_name:
                   type: string
                   minLength: 1
               required:
-                - user_id
-            examples:
-              example-1:
-                value:
-                  id: 0
-                  plan_name: string
-                  recent_scroll: 0
-                  semesters:
-                    - id: 0
-                      plan: 0
-                      year: 0
-                      semester_type: 0
-                      is_complete: true
-                      major_requirement_credits: 0
-                      major_elective_credits: 0
-                      general_credits: 0
-                      lectures:
-                        - lecture_id: 0
-                          semesterlecture_id: 0
-                          lecture_name: string
-                          credit: 0
-                          is_open: true
-                          open_semester: 0
+                - user
+            examples: {}
           application/xml:
             schema:
               description: ''
