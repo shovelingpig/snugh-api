@@ -790,6 +790,14 @@ paths:
                           type: string
                         type:
                           type: integer
+              examples:
+                example-1:
+                  value:
+                    id: 0
+                    major:
+                      - id: 0
+                        name: string
+                        type: 0
         '400':
           description: parameter의 plan_id에 해당하는 plan이 없을 때
           content:
@@ -1197,6 +1205,26 @@ paths:
                 properties:
                   id:
                     type: number
+                  user:
+                    type: number
+                  major:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        name:
+                          type: string
+                          minLength: 1
+                        type:
+                          type: number
+                      required:
+                        - id
+                        - name
+                        - type
                   plan_name:
                     type: string
                     minLength: 1
@@ -1205,17 +1233,9 @@ paths:
                   semesters:
                     type: array
                     uniqueItems: true
-                    minItems: 1
+                    minItems: 0
                     items:
-                      required:
-                        - id
-                        - plan
-                        - year
-                        - semester_type
-                        - is_complete
-                        - major_requirement_credits
-                        - major_elective_credits
-                        - general_credits
+                      type: object
                       properties:
                         id:
                           type: number
@@ -1236,15 +1256,9 @@ paths:
                         lectures:
                           type: array
                           uniqueItems: true
-                          minItems: 1
+                          minItems: 0
                           items:
-                            required:
-                              - lecture_id
-                              - semesterlecture_id
-                              - lecture_name
-                              - credit
-                              - is_open
-                              - open_semester
+                            type: object
                             properties:
                               lecture_id:
                                 type: number
@@ -1259,8 +1273,26 @@ paths:
                                 type: boolean
                               open_semester:
                                 type: number
+                            required:
+                              - lecture_id
+                              - semesterlecture_id
+                              - lecture_name
+                              - credit
+                              - is_open
+                              - open_semester
+                      required:
+                        - id
+                        - plan
+                        - year
+                        - semester_type
+                        - is_complete
+                        - major_requirement_credits
+                        - major_elective_credits
+                        - general_credits
                 required:
                   - id
+                  - user
+                  - major
                   - plan_name
                   - recent_scroll
                   - semesters
