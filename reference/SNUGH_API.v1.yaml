@@ -1727,12 +1727,6 @@ paths:
       parameters:
         - schema:
             type: string
-          in: header
-          name: ' Authorization'
-          required: true
-          description: Token 인증
-        - schema:
-            type: string
           in: query
           name: name
           description: 전공 검색어
