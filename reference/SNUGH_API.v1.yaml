@@ -157,6 +157,7 @@ paths:
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
       parameters: []
+  /user/me/:
     put:
       summary: ''
       operationId: put-user
@@ -191,6 +192,19 @@ paths:
                           type: integer
         '401':
           description: Unauthorized
+        '403':
+          description: pk!='me'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: Can't see other user's information
       parameters:
         - schema:
             type: string
@@ -252,6 +266,19 @@ paths:
                           type: integer
         '401':
           description: Unauthorized
+        '403':
+          description: pk!='me'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: Can't see other user's information
       parameters:
         - schema:
             type: string
@@ -267,6 +294,19 @@ paths:
           description: OK
         '401':
           description: Unauthorized
+        '403':
+          description: pk!='me'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: Can't see other user's information
       parameters:
         - schema:
             type: string
@@ -559,12 +599,14 @@ paths:
           in: header
           name: Authorization
           required: true
-        - schema:
-            type: integer
-          in: query
-          name: major_id
-          required: true
-          description: 삭제할 major의 id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                major_id:
+                  type: integer
     post:
       summary: post usermajor
       tags: []
@@ -1810,21 +1852,37 @@ paths:
                   major:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        name:
-                          type: string
-                        type:
-                          type: integer
+                      type: string
               examples:
                 example-1:
                   value:
                     major:
-                      - id: 0
-                        name: string
-                        type: 0
+                      - 종로구
+                      - 중구
+                      - 용산구
+                      - 성동구
+                      - 광진구
+                      - 동대문구
+                      - 중랑구
+                      - 성북구
+                      - 강북구
+                      - 도봉구
+                      - 노원구
+                      - 은평구
+                      - 서대문구
+                      - 마포구
+                      - 양천구
+                      - 강서구
+                      - 구로구
+                      - 금천구
+                      - 영등포구
+                      - 동작구
+                      - 관악구
+                      - 서초구
+                      - 강남구
+                      - 송파구
+                      - 강동구
+                      - ammonite science
         '403':
           description: Token 인증 실패
       operationId: get-major
