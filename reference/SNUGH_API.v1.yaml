@@ -6,7 +6,7 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  /user/:
+  /user:
     post:
       summary: Create New User
       operationId: post-user
@@ -58,6 +58,11 @@ paths:
           description: |-
             1. 모든 Required Body 항목을 채우지 않았을 때
             2. 이미 있는 유저일 때(email로 확인)
+            3. Body 항목 중 데이터 type이 다른 경우
+            4. Body 중 email 양식 오류(가운데에 '@')
+            5. Body 중 password 양식 오류(6글자 이상)
+            6. Body 중 year 양식 오류(4자리 숫자)
+            7. Body 중 full_name 양식 오류(2~30글자)
           content:
             application/json:
               schema:
@@ -66,12 +71,27 @@ paths:
                   error:
                     type: string
               examples:
-                example-1:
+                모든 Required Body 항목을 채우지 않았을 때:
                   value:
                     error: (없는 항목들) missing
-                example-2:
+                이미 있는 유저일 때(email로 확인):
                   value:
                     error: existing user
+                Body 항목 중 데이터 type이 다른 경우:
+                  value:
+                    error: (항목들) wrong data type
+                Body 중 email 양식 오류(가운데에 '@'):
+                  value:
+                    error: email form wrong
+                Body 중 password 양식 오류(6글자 이상):
+                  value:
+                    error: password too short
+                Body 중 year 양식 오류(4자리 숫자):
+                  value:
+                    error: year too large or too small
+                Body 중 full_name 양식 오류(2~30글자):
+                  value:
+                    error: full_name too short or too long
       requestBody:
         content:
           application/json:
@@ -136,6 +156,7 @@ paths:
                 - major_id
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
+      parameters: []
     put:
       summary: ''
       operationId: put-user
@@ -191,7 +212,12 @@ paths:
                   type: string
                 status:
                   type: integer
-    parameters: []
+    parameters:
+      - schema:
+          type: string
+        name: ''
+        in: path
+        required: true
     get:
       summary: ''
       operationId: get-user
@@ -232,6 +258,7 @@ paths:
           in: header
           name: Authorization
           required: true
+      description: ''
     delete:
       summary: ''
       operationId: delete-user
