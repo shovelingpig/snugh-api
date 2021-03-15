@@ -493,7 +493,7 @@ paths:
             type: string
           in: header
           name: Authorization
-          description: Token Authentification
+          description: Token Authentication
           required: true
   /user/major/:
     delete:
@@ -938,6 +938,13 @@ paths:
                     - plan_name
                     - recent_scroll
                     - semesters
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
     post:
       summary: 'Create a plan '
       tags: []
@@ -1078,6 +1085,12 @@ paths:
                   type: number
               required:
                 - user_id
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: major_id
+          required: true
   '/plan/{plan_id}':
     parameters:
       - schema:
@@ -1205,6 +1218,13 @@ paths:
               required:
                 - plan_name
                 - recent_scroll
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
     delete:
       summary: Delete a plan
       tags: []
@@ -1213,6 +1233,12 @@ paths:
           description: OK
       operationId: delete-plan-plan_id
       description: 유저의 메인 보드에서 계획을 삭제합니다.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
     get:
       summary: 'Get a plan '
       tags: []
@@ -1348,6 +1374,13 @@ paths:
             schema:
               type: object
               properties: {}
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
   /semester:
     post:
       summary: Create a semester
@@ -1399,6 +1432,13 @@ paths:
                 - year
                 - semester_type
                 - is_complete
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
   '/semester/{semester_id}':
     parameters:
       - schema:
@@ -1449,6 +1489,13 @@ paths:
                   type: number
                 is_complete:
                   type: boolean
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
     delete:
       summary: Delete a semester
       tags: []
@@ -1457,6 +1504,13 @@ paths:
           description: OK
       operationId: delete-semester-semester_id
       description: '유저 계획의 학기를 삭제합니다.  '
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
     get:
       summary: Get a semester
       tags: []
@@ -1524,6 +1578,13 @@ paths:
                   - lectures
       operationId: get-semester-semester_id
       description: '유저의 현재 계획의 학기를 조회해 해당 학기의 수업들을 나열합니다. '
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
   /lecture:
     post:
       summary: Add lectures
@@ -1595,6 +1656,13 @@ paths:
                 - semester_id
                 - lecture_id
                 - recent_sequence
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
     get:
       summary: Search lectures
       tags: []
@@ -1661,6 +1729,13 @@ paths:
           description: OK
       operationId: delete-lecture-lecture_id
       description: '유저의 현재 학기별 테이블에서 강의를 삭제합니다.  '
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
     put:
       summary: Modify a lecture
       tags: []
@@ -1713,6 +1788,13 @@ paths:
               properties:
                 semester:
                   type: number
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
   /major/:
     get:
       summary: 모든 전공 조회
