@@ -201,7 +201,7 @@ paths:
         '401':
           description: Unauthorized
       operationId: get-requirement
-      description: 'plan_id에 해당하는 Plan의 졸업요건을 모두 조회합니다. Query Params의 type 값이 all이면 나와 관계된 모든 졸업요건을, credit이면 학점 관련 졸업요건만을, etc이면 학점 기타 졸업요건만을 반환합니다.'
+      description: 'plan_id에 해당하는 Plan의 졸업요건을 모두 조회합니다. Query Params의 search_type 값이 all이면 나와 관계된 모든 졸업요건을, credit이면 학점 관련 졸업요건만을, etc이면 학점 기타 졸업요건만을 반환합니다.'
       parameters:
         - schema:
             type: integer
@@ -216,7 +216,7 @@ paths:
               - credit
               - etc
           in: query
-          name: type
+          name: search_type
           required: true
           description: 조회하고 싶은 졸업요건의 종류
     put:
@@ -273,28 +273,30 @@ paths:
         content:
           application/json:
             schema:
+              type: array
               description: ''
-              type: object
-              properties:
-                data:
-                  type: array
-                  uniqueItems: true
-                  minItems: 1
-                  items:
-                    required:
-                      - plan_id
-                      - requirement_id
-                      - is_fulfilled
-                    properties:
-                      plan_id:
-                        type: number
-                      requirement_id:
-                        type: number
-                      is_fulfilled:
-                        type: string
-                        minLength: 1
-              required:
-                - data
+              minItems: 1
+              uniqueItems: true
+              items:
+                type: object
+                required:
+                  - plan_id
+                  - requirement_id
+                  - is_fulfilled
+                properties:
+                  plan_id:
+                    type: number
+                  requirement_id:
+                    type: number
+                  is_fulfilled:
+                    type: string
+                    minLength: 1
+            examples:
+              example-1:
+                value:
+                  - plan_id: 0
+                    requirement_id: 0
+                    is_fulfilled: string
           application/xml:
             schema:
               type: object
@@ -381,11 +383,52 @@ paths:
                       - required_credit
                       - earned_credit
                       - progress
+                  general_elective:
+                    type: object
+                    properties:
+                      required_credit:
+                        type: number
+                      earned_credit:
+                        type: number
+                      progress:
+                        type: number
+                    required:
+                      - required_credit
+                      - earned_credit
+                      - progress
                 required:
                   - all
                   - major_requirement
                   - major_elective
                   - general
+                  - general_elective
+              examples:
+                example-1:
+                  value:
+                    all:
+                      required_credit: 0
+                      earned_credit: 0
+                      progress: 0
+                    major_requirement:
+                      required_credit: 0
+                      earned_credit: 0
+                      progress: 0
+                    major_elective:
+                      required_credit: 0
+                      earned_credit: 0
+                      progress: 0
+                    general:
+                      required_credit: 0
+                      earned_credit: 0
+                      progress: 0
+                    general_elective:
+                      required_credit: 0
+                      earned_credit: 0
+                      progress: 0
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
       operationId: get-requirement-progress
       description: |-
         기준학점 대비 이수학점 비율을 나타내는 원형 프로그레스바 표시에 사용합니다. 전체/전필/전선/교양별 각각
