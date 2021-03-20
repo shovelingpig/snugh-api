@@ -8,7 +8,7 @@ servers:
 paths:
   /user:
     post:
-      summary: Create New User
+      summary: Create new user
       operationId: post-user
       responses:
         '201':
@@ -159,7 +159,7 @@ paths:
       parameters: []
   /user/me/:
     put:
-      summary: ''
+      summary: Update my info
       operationId: put-user
       responses:
         '200':
@@ -233,7 +233,7 @@ paths:
         in: path
         required: true
     get:
-      summary: ''
+      summary: Get my info
       operationId: get-user
       responses:
         '200':
@@ -287,7 +287,7 @@ paths:
           required: true
       description: ''
     delete:
-      summary: ''
+      summary: Delete my info
       operationId: delete-user
       responses:
         '200':
@@ -315,7 +315,7 @@ paths:
           required: true
   /requirement/:
     get:
-      summary: Your GET endpoint
+      summary: Get requirements
       tags: []
       responses:
         '200':
@@ -510,7 +510,7 @@ paths:
           required: true
           description: 조회하고 싶은 졸업요건의 종류
     put:
-      summary: ''
+      summary: Update requirements
       operationId: put-requirement
       responses:
         '200':
@@ -731,7 +731,7 @@ paths:
     parameters: []
   /requirement/progress/:
     get:
-      summary: Your GET endpoint
+      summary: Get requirement progress
       tags: []
       responses:
         '200':
@@ -889,7 +889,7 @@ paths:
     parameters: []
   /user/login/:
     put:
-      summary: login
+      summary: Login
       tags: []
       responses:
         '200':
@@ -991,7 +991,7 @@ paths:
     parameters: []
   /user/logout/:
     get:
-      summary: log out
+      summary: Logout
       tags: []
       responses:
         '200':
@@ -1006,7 +1006,7 @@ paths:
           required: true
   /user/major/:
     delete:
-      summary: delete usermajor
+      summary: Delete usermajor
       tags: []
       responses:
         '200':
@@ -1077,7 +1077,7 @@ paths:
                 major_id:
                   type: integer
     post:
-      summary: post usermajor
+      summary: Post usermajor
       tags: []
       responses:
         '201':
