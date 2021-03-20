@@ -6,7 +6,7 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  /user:
+  /user/:
     post:
       summary: Create new user
       operationId: post-user
@@ -28,20 +28,28 @@ paths:
                     type: string
                     minLength: 1
                   year:
-                    type: integer
+                    type: number
                   status:
-                    type: integer
+                    type: string
+                    minLength: 1
                   major:
                     type: array
+                    uniqueItems: true
+                    minItems: 1
                     items:
-                      type: object
+                      required:
+                        - id
+                        - name
+                        - type
                       properties:
                         id:
-                          type: integer
+                          type: number
                         name:
                           type: string
+                          minLength: 1
                         type:
-                          type: integer
+                          type: string
+                          minLength: 1
                   token:
                     type: string
                     minLength: 1
@@ -53,7 +61,22 @@ paths:
                   - status
                   - major
                   - token
-              examples: {}
+              examples:
+                example-1:
+                  value:
+                    id: 1
+                    email: ammo123@snu.ac.kr
+                    full_name: ammo kim
+                    year: 2019
+                    status: active
+                    major:
+                      - id: 1
+                        name: 경영학과
+                        type: major
+                      - id: 2
+                        name: 컴퓨터공학과
+                        type: double_major
+                    token: Token abc123abc123
         '400':
           description: |-
             1. 모든 Required Body 항목을 채우지 않았을 때
@@ -96,22 +119,28 @@ paths:
         content:
           application/json:
             schema:
+              description: ''
               type: object
               properties:
                 email:
                   type: string
+                  minLength: 1
                 password:
                   type: string
+                  minLength: 1
                 year:
-                  type: integer
+                  type: number
                 full_name:
                   type: string
+                  minLength: 1
                 major_id:
                   type: array
                   items:
-                    type: integer
+                    required: []
+                    properties: {}
                 status:
-                  type: integer
+                  type: string
+                  minLength: 1
               required:
                 - email
                 - password
@@ -119,7 +148,17 @@ paths:
                 - full_name
                 - major_id
                 - status
-            examples: {}
+            examples:
+              example-1:
+                value:
+                  email: ammo123@snu.ac.kr
+                  password: ammo123
+                  year: 2019
+                  full_name: ammo kim
+                  major_id:
+                    - 1
+                    - 2
+                  status: active
           application/xml:
             schema:
               description: ''
@@ -157,6 +196,7 @@ paths:
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
       parameters: []
+    parameters: []
   /user/me/:
     put:
       summary: Update my info
@@ -167,29 +207,59 @@ paths:
           content:
             application/json:
               schema:
+                description: ''
                 type: object
                 properties:
                   id:
-                    type: integer
+                    type: number
                   email:
                     type: string
+                    minLength: 1
+                  year:
+                    type: number
                   full_name:
                     type: string
-                  year:
-                    type: string
+                    minLength: 1
                   status:
-                    type: integer
+                    type: string
+                    minLength: 1
                   major:
                     type: array
+                    uniqueItems: true
+                    minItems: 1
                     items:
-                      type: object
+                      required:
+                        - id
+                        - name
+                        - type
                       properties:
                         id:
-                          type: integer
+                          type: number
                         name:
                           type: string
+                          minLength: 1
                         type:
-                          type: integer
+                          type: string
+                          minLength: 1
+                required:
+                  - id
+                  - email
+                  - year
+                  - full_name
+                  - status
+                  - major
+              examples:
+                example-1:
+                  value:
+                    id: 1
+                    email: ammo123@snu.ac.kr
+                    year: 2019
+                    full_name: ammo park
+                    status: break
+                    major:
+                      - id: 1
+                        name: 경영학과
+                        type: major
         '401':
           description: Unauthorized
         '403':
@@ -211,21 +281,38 @@ paths:
           in: header
           name: Authorization
           required: true
+          description: Token Authentication
       description: ''
       requestBody:
         content:
           application/json:
             schema:
+              description: ''
               type: object
               properties:
                 password:
                   type: string
+                  minLength: 1
                 year:
-                  type: string
+                  type: number
                 full_name:
                   type: string
+                  minLength: 1
                 status:
-                  type: integer
+                  type: string
+                  minLength: 1
+              required:
+                - password
+                - year
+                - full_name
+                - status
+            examples:
+              example-1:
+                value:
+                  password: ammo456
+                  year: 2020
+                  full_name: ammo park
+                  status: break
     parameters:
       - schema:
           type: string
@@ -241,29 +328,59 @@ paths:
           content:
             application/json:
               schema:
+                description: ''
                 type: object
                 properties:
                   id:
-                    type: integer
+                    type: number
                   email:
                     type: string
+                    minLength: 1
+                  year:
+                    type: number
                   full_name:
                     type: string
-                  year:
-                    type: string
+                    minLength: 1
                   status:
-                    type: integer
+                    type: string
+                    minLength: 1
                   major:
                     type: array
+                    uniqueItems: true
+                    minItems: 1
                     items:
-                      type: object
+                      required:
+                        - id
+                        - name
+                        - type
                       properties:
                         id:
-                          type: integer
+                          type: number
                         name:
                           type: string
+                          minLength: 1
                         type:
-                          type: integer
+                          type: string
+                          minLength: 1
+                required:
+                  - id
+                  - email
+                  - year
+                  - full_name
+                  - status
+                  - major
+              examples:
+                example-1:
+                  value:
+                    id: 1
+                    email: ammo123@snu.ac.kr
+                    year: 2019
+                    full_name: ammo kim
+                    status: active
+                    major:
+                      - id: 1
+                        name: 경영학과
+                        type: major
         '401':
           description: Unauthorized
         '403':
@@ -285,6 +402,7 @@ paths:
           in: header
           name: Authorization
           required: true
+          description: Token Authentication
       description: ''
     delete:
       summary: Delete my info
@@ -313,6 +431,7 @@ paths:
           in: header
           name: Authorization
           required: true
+          description: Token Authentication
   /requirement/:
     get:
       summary: Get requirements
@@ -509,6 +628,12 @@ paths:
           name: search_type
           required: true
           description: 조회하고 싶은 졸업요건의 종류
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
     put:
       summary: Update requirements
       operationId: put-requirement
@@ -728,6 +853,13 @@ paths:
               type: object
               properties: {}
         description: ''
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
     parameters: []
   /requirement/progress/:
     get:
@@ -886,6 +1018,12 @@ paths:
           name: plan_id
           description: 진행사항을 조회하고 싶은 Plan의 ID
           required: true
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
     parameters: []
   /user/login/:
     put:
@@ -897,46 +1035,71 @@ paths:
           content:
             application/json:
               schema:
+                description: ''
                 type: object
                 properties:
                   id:
-                    type: integer
-                  email:
+                    type: number
+                  username:
                     type: string
+                    minLength: 1
                   full_name:
                     type: string
+                    minLength: 1
+                  first_name:
+                    type: string
+                    minLength: 1
+                  last_name:
+                    type: string
+                    minLength: 1
                   year:
-                    type: integer
+                    type: number
                   status:
-                    type: integer
+                    type: string
+                    minLength: 1
                   major:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        name:
-                          type: string
-                        type:
-                          type: integer
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      name:
+                        type: string
+                        minLength: 1
+                      type:
+                        type: string
+                        minLength: 1
+                    required:
+                      - id
+                      - name
+                      - type
                   token:
                     type: string
+                    minLength: 1
+                required:
+                  - id
+                  - username
+                  - full_name
+                  - first_name
+                  - last_name
+                  - year
+                  - status
+                  - major
+                  - token
               examples:
                 example-1:
                   value:
-                    id: 0
-                    username: string
-                    full_name: string
-                    first_name: string
-                    last_name: string
-                    student_id: string
-                    status: 0
+                    id: 1
+                    username: ammo123
+                    full_name: ammo kim
+                    first_name: ammo
+                    last_name: kim
+                    year: 2019
+                    status: active
                     major:
-                      id: 0
-                      name: string
-                      type: 0
-                    token: string
+                      id: 1
+                      name: 경영학과
+                      type: major
+                    token: Token abc123abc123
         '400':
           description: |-
             Bad Request
@@ -974,20 +1137,23 @@ paths:
         content:
           application/json:
             schema:
+              description: ''
               type: object
               properties:
                 email:
                   type: string
+                  minLength: 1
                 password:
                   type: string
+                  minLength: 1
               required:
                 - email
                 - password
             examples:
               example-1:
                 value:
-                  username: string
-                  password: string
+                  email: ammo123@snu.ac.kr
+                  password: ammo123
     parameters: []
   /user/logout/:
     get:
@@ -1006,7 +1172,7 @@ paths:
           required: true
   /user/major/:
     delete:
-      summary: Delete usermajor
+      summary: Unregister a major
       tags: []
       responses:
         '200':
@@ -1014,19 +1180,36 @@ paths:
           content:
             application/json:
               schema:
+                description: ''
                 type: object
                 properties:
-                  major:
+                  majors:
                     type: array
+                    uniqueItems: true
+                    minItems: 1
                     items:
-                      type: object
+                      required:
+                        - id
+                        - name
+                        - type
                       properties:
                         id:
-                          type: integer
+                          type: number
                         name:
                           type: string
+                          minLength: 1
                         type:
-                          type: integer
+                          type: string
+                          minLength: 1
+                required:
+                  - majors
+              examples:
+                example-1:
+                  value:
+                    majors:
+                      - id: 1
+                        name: 경영학과
+                        type: major
         '400':
           description: |-
             1. parameter에 major_id가 없을 때
@@ -1044,11 +1227,11 @@ paths:
                     error: major_id missing
                 example-2:
                   value:
-                    error: wrong major_id
+                    error: major_id wrong
         '401':
-          description: No Token
+          description: 인증 Token이 Header에 포함되지 않았을 때 발생하는 에러입니다.
         '404':
-          description: parameter에 major_id가 있지만 해당하는 Major을 찾을 수 없을 때
+          description: major_id에 해당하는 major가 존재하지 않을 때 발생하는 에러입니다.
           content:
             application/json:
               schema:
@@ -1059,15 +1242,16 @@ paths:
               examples:
                 example-1:
                   value:
-                    error: No major with the given major_id
+                    error: major not_exist
       operationId: delete-user-major
-      description: ''
+      description: 사용자가 자신의 전공을 등록 취소할 때 사용하는 API입니다.
       parameters:
         - schema:
             type: string
           in: header
           name: Authorization
           required: true
+          description: Token Authentication
       requestBody:
         content:
           application/json:
@@ -1076,8 +1260,12 @@ paths:
               properties:
                 major_id:
                   type: integer
+            examples:
+              example-1:
+                value:
+                  major_id: 2
     post:
-      summary: Post usermajor
+      summary: Register a major
       tags: []
       responses:
         '201':
@@ -1085,34 +1273,75 @@ paths:
           content:
             application/json:
               schema:
+                description: ''
                 type: object
                 properties:
-                  major:
+                  majors:
                     type: array
+                    uniqueItems: true
+                    minItems: 1
                     items:
-                      type: object
+                      required:
+                        - id
+                        - name
+                        - type
                       properties:
                         id:
-                          type: integer
+                          type: number
                         name:
                           type: string
+                          minLength: 1
                         type:
-                          type: integer
-        '401':
-          description: 'Token이 주어지지 않았을 때 '
-        '404':
-          description: '1. body의 major_name과 major_type을 가진 major이 없을 때 '
+                          type: string
+                          minLength: 1
+                required:
+                  - majors
+              examples:
+                example-1:
+                  value:
+                    majors:
+                      - id: 1
+                        name: 경영학과
+                        type: major
+                      - id: 2
+                        name: 컴퓨터공학과
+                        type: double_major
+        '400':
+          description: Bad Request
           content:
             application/json:
               schema:
+                description: ''
                 type: object
                 properties:
                   error:
                     type: string
+                    minLength: 1
+                required:
+                  - error
               examples:
                 example-1:
                   value:
-                    error: No major with the given major_name and major_type
+                    error: major_name missing
+        '401':
+          description: 인증 Token이 Header에 포함되지 않았을 때 발생하는 에러입니다.
+        '404':
+          description: major_name과 major_type에 해당하는 major가 존재하지 않을 때 발생하는 에러입니다.
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+              examples:
+                example-1:
+                  value:
+                    error: major not_exist
       operationId: post-user-major
       parameters:
         - schema:
@@ -1120,21 +1349,34 @@ paths:
           in: header
           name: Authorization
           required: true
-          description: Token 인증
-      description: '현재 세션의 유저에 전공을 추가합니다. '
+          description: Token Authentication
+      description: 사용자가 자신의 전공을 등록할 때 사용하는 API입니다.
       requestBody:
         content:
           application/json:
             schema:
+              description: ''
               type: object
               properties:
                 major_name:
                   type: string
+                  minLength: 1
                 major_type:
-                  type: integer
+                  type: string
+                  minLength: 1
+                  enum:
+                    - major
+                    - single_major
+                    - double_major
+                    - minor
               required:
                 - major_name
                 - major_type
+            examples:
+              example-1:
+                value:
+                  major_name: 컴퓨터공학과
+                  major_type: double_major
     parameters: []
   /plan/major/:
     post:
@@ -1892,7 +2134,7 @@ paths:
           name: Authorization
           description: Token Authentication
           required: true
-  /semester:
+  /semester/:
     post:
       summary: Create a semester
       tags: []
@@ -1909,18 +2151,43 @@ paths:
                     type: number
                   year:
                     type: number
+                  semester_type:
+                    type: string
+                    minLength: 1
                   is_complete:
                     type: boolean
-                  semester_type:
+                  major_requirement_credit:
+                    type: number
+                  major_elective_credit:
+                    type: number
+                  general_credit:
+                    type: number
+                  general_elective_credit:
                     type: number
                   plan:
                     type: number
                 required:
                   - id
                   - year
-                  - is_complete
                   - semester_type
+                  - is_complete
+                  - major_requirement_credit
+                  - major_elective_credit
+                  - general_credit
+                  - general_elective_credit
                   - plan
+              examples:
+                example-1:
+                  value:
+                    id: 5
+                    year: 2021
+                    is_complete: false
+                    semester_type: first
+                    major_requirement_credit: 0
+                    major_elective_credit: 0
+                    general_credit: 0
+                    general_elective_credit: 0
+                    plan: 5
       operationId: post-semester
       description: '유저의 현재 계획에 학기를 추가합니다. 한 번에 하나의 학기씩 추가됩니다. '
       requestBody:
@@ -1935,14 +2202,26 @@ paths:
                 year:
                   type: number
                 semester_type:
-                  type: number
+                  type: string
+                  minLength: 1
+                  enum:
+                    - first
+                    - second
+                    - summer
+                    - winter
                 is_complete:
                   type: boolean
               required:
                 - plan
                 - year
                 - semester_type
-                - is_complete
+            examples:
+              example-1:
+                value:
+                  plan: 5
+                  year: 2021
+                  semester_type: first
+                  is_complete: false
       parameters:
         - schema:
             type: string
@@ -1950,6 +2229,7 @@ paths:
           name: Authorization
           description: Token Authentication
           required: true
+    parameters: []
   '/semester/{semester_id}':
     parameters:
       - schema:
@@ -2096,7 +2376,7 @@ paths:
           name: Authorization
           description: Token Authentication
           required: true
-  /lecture:
+  /lecture/:
     post:
       summary: Add lectures
       tags: []
@@ -2167,6 +2447,14 @@ paths:
                 - semester_id
                 - lecture_id
                 - recent_sequence
+            examples:
+              example-1:
+                value:
+                  semester_id: 0
+                  lecture_id:
+                    - 0
+                  recent_sequence:
+                    - 0
       parameters:
         - schema:
             type: string
@@ -2186,37 +2474,138 @@ paths:
                 description: ''
                 type: object
                 properties:
-                  lectures:
+                  majors:
                     type: array
                     uniqueItems: true
-                    minItems: 0
+                    minItems: 1
                     items:
-                      type: object
+                      required:
+                        - major_name
+                        - major_type
                       properties:
-                        id:
-                          type: number
-                        lecture_name:
+                        major_name:
                           type: string
                           minLength: 1
-                        credit:
-                          type: number
-                        is_open:
-                          type: boolean
-                        open_semester:
-                          type: number
-                      required:
-                        - id
-                        - lecture_name
-                        - credit
-                        - is_open
-                        - open_semester
+                        major_type:
+                          type: string
+                          minLength: 1
+                        lectures:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - id
+                              - lecture_id
+                              - lecture_name
+                              - open_department
+                              - open_major
+                              - open_semester
+                              - credit
+                              - lecture_type
+                            properties:
+                              id:
+                                type: number
+                              lecture_id:
+                                type: string
+                                minLength: 1
+                              lecture_name:
+                                type: string
+                                minLength: 1
+                              open_department:
+                                type: string
+                                minLength: 1
+                              open_major:
+                                type: string
+                                minLength: 1
+                              open_semester:
+                                type: string
+                                minLength: 1
+                              credit:
+                                type: number
+                              grade: {}
+                              prev_lecture_id: {}
+                              lecture_type:
+                                type: string
+                                minLength: 1
                 required:
-                  - lectures
+                  - majors
+              examples:
+                example-1:
+                  value:
+                    majors:
+                      - major_name: 불어교육과
+                        major_type: major
+                        lectures:
+                          - id: 3950
+                            lecture_id: 708.226A
+                            lecture_name: 초급프랑스어회화 1
+                            open_department: 사범대학
+                            open_major: 불어교육과
+                            open_semester: FIRST
+                            credit: 3
+                            grade: null
+                            prev_lecture_id: null
+                            lecture_type: MAJOR_ELECTIVE
+                          - id: 1674
+                            lecture_id: 708.227A
+                            lecture_name: 초급프랑스어회화 2
+                            open_department: 사범대학
+                            open_major: 불어교육과
+                            open_semester: SECOND
+                            credit: 3
+                            grade: null
+                            prev_lecture_id: null
+                            lecture_type: MAJOR_ELECTIVE
+                      - major_name: 교육학과
+                        major_type: double_major
+                        lectures:
+                          - id: 2323
+                            lecture_id: '700.110'
+                            lecture_name: 교육심리학
+                            open_department: 사범대학
+                            open_major: 교육학과
+                            open_semester: SECOND
+                            credit: 3
+                            grade: null
+                            prev_lecture_id: null
+                            lecture_type: MAJOR_ELECTIVE
+                          - id: 4747
+                            lecture_id: '701.211'
+                            lecture_name: 교육과정
+                            open_department: 사범대학
+                            open_major: 교육학과
+                            open_semester: FIRST
+                            credit: 3
+                            grade: null
+                            prev_lecture_id: null
+                            lecture_type: MAJOR_ELECTIVE
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+              examples:
+                example-1:
+                  value:
+                    error: year missing
+        '401':
+          description: Unauthorized
+        '':
+          description: ''
       operationId: get-lecture
       description: '강의를 검색합니다. 1) 전필/전선/교양 별로 강의를 불러올 수 있고, 2) 강의 이름에 포함된 키워드를 통해 검색이 가능합니다.'
       parameters:
         - schema:
-            type: integer
+            type: string
           in: query
           name: lecture_type
           description: '전공 필수, 전공 선택, 교양 수업을 구분합니다'
@@ -2225,6 +2614,18 @@ paths:
           in: query
           name: search_keyword
           description: 이름 안에 검색 키워드가 들어있는 강의들을 검색합니다.
+        - schema:
+            type: integer
+          in: query
+          name: year
+          description: 강의 검색의 기준년도입니다.
+          required: true
+        - schema:
+            type: integer
+          in: query
+          name: plan_id
+          description: 강의를 조회하고자 하는 계획의 id입니다.
+    parameters: []
   '/lecture/{lecture_id}':
     parameters:
       - schema:
@@ -2316,42 +2717,24 @@ paths:
           content:
             application/json:
               schema:
+                description: ''
                 type: object
                 properties:
-                  major:
+                  majors:
                     type: array
                     items:
-                      type: string
+                      required: []
+                      properties: {}
+                required:
+                  - majors
               examples:
                 example-1:
                   value:
-                    major:
-                      - 종로구
-                      - 중구
-                      - 용산구
-                      - 성동구
-                      - 광진구
-                      - 동대문구
-                      - 중랑구
-                      - 성북구
-                      - 강북구
-                      - 도봉구
-                      - 노원구
-                      - 은평구
-                      - 서대문구
-                      - 마포구
-                      - 양천구
-                      - 강서구
-                      - 구로구
-                      - 금천구
-                      - 영등포구
-                      - 동작구
-                      - 관악구
-                      - 서초구
-                      - 강남구
-                      - 송파구
-                      - 강동구
-                      - ammonite science
+                    majors:
+                      - 경영학과
+                      - 컴퓨터공학과
+                      - 언어학과
+                      - 경제학과
         '403':
           description: Token 인증 실패
       operationId: get-major
@@ -2359,10 +2742,8 @@ paths:
         - schema:
             type: string
           in: query
-          name: name
-          description: 전공 검색어
-      description: |-
-        모든 전공 조회 기능. 
-        검색어를 param에 넣어서 검색도 가능
+          name: search_keyword
+          description: 해당 키워드로 전공을 검색할 수 있습니다.
+      description: 모든 전공들의 리스트를 조회할 수 있습니다. Query Params의 search_keyword를 이용하면 특정 키워드로 전공을 검색할 수도 있습니다.
 components:
   schemas: {}
