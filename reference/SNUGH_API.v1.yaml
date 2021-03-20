@@ -610,7 +610,9 @@ paths:
                 type: object
                 properties: {}
       operationId: get-requirement
-      description: 'plan_id에 해당하는 계획의 졸업요건들을 전공별로 리스트 형태로 반환합니다. search_type 값이 all이면 나와 관계된 모든 졸업요건을, credit이면 학점 관련 졸업요건만, etc이면 기타 졸업요건만 반환합니다.'
+      description: |-
+        (Version 1.0에는 포함되지 않는 기능입니다.)
+        plan_id에 해당하는 계획의 졸업요건들을 전공별로 리스트 형태로 반환합니다. search_type 값이 all이면 나와 관계된 모든 졸업요건을, credit이면 학점 관련 졸업요건만, etc이면 기타 졸업요건만 반환합니다.
       parameters:
         - schema:
             type: integer
@@ -801,7 +803,9 @@ paths:
                     error: plan_id missing
         '401':
           description: Unauthorized
-      description: plan_id에 해당하는 계획에서 기타 졸업요건의 충족 여부를 User가 직접 체크하거나 체크 해제할 때 사용합니다. body의 is_fulfilled 값에 따라 체크 여부가 변경됩니다. requirement_id에 해당하는 졸업요건이 기타 졸업요건이 아닌 학점 관련 졸업요건일 시에는 에러 코드가 반환됩니다.
+      description: |-
+        (Version 1.0에는 포함되지 않는 기능입니다.)
+        plan_id에 해당하는 계획에서 기타 졸업요건의 충족 여부를 User가 직접 체크하거나 체크 해제할 때 사용합니다. body의 is_fulfilled 값에 따라 체크 여부가 변경됩니다. requirement_id에 해당하는 졸업요건이 기타 졸업요건이 아닌 학점 관련 졸업요건일 시에는 에러 코드가 반환됩니다.
       requestBody:
         content:
           application/json:
@@ -1379,170 +1383,8 @@ paths:
                   major_type: double_major
     parameters: []
   /plan/major/:
-    post:
-      summary: Post planmajor
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  plans:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        major:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              id:
-                                type: integer
-                              name:
-                                type: string
-                              type:
-                                type: integer
-        '400':
-          description: |-
-            1. query_params에 major_id가 없을 때
-            2. query_params에 plan_id가 없을 때
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-              examples:
-                'example-1 ':
-                  value:
-                    error: major_id missing
-                example-2:
-                  value:
-                    error: plan_id missing
-        '401':
-          description: No token
-        '404':
-          description: ' body에 major_id와 plan_id가 있지만 해당하는 Major을 찾을 수 없을 때'
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-              examples:
-                example-1:
-                  value:
-                    error: No major matching the given major_id and plan_id
-      operationId: post-plan-major
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          required: true
-        - schema:
-            type: string
-          in: query
-          name: major_id
-          required: true
-          description: 추가하려는 major의 id
-        - schema:
-            type: string
-          in: query
-          name: plan_id
-          description: major을 추가하려는 plan의 id
-          required: true
-    delete:
-      summary: Delete planmajor
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  plans:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        major:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              id:
-                                type: integer
-                              name:
-                                type: string
-                              type:
-                                type: integer
-        '400':
-          description: |-
-            1. body에 major_id가 없을 때
-            2. body에 plan_id가 없을 때
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-              examples:
-                example-1:
-                  value:
-                    error: major_id missing
-                example-2:
-                  value:
-                    error: plan_id missing
-        '401':
-          description: Unauthorized
-        '404':
-          description: body에 major_id와 plan_id가 있지만 해당하는 Major을 찾을 수 없을 때
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-              examples:
-                example-1:
-                  value:
-                    error: No major matching the given major_id and plan_id
-      operationId: delete-plan-major
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          required: true
-        - schema:
-            type: string
-          in: query
-          name: major_id
-          required: true
-          description: 삭제하려는 major의 id
-        - schema:
-            type: string
-          in: query
-          name: plan_id
-          required: true
-          description: major을 삭제하려는 plan의 id
     get:
-      summary: Get planmajor
+      summary: Get majors registered in plan
       tags: []
       responses:
         '200':
@@ -1595,18 +1437,67 @@ paths:
           in: header
           name: Authorization
           required: true
+          description: Token Authentication
         - schema:
             type: string
           in: query
           name: plan_id
           description: 조회하려는 plan
           required: true
-  /plan:
+      description: 특정 계획에 등록된 모든 전공들을 리스트 형태로 반환합니다.
+    put:
+      summary: Update majors registered in plan
+      operationId: put-plan-major
+      responses:
+        '200':
+          description: OK
+      description: 계획에 등록된 전공들의 리스트를 수정합니다.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+        - schema:
+            type: string
+          in: query
+          name: plan_id
+          description: major을 수정하려는 plan의 id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                post_list:
+                  type: array
+                  items:
+                    required: []
+                    properties: {}
+                delete_list:
+                  type: array
+                  items:
+                    required: []
+                    properties: {}
+              required:
+                - post_list
+                - delete_list
+            examples:
+              example-1:
+                value:
+                  post_list:
+                    - 1
+                    - 2
+                  delete_list:
+                    - 3
+                    - 4
+  /plan/:
     get:
       summary: 'Get all plans '
       tags: []
       operationId: get-plan
-      description: 유저의 메인 보드의 모든 계획을 조회합니다.
+      description: 사용자의 모든 강의 계획을 리스트 형태로 반환합니다.
       responses:
         '200':
           description: OK
@@ -1691,6 +1582,8 @@ paths:
                     - plan_name
                     - recent_scroll
                     - semesters
+              examples:
+                example-1: {}
       parameters:
         - schema:
             type: string
@@ -1808,7 +1701,7 @@ paths:
                             open_semester: 0
                     user: 0
       operationId: post-plan
-      description: 유저의 메인 보드에 계획을 추가합니다. 한 번에 하나의 계획씩 추가됩니다.
+      description: 강의 계획을 추가합니다. 한번에 하나의 계획만 추가할 수 있습니다.
       requestBody:
         content:
           application/json:
@@ -1816,14 +1709,22 @@ paths:
               description: ''
               type: object
               properties:
-                user:
-                  type: number
                 plan_name:
                   type: string
                   minLength: 1
+                majors:
+                  type: array
+                  items:
+                    type: object
               required:
-                - user
-            examples: {}
+                - majors
+            examples:
+              example-1:
+                value:
+                  plan_name: 계획 1
+                  majors:
+                    - 1
+                    - 2
           application/xml:
             schema:
               description: ''
@@ -1838,13 +1739,10 @@ paths:
                   type: number
               required:
                 - user_id
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: major_id
-          required: true
-  '/plan/{plan_id}':
+        description: ''
+      parameters: []
+    parameters: []
+  '/plan/{plan_id}/':
     parameters:
       - schema:
           type: string
@@ -1955,7 +1853,7 @@ paths:
                             is_open: true
                             open_semester: 0
       operationId: put-plan-plan_id
-      description: 계획을 수정합니다. 계획의 이름 또는 가로 좌표를 수정할 수 있습니다.
+      description: 계획의 이름 또는 최근 스크롤 좌표를 수정합니다.
       requestBody:
         content:
           application/json:
@@ -1971,6 +1869,11 @@ paths:
               required:
                 - plan_name
                 - recent_scroll
+            examples:
+              example-1:
+                value:
+                  plan_name: 변경된 이름
+                  recent_scroll: 10
       parameters:
         - schema:
             type: string
@@ -1985,7 +1888,7 @@ paths:
         '200':
           description: OK
       operationId: delete-plan-plan_id
-      description: 유저의 메인 보드에서 계획을 삭제합니다.
+      description: 계획을 삭제합니다.
       parameters:
         - schema:
             type: string
@@ -2120,7 +2023,7 @@ paths:
                             is_open: true
                             open_semester: 0
       operationId: get-plan-plan_id
-      description: '유저의 메인 보드의 계획을 조회합니다.  '
+      description: '특정 계획의 세부 정보를 반환합니다.  '
       requestBody:
         content:
           application/json:
@@ -2393,37 +2296,102 @@ paths:
                     type: number
                   semester:
                     type: number
+                  major_requrirement:
+                    type: number
+                  major_elective:
+                    type: number
+                  general:
+                    type: number
+                  general_elective:
+                    type: number
                   lectures:
                     type: array
                     uniqueItems: true
-                    minItems: 0
+                    minItems: 1
                     items:
-                      type: object
+                      required:
+                        - lecture_id
+                        - semester_lecture_id
+                        - recent_sequence
+                        - lecture_name
+                        - credit
+                        - open_semester
                       properties:
                         lecture_id:
-                          type: number
+                          type: string
+                          minLength: 1
                         semester_lecture_id:
+                          type: number
+                        recent_sequence:
                           type: number
                         lecture_name:
                           type: string
                           minLength: 1
                         credit:
                           type: number
-                        is_open:
-                          type: boolean
                         open_semester:
-                          type: number
-                      required:
-                        - lecture_id
-                        - semester_lecture_id
-                        - lecture_name
-                        - credit
-                        - is_open
-                        - open_semester
+                          type: string
+                          minLength: 1
                 required:
                   - plan
                   - semester
+                  - major_requrirement
+                  - major_elective
+                  - general
+                  - general_elective
                   - lectures
+              examples:
+                example-1:
+                  value:
+                    plan: 5
+                    semester: 5
+                    major_requrirement: 6
+                    major_elective: 7
+                    general: 3
+                    general_elective: 3
+                    lectures:
+                      - lecture_id: M1831.000700
+                        semester_lecture_id: 25
+                        recent_sequence: 25
+                        lecture_name: 사회혁신과 평생교육
+                        credit: 3
+                        open_semester: FIRST
+                      - lecture_id: 708.236A
+                        semester_lecture_id: 30
+                        recent_sequence: 30
+                        lecture_name: 프랑스어학습문법 2
+                        credit: 3
+                        open_semester: SECOND
+                      - lecture_id: 701.411A
+                        semester_lecture_id: 26
+                        recent_sequence: 26
+                        lecture_name: 교육사
+                        credit: 3
+                        open_semester: SECOND
+                      - lecture_id: '043.085'
+                        semester_lecture_id: 31
+                        recent_sequence: 31
+                        lecture_name: 자아탐색과 자아실현
+                        credit: 3
+                        open_semester: FIRST
+                      - lecture_id: 705.210A
+                        semester_lecture_id: 28
+                        recent_sequence: 28
+                        lecture_name: 한국문학교육론
+                        credit: 3
+                        open_semester: FIRST
+                      - lecture_id: 708.226A
+                        semester_lecture_id: 29
+                        recent_sequence: 29
+                        lecture_name: 초급프랑스어회화 1
+                        credit: 3
+                        open_semester: FIRST
+                      - lecture_id: T2184.001400
+                        semester_lecture_id: 27
+                        recent_sequence: 27
+                        lecture_name: 교육봉사활동2
+                        credit: 1
+                        open_semester: ALL
       operationId: post-lecture
       description: '유저의 학기별 테이블에 강의를 추가합니다. 한번에 복수의 수업 추가가 가능합니다. '
       requestBody:
@@ -2438,23 +2406,29 @@ paths:
                 lecture_id:
                   type: array
                   items:
-                    type: integer
-                recent_sequence:
+                    required: []
+                    properties: {}
+                lecture_type:
                   type: array
                   items:
-                    type: integer
+                    required: []
+                    properties: {}
               required:
                 - semester_id
                 - lecture_id
-                - recent_sequence
+                - lecture_type
             examples:
               example-1:
                 value:
-                  semester_id: 0
+                  semester_id: 5
                   lecture_id:
-                    - 0
-                  recent_sequence:
-                    - 0
+                    - 1
+                    - 2
+                    - 3
+                  lecture_type:
+                    - major_elective
+                    - major_requirement
+                    - general
       parameters:
         - schema:
             type: string
@@ -2626,7 +2600,7 @@ paths:
           name: plan_id
           description: 강의를 조회하고자 하는 계획의 id입니다.
     parameters: []
-  '/lecture/{lecture_id}':
+  '/lecture/{lecture_id}/':
     parameters:
       - schema:
           type: string
@@ -2691,8 +2665,41 @@ paths:
               description: ''
               type: object
               properties:
-                semester:
+                semester_to:
+                  type: array
+                  items:
+                    required: []
+                    properties: {}
+                semester_from:
+                  type: array
+                  items:
+                    required: []
+                    properties: {}
+                semester_from_id:
                   type: number
+                semester_to_id:
+                  type: number
+              required:
+                - semester_to
+                - semester_from
+                - semester_from_id
+                - semester_to_id
+            examples:
+              example-1:
+                value:
+                  semester_to:
+                    - 3921
+                    - 2806
+                  semester_from:
+                    - 2319
+                    - 4753
+                    - 3012
+                    - 4747
+                    - 3950
+                    - 1470
+                    - 1669
+                  semester_from_id: 6
+                  semester_to_id: 5
           application/xml:
             schema:
               description: ''
