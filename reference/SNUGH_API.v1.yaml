@@ -2397,37 +2397,102 @@ paths:
                     type: number
                   semester:
                     type: number
+                  major_requrirement:
+                    type: number
+                  major_elective:
+                    type: number
+                  general:
+                    type: number
+                  general_elective:
+                    type: number
                   lectures:
                     type: array
                     uniqueItems: true
-                    minItems: 0
+                    minItems: 1
                     items:
-                      type: object
+                      required:
+                        - lecture_id
+                        - semester_lecture_id
+                        - recent_sequence
+                        - lecture_name
+                        - credit
+                        - open_semester
                       properties:
                         lecture_id:
-                          type: number
+                          type: string
+                          minLength: 1
                         semester_lecture_id:
+                          type: number
+                        recent_sequence:
                           type: number
                         lecture_name:
                           type: string
                           minLength: 1
                         credit:
                           type: number
-                        is_open:
-                          type: boolean
                         open_semester:
-                          type: number
-                      required:
-                        - lecture_id
-                        - semester_lecture_id
-                        - lecture_name
-                        - credit
-                        - is_open
-                        - open_semester
+                          type: string
+                          minLength: 1
                 required:
                   - plan
                   - semester
+                  - major_requrirement
+                  - major_elective
+                  - general
+                  - general_elective
                   - lectures
+              examples:
+                example-1:
+                  value:
+                    plan: 5
+                    semester: 5
+                    major_requrirement: 6
+                    major_elective: 7
+                    general: 3
+                    general_elective: 3
+                    lectures:
+                      - lecture_id: M1831.000700
+                        semester_lecture_id: 25
+                        recent_sequence: 25
+                        lecture_name: 사회혁신과 평생교육
+                        credit: 3
+                        open_semester: FIRST
+                      - lecture_id: 708.236A
+                        semester_lecture_id: 30
+                        recent_sequence: 30
+                        lecture_name: 프랑스어학습문법 2
+                        credit: 3
+                        open_semester: SECOND
+                      - lecture_id: 701.411A
+                        semester_lecture_id: 26
+                        recent_sequence: 26
+                        lecture_name: 교육사
+                        credit: 3
+                        open_semester: SECOND
+                      - lecture_id: '043.085'
+                        semester_lecture_id: 31
+                        recent_sequence: 31
+                        lecture_name: 자아탐색과 자아실현
+                        credit: 3
+                        open_semester: FIRST
+                      - lecture_id: 705.210A
+                        semester_lecture_id: 28
+                        recent_sequence: 28
+                        lecture_name: 한국문학교육론
+                        credit: 3
+                        open_semester: FIRST
+                      - lecture_id: 708.226A
+                        semester_lecture_id: 29
+                        recent_sequence: 29
+                        lecture_name: 초급프랑스어회화 1
+                        credit: 3
+                        open_semester: FIRST
+                      - lecture_id: T2184.001400
+                        semester_lecture_id: 27
+                        recent_sequence: 27
+                        lecture_name: 교육봉사활동2
+                        credit: 1
+                        open_semester: ALL
       operationId: post-lecture
       description: '유저의 학기별 테이블에 강의를 추가합니다. 한번에 복수의 수업 추가가 가능합니다. '
       requestBody:
@@ -2442,23 +2507,29 @@ paths:
                 lecture_id:
                   type: array
                   items:
-                    type: integer
-                recent_sequence:
+                    required: []
+                    properties: {}
+                lecture_type:
                   type: array
                   items:
-                    type: integer
+                    required: []
+                    properties: {}
               required:
                 - semester_id
                 - lecture_id
-                - recent_sequence
+                - lecture_type
             examples:
               example-1:
                 value:
-                  semester_id: 0
+                  semester_id: 5
                   lecture_id:
-                    - 0
-                  recent_sequence:
-                    - 0
+                    - 1
+                    - 2
+                    - 3
+                  lecture_type:
+                    - major_elective
+                    - major_requirement
+                    - general
       parameters:
         - schema:
             type: string
