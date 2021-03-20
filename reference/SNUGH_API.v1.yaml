@@ -610,7 +610,9 @@ paths:
                 type: object
                 properties: {}
       operationId: get-requirement
-      description: 'plan_id에 해당하는 계획의 졸업요건들을 전공별로 리스트 형태로 반환합니다. search_type 값이 all이면 나와 관계된 모든 졸업요건을, credit이면 학점 관련 졸업요건만, etc이면 기타 졸업요건만 반환합니다.'
+      description: |-
+        (Version 1.0에는 포함되지 않는 기능입니다.)
+        plan_id에 해당하는 계획의 졸업요건들을 전공별로 리스트 형태로 반환합니다. search_type 값이 all이면 나와 관계된 모든 졸업요건을, credit이면 학점 관련 졸업요건만, etc이면 기타 졸업요건만 반환합니다.
       parameters:
         - schema:
             type: integer
@@ -801,7 +803,9 @@ paths:
                     error: plan_id missing
         '401':
           description: Unauthorized
-      description: plan_id에 해당하는 계획에서 기타 졸업요건의 충족 여부를 User가 직접 체크하거나 체크 해제할 때 사용합니다. body의 is_fulfilled 값에 따라 체크 여부가 변경됩니다. requirement_id에 해당하는 졸업요건이 기타 졸업요건이 아닌 학점 관련 졸업요건일 시에는 에러 코드가 반환됩니다.
+      description: |-
+        (Version 1.0에는 포함되지 않는 기능입니다.)
+        plan_id에 해당하는 계획에서 기타 졸업요건의 충족 여부를 User가 직접 체크하거나 체크 해제할 때 사용합니다. body의 is_fulfilled 값에 따라 체크 여부가 변경됩니다. requirement_id에 해당하는 졸업요건이 기타 졸업요건이 아닌 학점 관련 졸업요건일 시에는 에러 코드가 반환됩니다.
       requestBody:
         content:
           application/json:
