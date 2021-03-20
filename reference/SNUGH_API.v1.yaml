@@ -1138,7 +1138,7 @@ paths:
     parameters: []
   /plan/major/:
     post:
-      summary: planmajor post
+      summary: Post planmajor
       tags: []
       responses:
         '200':
@@ -1219,7 +1219,7 @@ paths:
           description: major을 추가하려는 plan의 id
           required: true
     delete:
-      summary: planmajor delete
+      summary: Delete planmajor
       tags: []
       responses:
         '200':
@@ -1300,7 +1300,7 @@ paths:
           required: true
           description: major을 삭제하려는 plan의 id
     get:
-      summary: planmajor get
+      summary: Get planmajor
       tags: []
       responses:
         '200':
@@ -2308,7 +2308,7 @@ paths:
           required: true
   /major/:
     get:
-      summary: 모든 전공 조회
+      summary: Get all majors
       tags: []
       responses:
         '200':
