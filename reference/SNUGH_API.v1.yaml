@@ -323,20 +323,175 @@ paths:
           content:
             application/json:
               schema:
+                description: ''
                 type: object
-                properties: {}
+                properties:
+                  majors:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - major_name
+                        - major_type
+                      properties:
+                        major_name:
+                          type: string
+                          minLength: 1
+                        major_type:
+                          type: string
+                          minLength: 1
+                        requirements:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - id
+                              - description
+                              - is_fulfilled
+                              - is_credit_requirement
+                              - requirement_type
+                              - requirement_type_detail
+                              - requirement_type_detail_detail
+                              - required_credit
+                              - earned_credit
+                            properties:
+                              id:
+                                type: number
+                              description:
+                                type: string
+                              is_fulfilled:
+                                type: boolean
+                              is_credit_requirement:
+                                type: boolean
+                              requirement_type:
+                                type: string
+                                minLength: 1
+                              requirement_type_detail:
+                                type: string
+                                minLength: 1
+                              requirement_type_detail_detail:
+                                type: string
+                                minLength: 1
+                              required_credit:
+                                type: number
+                              earned_credit:
+                                type: number
+                required:
+                  - majors
               examples:
-                example-1: {}
+                example-1:
+                  value:
+                    majors:
+                      - major_name: 경영학과
+                        major_type: major
+                        requirements:
+                          - id: 1
+                            description: ''
+                            is_fulfilled: false
+                            is_credit_requirement: true
+                            requirement_type: all
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 130
+                            earned_credit: 69
+                          - id: 2
+                            description: ''
+                            is_fulfilled: false
+                            is_credit_requirement: true
+                            requirement_type: major_requirement
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 30
+                            earned_credit: 9
+                          - id: 3
+                            description: ''
+                            is_fulfilled: false
+                            is_credit_requirement: true
+                            requirement_type: major_elective
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 15
+                            earned_credit: 6
+                          - id: 4
+                            description: ''
+                            is_fulfilled: false
+                            is_credit_requirement: true
+                            requirement_type: general
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 15
+                            earned_credit: 9
+                      - major_name: 컴퓨터공학과
+                        major_type: double_major
+                        requirements:
+                          - id: 5
+                            description: ''
+                            is_fulfilled: false
+                            is_credit_requirement: true
+                            requirement_type: all
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 130
+                            earned_credit: 69
+                          - id: 6
+                            description: ''
+                            is_fulfilled: false
+                            is_credit_requirement: true
+                            requirement_type: major_requirement
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 30
+                            earned_credit: 9
+                          - id: 7
+                            description: ''
+                            is_fulfilled: false
+                            is_credit_requirement: true
+                            requirement_type: major_elective
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 15
+                            earned_credit: 6
+                          - id: 8
+                            description: ''
+                            is_fulfilled: false
+                            is_credit_requirement: true
+                            requirement_type: general
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 15
+                            earned_credit: 9
             application/xml:
               schema:
                 type: object
                 properties: {}
         '400':
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+              examples:
+                example-1:
+                  value:
+                    error: plan_id missing
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: get-requirement
-      description: 'plan_id에 해당하는 Plan의 졸업요건을 모두 조회합니다. Query Params의 type 값이 all이면 나와 관계된 모든 졸업요건을, credit이면 학점 관련 졸업요건만을, etc이면 학점 기타 졸업요건만을 반환합니다.'
+      description: 'plan_id에 해당하는 계획의 졸업요건들을 전공별로 리스트 형태로 반환합니다. search_type 값이 all이면 나와 관계된 모든 졸업요건을, credit이면 학점 관련 졸업요건만, etc이면 기타 졸업요건만 반환합니다.'
       parameters:
         - schema:
             type: integer
@@ -351,7 +506,7 @@ paths:
               - credit
               - etc
           in: query
-          name: type
+          name: search_type
           required: true
           description: 조회하고 싶은 졸업요건의 종류
     put:
@@ -360,17 +515,198 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  majors:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - major_name
+                        - major_type
+                      properties:
+                        major_name:
+                          type: string
+                          minLength: 1
+                        major_type:
+                          type: string
+                          minLength: 1
+                        requirements:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - id
+                              - description
+                              - is_fulfilled
+                              - is_credit_requirement
+                              - requirement_type
+                              - requirement_type_detail
+                              - requirement_type_detail_detail
+                              - required_credit
+                              - earned_credit
+                            properties:
+                              id:
+                                type: number
+                              description:
+                                type: string
+                              is_fulfilled:
+                                type: boolean
+                              is_credit_requirement:
+                                type: boolean
+                              requirement_type:
+                                type: string
+                                minLength: 1
+                              requirement_type_detail:
+                                type: string
+                                minLength: 1
+                              requirement_type_detail_detail:
+                                type: string
+                                minLength: 1
+                              required_credit:
+                                type: number
+                              earned_credit:
+                                type: number
+                required:
+                  - majors
+              examples:
+                example-1:
+                  value:
+                    majors:
+                      - major_name: 경영학과
+                        major_type: major
+                        requirements:
+                          - id: 1
+                            description: 경영 기타 졸업요건 1번입니다.
+                            is_fulfilled: true
+                            is_credit_requirement: false
+                            requirement_type: none
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 0
+                            earned_credit: 0
+                          - id: 2
+                            description: 경영 기타 졸업요건 2번입니다.
+                            is_fulfilled: false
+                            is_credit_requirement: false
+                            requirement_type: none
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 0
+                            earned_credit: 0
+                          - id: 3
+                            description: 경영 기타 졸업요건 3번입니다.
+                            is_fulfilled: false
+                            is_credit_requirement: false
+                            requirement_type: none
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 0
+                            earned_credit: 0
+                          - id: 4
+                            description: 경영 기타 졸업요건 4번입니다.
+                            is_fulfilled: false
+                            is_credit_requirement: false
+                            requirement_type: none
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 0
+                            earned_credit: 0
+                      - major_name: 컴퓨터공학과
+                        major_type: double_major
+                        requirements:
+                          - id: 5
+                            description: 컴공 기타 졸업요건 1번입니다.
+                            is_fulfilled: false
+                            is_credit_requirement: false
+                            requirement_type: none
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 0
+                            earned_credit: 0
+                          - id: 6
+                            description: 컴공 기타 졸업요건 2번입니다.
+                            is_fulfilled: false
+                            is_credit_requirement: false
+                            requirement_type: none
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 0
+                            earned_credit: 0
+                          - id: 7
+                            description: 컴공 기타 졸업요건 3번입니다.
+                            is_fulfilled: false
+                            is_credit_requirement: false
+                            requirement_type: none
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 0
+                            earned_credit: 0
+                          - id: 8
+                            description: 컴공 기타 졸업요건 4번입니다.
+                            is_fulfilled: false
+                            is_credit_requirement: false
+                            requirement_type: none
+                            requirement_type_detail: none
+                            requirement_type_detail_detail: none
+                            required_credit: 0
+                            earned_credit: 0
         '400':
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+              examples:
+                example-1:
+                  value:
+                    error: plan_id missing
         '401':
           description: Unauthorized
-      description: plan_id에 해당하는 Plan에서 기타 졸업요건의 충족 여부를 User가 직접 체크하거나 체크 해제할 때 사용합니다. body의 is_fulfilled 값에 따라 체크 여부가 변경됩니다. requirement_id에 해당하는 졸업요건이 기타 졸업요건이 아닌 학점 관련 졸업요건일 시에는 에러 코드가 반환됩니다.
+      description: plan_id에 해당하는 계획에서 기타 졸업요건의 충족 여부를 User가 직접 체크하거나 체크 해제할 때 사용합니다. body의 is_fulfilled 값에 따라 체크 여부가 변경됩니다. requirement_id에 해당하는 졸업요건이 기타 졸업요건이 아닌 학점 관련 졸업요건일 시에는 에러 코드가 반환됩니다.
       requestBody:
         content:
           application/json:
             schema:
-              type: object
-              properties: {}
+              type: array
+              description: ''
+              minItems: 1
+              uniqueItems: true
+              items:
+                type: object
+                properties:
+                  plan_id:
+                    type: number
+                  requirement_id:
+                    type: number
+                  is_fulfilled:
+                    type: boolean
+                required:
+                  - plan_id
+                  - requirement_id
+                  - is_fulfilled
+            examples:
+              example-1:
+                value:
+                  - plan_id: 1
+                    requirement_id: 1
+                    is_fulfilled: true
+                  - plan_id: 2
+                    requirement_id: 2
+                    is_fulfilled: false
           application/xml:
             schema:
               type: object
@@ -399,8 +735,137 @@ paths:
           content:
             application/json:
               schema:
+                description: ''
                 type: object
-                properties: {}
+                properties:
+                  majors:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - major_name
+                        - major_type
+                      properties:
+                        major_name:
+                          type: string
+                          minLength: 1
+                        major_type:
+                          type: string
+                          minLength: 1
+                        all:
+                          type: object
+                          properties:
+                            required_credit:
+                              type: number
+                            earned_credit:
+                              type: number
+                            progress:
+                              type: number
+                          required:
+                            - required_credit
+                            - earned_credit
+                            - progress
+                        major_requirement:
+                          type: object
+                          properties:
+                            required_credit:
+                              type: number
+                            earned_credit:
+                              type: number
+                            progress:
+                              type: number
+                          required:
+                            - required_credit
+                            - earned_credit
+                            - progress
+                        major_elective:
+                          type: object
+                          properties:
+                            required_credit:
+                              type: number
+                            earned_credit:
+                              type: number
+                            progress:
+                              type: number
+                          required:
+                            - required_credit
+                            - earned_credit
+                            - progress
+                        general:
+                          type: object
+                          properties:
+                            required_credit:
+                              type: number
+                            earned_credit:
+                              type: number
+                            progress:
+                              type: number
+                          required:
+                            - required_credit
+                            - earned_credit
+                            - progress
+                required:
+                  - majors
+              examples:
+                example-1:
+                  value:
+                    majors:
+                      - major_name: 경영학과
+                        major_type: major
+                        all:
+                          required_credit: 130
+                          earned_credit: 69
+                          progress: 0.53
+                        major_requirement:
+                          required_credit: 30
+                          earned_credit: 9
+                          progress: 0.3
+                        major_elective:
+                          required_credit: 15
+                          earned_credit: 6
+                          progress: 0.4
+                        general:
+                          required_credit: 15
+                          earned_credit: 9
+                          progress: 0.6
+                      - major_name: 경영학과
+                        major_type: double_major
+                        all:
+                          required_credit: 130
+                          earned_credit: 69
+                          progress: 0.53
+                        major_requirement:
+                          required_credit: 30
+                          earned_credit: 9
+                          progress: 0.3
+                        major_elective:
+                          required_credit: 15
+                          earned_credit: 6
+                          progress: 0.4
+                        general:
+                          required_credit: 15
+                          earned_credit: 9
+                          progress: 0.6
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+              examples:
+                example-1:
+                  value:
+                    error: plan_id missing
+        '401':
+          description: Unauthorized
       operationId: get-requirement-progress
       description: |-
         기준학점 대비 이수학점 비율을 나타내는 원형 프로그레스바 표시에 사용합니다. 전체/전필/전선/교양별 각각
