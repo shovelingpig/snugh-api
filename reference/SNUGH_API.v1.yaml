@@ -133,11 +133,21 @@ paths:
                 full_name:
                   type: string
                   minLength: 1
-                major_id:
+                majors:
                   type: array
+                  uniqueItems: true
+                  minItems: 1
                   items:
-                    required: []
-                    properties: {}
+                    required:
+                      - major_name
+                      - major_type
+                    properties:
+                      major_name:
+                        type: string
+                        minLength: 1
+                      major_type:
+                        type: string
+                        minLength: 1
                 status:
                   type: string
                   minLength: 1
@@ -146,7 +156,7 @@ paths:
                 - password
                 - year
                 - full_name
-                - major_id
+                - majors
                 - status
             examples:
               example-1:
@@ -155,9 +165,11 @@ paths:
                   password: ammo123
                   year: 2019
                   full_name: ammo kim
-                  major_id:
-                    - 1
-                    - 2
+                  majors:
+                    - major_name: 경영학과
+                      major_type: single_major
+                    - major_name: 경영학과
+                      major_type: single_major
                   status: active
           application/xml:
             schema:
@@ -1260,14 +1272,23 @@ paths:
         content:
           application/json:
             schema:
+              description: ''
               type: object
               properties:
-                major_id:
-                  type: integer
+                major_name:
+                  type: string
+                  minLength: 1
+                major_type:
+                  type: string
+                  minLength: 1
+              required:
+                - major_name
+                - major_type
             examples:
               example-1:
                 value:
-                  major_id: 2
+                  major_name: 경영학과
+                  major_type: single_major
     post:
       summary: Register a major
       tags: []
@@ -1381,6 +1402,7 @@ paths:
                 value:
                   major_name: 컴퓨터공학과
                   major_type: double_major
+        description: ''
     parameters: []
   /plan/major/:
     get:
@@ -1392,29 +1414,43 @@ paths:
           content:
             application/json:
               schema:
+                description: ''
                 type: object
                 properties:
                   id:
-                    type: integer
+                    type: number
                   major:
                     type: array
+                    uniqueItems: true
+                    minItems: 1
                     items:
-                      type: object
+                      required:
+                        - id
+                        - major_name
+                        - major_type
                       properties:
                         id:
-                          type: integer
-                        name:
+                          type: number
+                        major_name:
                           type: string
-                        type:
-                          type: integer
+                          minLength: 1
+                        major_type:
+                          type: string
+                          minLength: 1
+                required:
+                  - id
+                  - major
               examples:
                 example-1:
                   value:
                     id: 0
                     major:
-                      - id: 0
-                        name: string
-                        type: 0
+                      - id: 1
+                        major_name: 경영학과
+                        major_type: major
+                      - id: 2
+                        major_name: 컴퓨터공학과
+                        major_type: double_major
         '400':
           description: parameter의 plan_id에 해당하는 plan이 없을 때
           content:
@@ -1472,14 +1508,34 @@ paths:
               properties:
                 post_list:
                   type: array
+                  uniqueItems: true
+                  minItems: 1
                   items:
-                    required: []
-                    properties: {}
+                    required:
+                      - major_name
+                      - major_type
+                    properties:
+                      major_name:
+                        type: string
+                        minLength: 1
+                      major_type:
+                        type: string
+                        minLength: 1
                 delete_list:
                   type: array
+                  uniqueItems: true
+                  minItems: 1
                   items:
-                    required: []
-                    properties: {}
+                    required:
+                      - major_name
+                      - major_type
+                    properties:
+                      major_name:
+                        type: string
+                        minLength: 1
+                      major_type:
+                        type: string
+                        minLength: 1
               required:
                 - post_list
                 - delete_list
@@ -1487,11 +1543,11 @@ paths:
               example-1:
                 value:
                   post_list:
-                    - 1
-                    - 2
+                    - major_name: 언어학과
+                      major_type: major
                   delete_list:
-                    - 3
-                    - 4
+                    - major_name: 경영학과
+                      major_type: major
   /plan/:
     get:
       summary: 'Get all plans '
@@ -1714,17 +1770,31 @@ paths:
                   minLength: 1
                 majors:
                   type: array
+                  uniqueItems: true
+                  minItems: 1
                   items:
-                    type: object
+                    required:
+                      - major_name
+                      - major_type
+                    properties:
+                      major_name:
+                        type: string
+                        minLength: 1
+                      major_type:
+                        type: string
+                        minLength: 1
               required:
+                - plan_name
                 - majors
             examples:
               example-1:
                 value:
                   plan_name: 계획 1
                   majors:
-                    - 1
-                    - 2
+                    - major_name: 경영학과
+                      major_type: major
+                    - major_name: 컴퓨터공학과
+                      major_type: double_major
           application/xml:
             schema:
               description: ''
@@ -2133,7 +2203,7 @@ paths:
           description: Token Authentication
           required: true
     parameters: []
-  '/semester/{semester_id}':
+  '/semester/{semester_id}/':
     parameters:
       - schema:
           type: string
@@ -2183,6 +2253,12 @@ paths:
                   type: number
                 is_complete:
                   type: boolean
+            examples:
+              example-1:
+                value:
+                  year: 0
+                  semester_type: 0
+                  is_complete: true
       parameters:
         - schema:
             type: string
