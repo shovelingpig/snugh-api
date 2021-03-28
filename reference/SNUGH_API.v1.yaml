@@ -3888,11 +3888,11 @@ paths:
           description: 강의를 조회하고자 하는 계획의 id입니다.
           required: true
     parameters: []
-  '/lecture/{semesterlecture_id}/':
+  '/lecture/{lecture_id}/':
     parameters:
       - schema:
           type: string
-        name: semesterlecture_id
+        name: lecture_id
         in: path
         required: true
     delete:
@@ -4221,4 +4221,4 @@ paths:
           in: query
           name: search_keyword
           description: 해당 키워드로 전공을 검색할 수 있습니다.
-      description: 모든 전공들의 리스트를 조회할 수 있습니다. Query Params의 search_keyword를 이용하면 특정 키워드로 전공을 검색할 수도 있습니다.{}
+      description: '모든 전공들의 리스트를 조회할 수 있습니다. Query Params의 search_keyword를 이용하면 특정 키워드로 전공을 검색할 수도 있습니다.{}'
