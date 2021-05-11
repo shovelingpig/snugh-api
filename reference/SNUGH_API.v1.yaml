@@ -2481,1367 +2481,2665 @@ paths:
                 items:
                   type: object
                   required:
-                    - major_name
-                    - lectures
+                    - id
+                    - lecture_id
+                    - lecture_name
+                    - open_department
+                    - open_major
+                    - open_semester
+                    - credit
+                    - recognized_major_id
+                    - lecture_type
                   properties:
-                    major_name:
+                    id:
+                      type: number
+                    lecture_id:
                       type: string
-                    lectures:
-                      type: array
-                      uniqueItems: true
-                      minItems: 1
-                      items:
-                        required:
-                          - id
-                          - lecture_id
-                          - lecture_name
-                          - open_department
-                          - open_major
-                          - open_semester
-                          - credit
-                          - recognized_major_id
-                          - lecture_type
-                        properties:
-                          id:
-                            type: number
-                          lecture_id:
-                            type: string
-                            minLength: 1
-                          lecture_name:
-                            type: string
-                            minLength: 1
-                          open_department:
-                            type: string
-                            minLength: 1
-                          open_major:
-                            type: string
-                            minLength: 0
-                          open_semester:
-                            type: string
-                            minLength: 1
-                          credit:
-                            type: number
-                          grade: {}
-                          prev_lecture_id: {}
-                          recognized_major_id:
-                            type: number
-                          lecture_type:
-                            type: string
-                            minLength: 1
+                      minLength: 1
+                    lecture_name:
+                      type: string
+                      minLength: 1
+                    open_department:
+                      type: string
+                      minLength: 1
+                    open_major:
+                      type: string
+                      minLength: 1
+                    open_semester:
+                      type: string
+                      minLength: 1
+                    credit:
+                      type: number
+                    grade: {}
+                    prev_lecture_id: {}
+                    recognized_major_id:
+                      type: number
+                    lecture_type:
+                      type: string
+                      minLength: 1
+                x-examples:
+                  example-1:
+                    - id: 2806
+                      lecture_id: '700.025'
+                      lecture_name: 다문화교육의 이해
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 3904
+                      lecture_id: 700.020A
+                      lecture_name: 특수교육학개론
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4748
+                      lecture_id: '700.022'
+                      lecture_name: 교육과정
+                      open_department: 사범대학
+                      open_major: 불어교육과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4750
+                      lecture_id: '700.004'
+                      lecture_name: 교육사회
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4751
+                      lecture_id: '700.007'
+                      lecture_name: 교육방법 및 교육공학
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4752
+                      lecture_id: T2184.001300
+                      lecture_name: 교육봉사활동1
+                      open_department: 사범대학
+                      open_major: ''
+                      open_semester: all
+                      credit: 1
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4753
+                      lecture_id: T2184.001400
+                      lecture_name: 교육봉사활동2
+                      open_department: 사범대학
+                      open_major: ''
+                      open_semester: all
+                      credit: 1
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4756
+                      lecture_id: '700.002'
+                      lecture_name: 교육심리
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4758
+                      lecture_id: '700.003'
+                      lecture_name: 교육철학 및 교육사
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4763
+                      lecture_id: '700.006'
+                      lecture_name: 교육행정 및 교육경영
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4764
+                      lecture_id: 701.101A
+                      lecture_name: 교육학개론
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4765
+                      lecture_id: '700.023'
+                      lecture_name: 교육평가
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 3027
+                      lecture_id: '045.025'
+                      lecture_name: 삶과 교육
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general
+                    - id: 4754
+                      lecture_id: '045.026'
+                      lecture_name: 교육의 이해
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: all
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general
+                    - id: 1021
+                      lecture_id: '701.431'
+                      lecture_name: 성인교육방법론
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: unknown
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1183
+                      lecture_id: 711.286A
+                      lecture_name: 경제윤리와 경제교육
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: unknown
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1254
+                      lecture_id: '701.205'
+                      lecture_name: 교육철학
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: unknown
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1422
+                      lecture_id: 715.413B
+                      lecture_name: 수학사와 수학교육
+                      open_department: 사범대학
+                      open_major: 수학교육과
+                      open_semester: first
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1458
+                      lecture_id: '701.422'
+                      lecture_name: 현대교육사상
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1668
+                      lecture_id: 708.334A
+                      lecture_name: 프랑스어교과교육론2
+                      open_department: 사범대학
+                      open_major: 불어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1686
+                      lecture_id: '712.301'
+                      lecture_name: 역사교육론
+                      open_department: 사범대학
+                      open_major: 역사교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1690
+                      lecture_id: M1858.000200
+                      lecture_name: 아시아사교육강독
+                      open_department: 사범대학
+                      open_major: 역사교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1691
+                      lecture_id: '712.202'
+                      lecture_name: 국사교육강독
+                      open_department: 사범대학
+                      open_major: 역사교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1925
+                      lecture_id: '719.433'
+                      lecture_name: 환경과 교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1926
+                      lecture_id: 719.332A
+                      lecture_name: 동물생리학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1928
+                      lecture_id: '719.336'
+                      lecture_name: 분자생물학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1929
+                      lecture_id: '719.333'
+                      lecture_name: 유전학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1930
+                      lecture_id: '719.237'
+                      lecture_name: 생태학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2008
+                      lecture_id: '711.316'
+                      lecture_name: 현실정치와 시민교육
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2009
+                      lecture_id: '711.384'
+                      lecture_name: 경제교육연습
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2010
+                      lecture_id: 711.382A
+                      lecture_name: 법교육연습
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2015
+                      lecture_id: '711.373'
+                      lecture_name: 사회문화교육연습
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2016
+                      lecture_id: '711.274'
+                      lecture_name: 사회교육과조사방법
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2017
+                      lecture_id: 711.478A
+                      lecture_name: 비판적 시민교육
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2020
+                      lecture_id: '711.385'
+                      lecture_name: 시민경제교육과시장경제
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2316
+                      lecture_id: '701.220'
+                      lecture_name: 한국의 교육
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2317
+                      lecture_id: 701.426A
+                      lecture_name: 교육측정과 검사
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2318
+                      lecture_id: '701.208'
+                      lecture_name: 교육행정학
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2319
+                      lecture_id: 701.411A
+                      lecture_name: 교육사
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2320
+                      lecture_id: '701.308'
+                      lecture_name: 교육공학
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2321
+                      lecture_id: 701.427A
+                      lecture_name: 교육학교과교육론
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2323
+                      lecture_id: '700.110'
+                      lecture_name: 교육심리학
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2324
+                      lecture_id: '701.433'
+                      lecture_name: 이러닝과 원격교육론
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2326
+                      lecture_id: 705.418B
+                      lecture_name: 국어의미화용교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2327
+                      lecture_id: '705.423'
+                      lecture_name: 국어교육세미나
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 1
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2328
+                      lecture_id: '705.221'
+                      lecture_name: 한국고전문학사교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2330
+                      lecture_id: 705.410A
+                      lecture_name: 국어교육연습
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2331
+                      lecture_id: '705.419'
+                      lecture_name: 한국구비문학교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2332
+                      lecture_id: 705.219A
+                      lecture_name: 한국한문교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2333
+                      lecture_id: '705.328'
+                      lecture_name: 한국어교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2334
+                      lecture_id: '705.414'
+                      lecture_name: 한국현대시교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2335
+                      lecture_id: '705.104'
+                      lecture_name: 매체언어교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2336
+                      lecture_id: '705.322'
+                      lecture_name: 한국현대산문교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2337
+                      lecture_id: '705.422'
+                      lecture_name: 연극교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2338
+                      lecture_id: '705.153'
+                      lecture_name: 문학교육원론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2339
+                      lecture_id: 705.218B
+                      lecture_name: 국어문법교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2341
+                      lecture_id: 705.314A
+                      lecture_name: 작문교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2350
+                      lecture_id: 715.218B
+                      lecture_name: 수학교육과 교육공학
+                      open_department: 사범대학
+                      open_major: 수학교육과
+                      open_semester: second
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2544
+                      lecture_id: '707.325'
+                      lecture_name: 영어 교육방법 및 교육공학
+                      open_department: 사범대학
+                      open_major: 영어교육과
+                      open_semester: second
+                      credit: 1
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2553
+                      lecture_id: 707.213A
+                      lecture_name: 영어교과교육론
+                      open_department: 사범대학
+                      open_major: 영어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2559
+                      lecture_id: 717.226A
+                      lecture_name: 전자기 및 교육 1
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2560
+                      lecture_id: 717.319A
+                      lecture_name: 양자물리 및 교육 1
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2565
+                      lecture_id: 717.223A
+                      lecture_name: 물리수학 및 교육 1
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2566
+                      lecture_id: 717.327A
+                      lecture_name: 물리교육실험
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: second
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2567
+                      lecture_id: 717.225A
+                      lecture_name: 역학 및 교육 2
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2799
+                      lecture_id: '709.434'
+                      lecture_name: 상호문화소통과 독어교육
+                      open_department: 사범대학
+                      open_major: 독어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2800
+                      lecture_id: 709.317B
+                      lecture_name: 독어교육세미나-논리 및 논술
+                      open_department: 사범대학
+                      open_major: 독어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3914
+                      lecture_id: '700.405'
+                      lecture_name: 시민교육론
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3915
+                      lecture_id: 701.318A
+                      lecture_name: 한국교육제도 및 정책
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3921
+                      lecture_id: 705.210A
+                      lecture_name: 한국문학교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3922
+                      lecture_id: '705.319'
+                      lecture_name: 한국고전산문교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3923
+                      lecture_id: 705.326A
+                      lecture_name: 화법교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3924
+                      lecture_id: '705.318'
+                      lecture_name: 한국고시가교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3925
+                      lecture_id: '705.222'
+                      lecture_name: 한국현대문학사교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3927
+                      lecture_id: 705.412A
+                      lecture_name: 독서교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3933
+                      lecture_id: '707.326'
+                      lecture_name: 영어교육과정
+                      open_department: 사범대학
+                      open_major: 영어교육과
+                      open_semester: first
+                      credit: 1
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3938
+                      lecture_id: '707.424'
+                      lecture_name: 영어교육평가
+                      open_department: 사범대학
+                      open_major: 영어교육과
+                      open_semester: first
+                      credit: 1
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3946
+                      lecture_id: 708.333A
+                      lecture_name: 프랑스어교과교육론1
+                      open_department: 사범대학
+                      open_major: 불어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3957
+                      lecture_id: '711.272'
+                      lecture_name: 시민교육과경제사상
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3958
+                      lecture_id: '711.275'
+                      lecture_name: 시민교육과헌법
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3959
+                      lecture_id: '711.116'
+                      lecture_name: 일반사회교육론
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3961
+                      lecture_id: '711.482'
+                      lecture_name: 시민교육과 민주주의
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3963
+                      lecture_id: '711.374'
+                      lecture_name: 청소년문제와 법교육
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3964
+                      lecture_id: '711.417'
+                      lecture_name: 정치교육과 게임이론
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3965
+                      lecture_id: '711.476'
+                      lecture_name: 시민교육과사회윤리
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3966
+                      lecture_id: '711.381'
+                      lecture_name: 시민교육과사회문제
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3967
+                      lecture_id: 711.276A
+                      lecture_name: 정치교육론
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3971
+                      lecture_id: '712.201'
+                      lecture_name: 서양사교육강독
+                      open_department: 사범대학
+                      open_major: 역사교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3972
+                      lecture_id: 712.302A
+                      lecture_name: 역사와 역사교육
+                      open_department: 사범대학
+                      open_major: 역사교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3989
+                      lecture_id: '715.315'
+                      lecture_name: 수학교육론
+                      open_department: 사범대학
+                      open_major: 수학교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3993
+                      lecture_id: 717.220A
+                      lecture_name: 전자물리 및 교육
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3995
+                      lecture_id: 717.224A
+                      lecture_name: 역학 및 교육 1
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3996
+                      lecture_id: '717.229'
+                      lecture_name: 전산물리 및 교육
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3997
+                      lecture_id: 717.323A
+                      lecture_name: 현대물리 및 교육
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3998
+                      lecture_id: 717.418A
+                      lecture_name: 양자물리 및 교육 2
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3999
+                      lecture_id: '717.329'
+                      lecture_name: 물리교육론
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4000
+                      lecture_id: 717.322A
+                      lecture_name: 전자기 및 교육 2
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4001
+                      lecture_id: 717.428A
+                      lecture_name: 열통계물리 및 교육
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4002
+                      lecture_id: 717.325A
+                      lecture_name: 물리수학 및 교육 2
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4003
+                      lecture_id: '717.332'
+                      lecture_name: 파동 및 광학교육
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4015
+                      lecture_id: '719.240'
+                      lecture_name: 세포생물학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4016
+                      lecture_id: '719.243'
+                      lecture_name: 미생물학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4017
+                      lecture_id: 719.331A
+                      lecture_name: 식물생리학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4018
+                      lecture_id: '719.334'
+                      lecture_name: 발생학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4368
+                      lecture_id: M1853.000500
+                      lecture_name: 독어교육론
+                      open_department: 사범대학
+                      open_major: 독어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4386
+                      lecture_id: M1878.000200
+                      lecture_name: 생명과학교육론
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4747
+                      lecture_id: '701.211'
+                      lecture_name: 교육과정
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4749
+                      lecture_id: '701.206'
+                      lecture_name: 교육사회학
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4755
+                      lecture_id: '701.207'
+                      lecture_name: 교육인류학
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4757
+                      lecture_id: '701.430'
+                      lecture_name: 교육통계
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4759
+                      lecture_id: '701.307'
+                      lecture_name: 교육평가
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4760
+                      lecture_id: 701.323A
+                      lecture_name: 교육학교과 논리 및 논술
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4761
+                      lecture_id: 701.321A
+                      lecture_name: 교육학교과교재 및 연구법
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4795
+                      lecture_id: '705.151'
+                      lecture_name: 국어교육학개론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4796
+                      lecture_id: '705.327'
+                      lecture_name: 국어사고와 논술교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4797
+                      lecture_id: '705.103'
+                      lecture_name: 국어문화교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4798
+                      lecture_id: 705.220A
+                      lecture_name: 국어사교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4801
+                      lecture_id: '705.421'
+                      lecture_name: 국어음운교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4804
+                      lecture_id: 705.209A
+                      lecture_name: 국어학교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
               examples:
                 example-1:
                   value:
-                    - major_name: ''
-                      lectures:
-                        - id: 2806
-                          lecture_id: '700.025'
-                          lecture_name: 다문화교육의 이해
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: second
-                          credit: 2
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: teaching
-                        - id: 3904
-                          lecture_id: 700.020A
-                          lecture_name: 특수교육학개론
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: all
-                          credit: 2
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: teaching
-                        - id: 4748
-                          lecture_id: '700.022'
-                          lecture_name: 교육과정
-                          open_department: 사범대학
-                          open_major: 불어교육과
-                          open_semester: all
-                          credit: 2
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: teaching
-                        - id: 4750
-                          lecture_id: '700.004'
-                          lecture_name: 교육사회
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: all
-                          credit: 2
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: teaching
-                        - id: 4751
-                          lecture_id: '700.007'
-                          lecture_name: 교육방법 및 교육공학
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: all
-                          credit: 2
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: teaching
-                        - id: 4752
-                          lecture_id: T2184.001300
-                          lecture_name: 교육봉사활동1
-                          open_department: 사범대학
-                          open_major: ''
-                          open_semester: all
-                          credit: 1
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: teaching
-                        - id: 4753
-                          lecture_id: T2184.001400
-                          lecture_name: 교육봉사활동2
-                          open_department: 사범대학
-                          open_major: ''
-                          open_semester: all
-                          credit: 1
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: teaching
-                        - id: 4756
-                          lecture_id: '700.002'
-                          lecture_name: 교육심리
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: all
-                          credit: 2
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: teaching
-                        - id: 4758
-                          lecture_id: '700.003'
-                          lecture_name: 교육철학 및 교육사
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: all
-                          credit: 2
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: teaching
-                        - id: 4763
-                          lecture_id: '700.006'
-                          lecture_name: 교육행정 및 교육경영
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: all
-                          credit: 2
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: teaching
-                        - id: 4764
-                          lecture_id: 701.101A
-                          lecture_name: 교육학개론
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: all
-                          credit: 2
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: teaching
-                        - id: 4765
-                          lecture_id: '700.023'
-                          lecture_name: 교육평가
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: all
-                          credit: 2
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: teaching
-                        - id: 3027
-                          lecture_id: '045.025'
-                          lecture_name: 삶과 교육
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general
-                        - id: 4754
-                          lecture_id: '045.026'
-                          lecture_name: 교육의 이해
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: all
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general
-                        - id: 1021
-                          lecture_id: '701.431'
-                          lecture_name: 성인교육방법론
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: unknown
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 1183
-                          lecture_id: 711.286A
-                          lecture_name: 경제윤리와 경제교육
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: unknown
-                          credit: 2
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 1254
-                          lecture_id: '701.205'
-                          lecture_name: 교육철학
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: unknown
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 1422
-                          lecture_id: 715.413B
-                          lecture_name: 수학사와 수학교육
-                          open_department: 사범대학
-                          open_major: 수학교육과
-                          open_semester: first
-                          credit: 2
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 1458
-                          lecture_id: '701.422'
-                          lecture_name: 현대교육사상
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 1668
-                          lecture_id: 708.334A
-                          lecture_name: 프랑스어교과교육론2
-                          open_department: 사범대학
-                          open_major: 불어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 1686
-                          lecture_id: '712.301'
-                          lecture_name: 역사교육론
-                          open_department: 사범대학
-                          open_major: 역사교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 1690
-                          lecture_id: M1858.000200
-                          lecture_name: 아시아사교육강독
-                          open_department: 사범대학
-                          open_major: 역사교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 1691
-                          lecture_id: '712.202'
-                          lecture_name: 국사교육강독
-                          open_department: 사범대학
-                          open_major: 역사교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 1925
-                          lecture_id: '719.433'
-                          lecture_name: 환경과 교육
-                          open_department: 사범대학
-                          open_major: 생물교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 1926
-                          lecture_id: 719.332A
-                          lecture_name: 동물생리학교육
-                          open_department: 사범대학
-                          open_major: 생물교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 1928
-                          lecture_id: '719.336'
-                          lecture_name: 분자생물학교육
-                          open_department: 사범대학
-                          open_major: 생물교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 1929
-                          lecture_id: '719.333'
-                          lecture_name: 유전학교육
-                          open_department: 사범대학
-                          open_major: 생물교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 1930
-                          lecture_id: '719.237'
-                          lecture_name: 생태학교육
-                          open_department: 사범대학
-                          open_major: 생물교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2008
-                          lecture_id: '711.316'
-                          lecture_name: 현실정치와 시민교육
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2009
-                          lecture_id: '711.384'
-                          lecture_name: 경제교육연습
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2010
-                          lecture_id: 711.382A
-                          lecture_name: 법교육연습
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2015
-                          lecture_id: '711.373'
-                          lecture_name: 사회문화교육연습
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2016
-                          lecture_id: '711.274'
-                          lecture_name: 사회교육과조사방법
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2017
-                          lecture_id: 711.478A
-                          lecture_name: 비판적 시민교육
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2020
-                          lecture_id: '711.385'
-                          lecture_name: 시민경제교육과시장경제
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2316
-                          lecture_id: '701.220'
-                          lecture_name: 한국의 교육
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2317
-                          lecture_id: 701.426A
-                          lecture_name: 교육측정과 검사
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2318
-                          lecture_id: '701.208'
-                          lecture_name: 교육행정학
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2319
-                          lecture_id: 701.411A
-                          lecture_name: 교육사
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2320
-                          lecture_id: '701.308'
-                          lecture_name: 교육공학
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2321
-                          lecture_id: 701.427A
-                          lecture_name: 교육학교과교육론
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2323
-                          lecture_id: '700.110'
-                          lecture_name: 교육심리학
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2324
-                          lecture_id: '701.433'
-                          lecture_name: 이러닝과 원격교육론
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2326
-                          lecture_id: 705.418B
-                          lecture_name: 국어의미화용교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2327
-                          lecture_id: '705.423'
-                          lecture_name: 국어교육세미나
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: second
-                          credit: 1
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2328
-                          lecture_id: '705.221'
-                          lecture_name: 한국고전문학사교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2330
-                          lecture_id: 705.410A
-                          lecture_name: 국어교육연습
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2331
-                          lecture_id: '705.419'
-                          lecture_name: 한국구비문학교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2332
-                          lecture_id: 705.219A
-                          lecture_name: 한국한문교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2333
-                          lecture_id: '705.328'
-                          lecture_name: 한국어교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2334
-                          lecture_id: '705.414'
-                          lecture_name: 한국현대시교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2335
-                          lecture_id: '705.104'
-                          lecture_name: 매체언어교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2336
-                          lecture_id: '705.322'
-                          lecture_name: 한국현대산문교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2337
-                          lecture_id: '705.422'
-                          lecture_name: 연극교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2338
-                          lecture_id: '705.153'
-                          lecture_name: 문학교육원론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2339
-                          lecture_id: 705.218B
-                          lecture_name: 국어문법교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2341
-                          lecture_id: 705.314A
-                          lecture_name: 작문교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2350
-                          lecture_id: 715.218B
-                          lecture_name: 수학교육과 교육공학
-                          open_department: 사범대학
-                          open_major: 수학교육과
-                          open_semester: second
-                          credit: 2
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2544
-                          lecture_id: '707.325'
-                          lecture_name: 영어 교육방법 및 교육공학
-                          open_department: 사범대학
-                          open_major: 영어교육과
-                          open_semester: second
-                          credit: 1
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2553
-                          lecture_id: 707.213A
-                          lecture_name: 영어교과교육론
-                          open_department: 사범대학
-                          open_major: 영어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2559
-                          lecture_id: 717.226A
-                          lecture_name: 전자기 및 교육 1
-                          open_department: 사범대학
-                          open_major: 물리교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2560
-                          lecture_id: 717.319A
-                          lecture_name: 양자물리 및 교육 1
-                          open_department: 사범대학
-                          open_major: 물리교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2565
-                          lecture_id: 717.223A
-                          lecture_name: 물리수학 및 교육 1
-                          open_department: 사범대학
-                          open_major: 물리교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2566
-                          lecture_id: 717.327A
-                          lecture_name: 물리교육실험
-                          open_department: 사범대학
-                          open_major: 물리교육과
-                          open_semester: second
-                          credit: 2
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2567
-                          lecture_id: 717.225A
-                          lecture_name: 역학 및 교육 2
-                          open_department: 사범대학
-                          open_major: 물리교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2799
-                          lecture_id: '709.434'
-                          lecture_name: 상호문화소통과 독어교육
-                          open_department: 사범대학
-                          open_major: 독어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 2800
-                          lecture_id: 709.317B
-                          lecture_name: 독어교육세미나-논리 및 논술
-                          open_department: 사범대학
-                          open_major: 독어교육과
-                          open_semester: second
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3914
-                          lecture_id: '700.405'
-                          lecture_name: 시민교육론
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3915
-                          lecture_id: 701.318A
-                          lecture_name: 한국교육제도 및 정책
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3921
-                          lecture_id: 705.210A
-                          lecture_name: 한국문학교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3922
-                          lecture_id: '705.319'
-                          lecture_name: 한국고전산문교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3923
-                          lecture_id: 705.326A
-                          lecture_name: 화법교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3924
-                          lecture_id: '705.318'
-                          lecture_name: 한국고시가교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3925
-                          lecture_id: '705.222'
-                          lecture_name: 한국현대문학사교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3927
-                          lecture_id: 705.412A
-                          lecture_name: 독서교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3933
-                          lecture_id: '707.326'
-                          lecture_name: 영어교육과정
-                          open_department: 사범대학
-                          open_major: 영어교육과
-                          open_semester: first
-                          credit: 1
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3938
-                          lecture_id: '707.424'
-                          lecture_name: 영어교육평가
-                          open_department: 사범대학
-                          open_major: 영어교육과
-                          open_semester: first
-                          credit: 1
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3946
-                          lecture_id: 708.333A
-                          lecture_name: 프랑스어교과교육론1
-                          open_department: 사범대학
-                          open_major: 불어교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3957
-                          lecture_id: '711.272'
-                          lecture_name: 시민교육과경제사상
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: first
-                          credit: 2
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3958
-                          lecture_id: '711.275'
-                          lecture_name: 시민교육과헌법
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3959
-                          lecture_id: '711.116'
-                          lecture_name: 일반사회교육론
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3961
-                          lecture_id: '711.482'
-                          lecture_name: 시민교육과 민주주의
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3963
-                          lecture_id: '711.374'
-                          lecture_name: 청소년문제와 법교육
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3964
-                          lecture_id: '711.417'
-                          lecture_name: 정치교육과 게임이론
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3965
-                          lecture_id: '711.476'
-                          lecture_name: 시민교육과사회윤리
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3966
-                          lecture_id: '711.381'
-                          lecture_name: 시민교육과사회문제
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3967
-                          lecture_id: 711.276A
-                          lecture_name: 정치교육론
-                          open_department: 사범대학
-                          open_major: 사회교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3971
-                          lecture_id: '712.201'
-                          lecture_name: 서양사교육강독
-                          open_department: 사범대학
-                          open_major: 역사교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3972
-                          lecture_id: 712.302A
-                          lecture_name: 역사와 역사교육
-                          open_department: 사범대학
-                          open_major: 역사교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3989
-                          lecture_id: '715.315'
-                          lecture_name: 수학교육론
-                          open_department: 사범대학
-                          open_major: 수학교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3993
-                          lecture_id: 717.220A
-                          lecture_name: 전자물리 및 교육
-                          open_department: 사범대학
-                          open_major: 물리교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3995
-                          lecture_id: 717.224A
-                          lecture_name: 역학 및 교육 1
-                          open_department: 사범대학
-                          open_major: 물리교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3996
-                          lecture_id: '717.229'
-                          lecture_name: 전산물리 및 교육
-                          open_department: 사범대학
-                          open_major: 물리교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3997
-                          lecture_id: 717.323A
-                          lecture_name: 현대물리 및 교육
-                          open_department: 사범대학
-                          open_major: 물리교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3998
-                          lecture_id: 717.418A
-                          lecture_name: 양자물리 및 교육 2
-                          open_department: 사범대학
-                          open_major: 물리교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 3999
-                          lecture_id: '717.329'
-                          lecture_name: 물리교육론
-                          open_department: 사범대학
-                          open_major: 물리교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4000
-                          lecture_id: 717.322A
-                          lecture_name: 전자기 및 교육 2
-                          open_department: 사범대학
-                          open_major: 물리교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4001
-                          lecture_id: 717.428A
-                          lecture_name: 열통계물리 및 교육
-                          open_department: 사범대학
-                          open_major: 물리교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4002
-                          lecture_id: 717.325A
-                          lecture_name: 물리수학 및 교육 2
-                          open_department: 사범대학
-                          open_major: 물리교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4003
-                          lecture_id: '717.332'
-                          lecture_name: 파동 및 광학교육
-                          open_department: 사범대학
-                          open_major: 물리교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4015
-                          lecture_id: '719.240'
-                          lecture_name: 세포생물학교육
-                          open_department: 사범대학
-                          open_major: 생물교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4016
-                          lecture_id: '719.243'
-                          lecture_name: 미생물학교육
-                          open_department: 사범대학
-                          open_major: 생물교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4017
-                          lecture_id: 719.331A
-                          lecture_name: 식물생리학교육
-                          open_department: 사범대학
-                          open_major: 생물교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4018
-                          lecture_id: '719.334'
-                          lecture_name: 발생학교육
-                          open_department: 사범대학
-                          open_major: 생물교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4368
-                          lecture_id: M1853.000500
-                          lecture_name: 독어교육론
-                          open_department: 사범대학
-                          open_major: 독어교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4386
-                          lecture_id: M1878.000200
-                          lecture_name: 생명과학교육론
-                          open_department: 사범대학
-                          open_major: 생물교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4747
-                          lecture_id: '701.211'
-                          lecture_name: 교육과정
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4749
-                          lecture_id: '701.206'
-                          lecture_name: 교육사회학
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4755
-                          lecture_id: '701.207'
-                          lecture_name: 교육인류학
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4757
-                          lecture_id: '701.430'
-                          lecture_name: 교육통계
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4759
-                          lecture_id: '701.307'
-                          lecture_name: 교육평가
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4760
-                          lecture_id: 701.323A
-                          lecture_name: 교육학교과 논리 및 논술
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4761
-                          lecture_id: 701.321A
-                          lecture_name: 교육학교과교재 및 연구법
-                          open_department: 사범대학
-                          open_major: 교육학과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4795
-                          lecture_id: '705.151'
-                          lecture_name: 국어교육학개론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4796
-                          lecture_id: '705.327'
-                          lecture_name: 국어사고와 논술교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4797
-                          lecture_id: '705.103'
-                          lecture_name: 국어문화교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4798
-                          lecture_id: 705.220A
-                          lecture_name: 국어사교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4801
-                          lecture_id: '705.421'
-                          lecture_name: 국어음운교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
-                        - id: 4804
-                          lecture_id: 705.209A
-                          lecture_name: 국어학교육론
-                          open_department: 사범대학
-                          open_major: 국어교육과
-                          open_semester: first
-                          credit: 3
-                          grade: null
-                          prev_lecture_id: null
-                          recognized_major_id: 109
-                          lecture_type: general_elective
+                    - id: 2806
+                      lecture_id: '700.025'
+                      lecture_name: 다문화교육의 이해
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 3904
+                      lecture_id: 700.020A
+                      lecture_name: 특수교육학개론
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4748
+                      lecture_id: '700.022'
+                      lecture_name: 교육과정
+                      open_department: 사범대학
+                      open_major: 불어교육과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4750
+                      lecture_id: '700.004'
+                      lecture_name: 교육사회
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4751
+                      lecture_id: '700.007'
+                      lecture_name: 교육방법 및 교육공학
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4752
+                      lecture_id: T2184.001300
+                      lecture_name: 교육봉사활동1
+                      open_department: 사범대학
+                      open_major: ''
+                      open_semester: all
+                      credit: 1
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4753
+                      lecture_id: T2184.001400
+                      lecture_name: 교육봉사활동2
+                      open_department: 사범대학
+                      open_major: ''
+                      open_semester: all
+                      credit: 1
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4756
+                      lecture_id: '700.002'
+                      lecture_name: 교육심리
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4758
+                      lecture_id: '700.003'
+                      lecture_name: 교육철학 및 교육사
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4763
+                      lecture_id: '700.006'
+                      lecture_name: 교육행정 및 교육경영
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4764
+                      lecture_id: 701.101A
+                      lecture_name: 교육학개론
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 4765
+                      lecture_id: '700.023'
+                      lecture_name: 교육평가
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: all
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: teaching
+                    - id: 3027
+                      lecture_id: '045.025'
+                      lecture_name: 삶과 교육
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general
+                    - id: 4754
+                      lecture_id: '045.026'
+                      lecture_name: 교육의 이해
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: all
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general
+                    - id: 1021
+                      lecture_id: '701.431'
+                      lecture_name: 성인교육방법론
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: unknown
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1183
+                      lecture_id: 711.286A
+                      lecture_name: 경제윤리와 경제교육
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: unknown
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1254
+                      lecture_id: '701.205'
+                      lecture_name: 교육철학
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: unknown
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1422
+                      lecture_id: 715.413B
+                      lecture_name: 수학사와 수학교육
+                      open_department: 사범대학
+                      open_major: 수학교육과
+                      open_semester: first
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1458
+                      lecture_id: '701.422'
+                      lecture_name: 현대교육사상
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1668
+                      lecture_id: 708.334A
+                      lecture_name: 프랑스어교과교육론2
+                      open_department: 사범대학
+                      open_major: 불어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1686
+                      lecture_id: '712.301'
+                      lecture_name: 역사교육론
+                      open_department: 사범대학
+                      open_major: 역사교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1690
+                      lecture_id: M1858.000200
+                      lecture_name: 아시아사교육강독
+                      open_department: 사범대학
+                      open_major: 역사교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1691
+                      lecture_id: '712.202'
+                      lecture_name: 국사교육강독
+                      open_department: 사범대학
+                      open_major: 역사교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1925
+                      lecture_id: '719.433'
+                      lecture_name: 환경과 교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1926
+                      lecture_id: 719.332A
+                      lecture_name: 동물생리학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1928
+                      lecture_id: '719.336'
+                      lecture_name: 분자생물학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1929
+                      lecture_id: '719.333'
+                      lecture_name: 유전학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 1930
+                      lecture_id: '719.237'
+                      lecture_name: 생태학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2008
+                      lecture_id: '711.316'
+                      lecture_name: 현실정치와 시민교육
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2009
+                      lecture_id: '711.384'
+                      lecture_name: 경제교육연습
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2010
+                      lecture_id: 711.382A
+                      lecture_name: 법교육연습
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2015
+                      lecture_id: '711.373'
+                      lecture_name: 사회문화교육연습
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2016
+                      lecture_id: '711.274'
+                      lecture_name: 사회교육과조사방법
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2017
+                      lecture_id: 711.478A
+                      lecture_name: 비판적 시민교육
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2020
+                      lecture_id: '711.385'
+                      lecture_name: 시민경제교육과시장경제
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2316
+                      lecture_id: '701.220'
+                      lecture_name: 한국의 교육
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2317
+                      lecture_id: 701.426A
+                      lecture_name: 교육측정과 검사
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2318
+                      lecture_id: '701.208'
+                      lecture_name: 교육행정학
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2319
+                      lecture_id: 701.411A
+                      lecture_name: 교육사
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2320
+                      lecture_id: '701.308'
+                      lecture_name: 교육공학
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2321
+                      lecture_id: 701.427A
+                      lecture_name: 교육학교과교육론
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2323
+                      lecture_id: '700.110'
+                      lecture_name: 교육심리학
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2324
+                      lecture_id: '701.433'
+                      lecture_name: 이러닝과 원격교육론
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2326
+                      lecture_id: 705.418B
+                      lecture_name: 국어의미화용교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2327
+                      lecture_id: '705.423'
+                      lecture_name: 국어교육세미나
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 1
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2328
+                      lecture_id: '705.221'
+                      lecture_name: 한국고전문학사교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2330
+                      lecture_id: 705.410A
+                      lecture_name: 국어교육연습
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2331
+                      lecture_id: '705.419'
+                      lecture_name: 한국구비문학교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2332
+                      lecture_id: 705.219A
+                      lecture_name: 한국한문교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2333
+                      lecture_id: '705.328'
+                      lecture_name: 한국어교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2334
+                      lecture_id: '705.414'
+                      lecture_name: 한국현대시교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2335
+                      lecture_id: '705.104'
+                      lecture_name: 매체언어교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2336
+                      lecture_id: '705.322'
+                      lecture_name: 한국현대산문교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2337
+                      lecture_id: '705.422'
+                      lecture_name: 연극교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2338
+                      lecture_id: '705.153'
+                      lecture_name: 문학교육원론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2339
+                      lecture_id: 705.218B
+                      lecture_name: 국어문법교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2341
+                      lecture_id: 705.314A
+                      lecture_name: 작문교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2350
+                      lecture_id: 715.218B
+                      lecture_name: 수학교육과 교육공학
+                      open_department: 사범대학
+                      open_major: 수학교육과
+                      open_semester: second
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2544
+                      lecture_id: '707.325'
+                      lecture_name: 영어 교육방법 및 교육공학
+                      open_department: 사범대학
+                      open_major: 영어교육과
+                      open_semester: second
+                      credit: 1
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2553
+                      lecture_id: 707.213A
+                      lecture_name: 영어교과교육론
+                      open_department: 사범대학
+                      open_major: 영어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2559
+                      lecture_id: 717.226A
+                      lecture_name: 전자기 및 교육 1
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2560
+                      lecture_id: 717.319A
+                      lecture_name: 양자물리 및 교육 1
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2565
+                      lecture_id: 717.223A
+                      lecture_name: 물리수학 및 교육 1
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2566
+                      lecture_id: 717.327A
+                      lecture_name: 물리교육실험
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: second
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2567
+                      lecture_id: 717.225A
+                      lecture_name: 역학 및 교육 2
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2799
+                      lecture_id: '709.434'
+                      lecture_name: 상호문화소통과 독어교육
+                      open_department: 사범대학
+                      open_major: 독어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 2800
+                      lecture_id: 709.317B
+                      lecture_name: 독어교육세미나-논리 및 논술
+                      open_department: 사범대학
+                      open_major: 독어교육과
+                      open_semester: second
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3914
+                      lecture_id: '700.405'
+                      lecture_name: 시민교육론
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3915
+                      lecture_id: 701.318A
+                      lecture_name: 한국교육제도 및 정책
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3921
+                      lecture_id: 705.210A
+                      lecture_name: 한국문학교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3922
+                      lecture_id: '705.319'
+                      lecture_name: 한국고전산문교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3923
+                      lecture_id: 705.326A
+                      lecture_name: 화법교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3924
+                      lecture_id: '705.318'
+                      lecture_name: 한국고시가교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3925
+                      lecture_id: '705.222'
+                      lecture_name: 한국현대문학사교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3927
+                      lecture_id: 705.412A
+                      lecture_name: 독서교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3933
+                      lecture_id: '707.326'
+                      lecture_name: 영어교육과정
+                      open_department: 사범대학
+                      open_major: 영어교육과
+                      open_semester: first
+                      credit: 1
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3938
+                      lecture_id: '707.424'
+                      lecture_name: 영어교육평가
+                      open_department: 사범대학
+                      open_major: 영어교육과
+                      open_semester: first
+                      credit: 1
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3946
+                      lecture_id: 708.333A
+                      lecture_name: 프랑스어교과교육론1
+                      open_department: 사범대학
+                      open_major: 불어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3957
+                      lecture_id: '711.272'
+                      lecture_name: 시민교육과경제사상
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 2
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3958
+                      lecture_id: '711.275'
+                      lecture_name: 시민교육과헌법
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3959
+                      lecture_id: '711.116'
+                      lecture_name: 일반사회교육론
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3961
+                      lecture_id: '711.482'
+                      lecture_name: 시민교육과 민주주의
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3963
+                      lecture_id: '711.374'
+                      lecture_name: 청소년문제와 법교육
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3964
+                      lecture_id: '711.417'
+                      lecture_name: 정치교육과 게임이론
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3965
+                      lecture_id: '711.476'
+                      lecture_name: 시민교육과사회윤리
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3966
+                      lecture_id: '711.381'
+                      lecture_name: 시민교육과사회문제
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3967
+                      lecture_id: 711.276A
+                      lecture_name: 정치교육론
+                      open_department: 사범대학
+                      open_major: 사회교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3971
+                      lecture_id: '712.201'
+                      lecture_name: 서양사교육강독
+                      open_department: 사범대학
+                      open_major: 역사교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3972
+                      lecture_id: 712.302A
+                      lecture_name: 역사와 역사교육
+                      open_department: 사범대학
+                      open_major: 역사교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3989
+                      lecture_id: '715.315'
+                      lecture_name: 수학교육론
+                      open_department: 사범대학
+                      open_major: 수학교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3993
+                      lecture_id: 717.220A
+                      lecture_name: 전자물리 및 교육
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3995
+                      lecture_id: 717.224A
+                      lecture_name: 역학 및 교육 1
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3996
+                      lecture_id: '717.229'
+                      lecture_name: 전산물리 및 교육
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3997
+                      lecture_id: 717.323A
+                      lecture_name: 현대물리 및 교육
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3998
+                      lecture_id: 717.418A
+                      lecture_name: 양자물리 및 교육 2
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 3999
+                      lecture_id: '717.329'
+                      lecture_name: 물리교육론
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4000
+                      lecture_id: 717.322A
+                      lecture_name: 전자기 및 교육 2
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4001
+                      lecture_id: 717.428A
+                      lecture_name: 열통계물리 및 교육
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4002
+                      lecture_id: 717.325A
+                      lecture_name: 물리수학 및 교육 2
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4003
+                      lecture_id: '717.332'
+                      lecture_name: 파동 및 광학교육
+                      open_department: 사범대학
+                      open_major: 물리교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4015
+                      lecture_id: '719.240'
+                      lecture_name: 세포생물학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4016
+                      lecture_id: '719.243'
+                      lecture_name: 미생물학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4017
+                      lecture_id: 719.331A
+                      lecture_name: 식물생리학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4018
+                      lecture_id: '719.334'
+                      lecture_name: 발생학교육
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4368
+                      lecture_id: M1853.000500
+                      lecture_name: 독어교육론
+                      open_department: 사범대학
+                      open_major: 독어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4386
+                      lecture_id: M1878.000200
+                      lecture_name: 생명과학교육론
+                      open_department: 사범대학
+                      open_major: 생물교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4747
+                      lecture_id: '701.211'
+                      lecture_name: 교육과정
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4749
+                      lecture_id: '701.206'
+                      lecture_name: 교육사회학
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4755
+                      lecture_id: '701.207'
+                      lecture_name: 교육인류학
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4757
+                      lecture_id: '701.430'
+                      lecture_name: 교육통계
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4759
+                      lecture_id: '701.307'
+                      lecture_name: 교육평가
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4760
+                      lecture_id: 701.323A
+                      lecture_name: 교육학교과 논리 및 논술
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4761
+                      lecture_id: 701.321A
+                      lecture_name: 교육학교과교재 및 연구법
+                      open_department: 사범대학
+                      open_major: 교육학과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4795
+                      lecture_id: '705.151'
+                      lecture_name: 국어교육학개론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4796
+                      lecture_id: '705.327'
+                      lecture_name: 국어사고와 논술교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4797
+                      lecture_id: '705.103'
+                      lecture_name: 국어문화교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4798
+                      lecture_id: 705.220A
+                      lecture_name: 국어사교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4801
+                      lecture_id: '705.421'
+                      lecture_name: 국어음운교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
+                    - id: 4804
+                      lecture_id: 705.209A
+                      lecture_name: 국어학교육론
+                      open_department: 사범대학
+                      open_major: 국어교육과
+                      open_semester: first
+                      credit: 3
+                      grade: null
+                      prev_lecture_id: null
+                      recognized_major_id: 109
+                      lecture_type: general_elective
         '400':
           description: Bad Request
           content:
@@ -3862,13 +5160,25 @@ paths:
         '401':
           description: Unauthorized
       operationId: get-lecture
-      description: '강의를 검색합니다. 1) 전필/전선/교양 별로 강의를 불러올 수 있고, 2) 강의 이름에 포함된 키워드를 통해 검색이 가능합니다.'
+      description: |-
+        강의를 검색합니다. 1) 전필/전선/교양 별로 강의를 불러올 수 있고, 2) 강의 이름에 포함된 키워드를 통해 검색이 가능합니다.
+
+        Enum search_type {
+          major_requirement
+          major_elective
+          general
+          keyword
+        }
+
+        search_type이 major_requirement나 major_elective일 시에는 반드시 major를 포함하여 요청을 보내야 합니다.
+        search_type이 general이나 keyword일 때는 반드시 search_keyword를 포함하여 요청을 보내야 합니다.
       parameters:
         - schema:
             type: string
           in: query
-          name: lecture_type
-          description: '전공 필수, 전공 선택, 교양 수업을 구분합니다'
+          name: search_type
+          description: '전필, 전선, 교양, 검색 탭을 구분합니다.'
+          required: true
         - schema:
             type: string
           in: query
@@ -3882,36 +5192,21 @@ paths:
           description: 강의 검색의 기준년도입니다.
           required: true
         - schema:
-            type: integer
+            type: string
           in: query
-          name: plan_id
-          description: 강의를 조회하고자 하는 계획의 id입니다.
+          name: major
+          description: 강의를 조회하고자 하는 전공의 id입니다.
           required: true
     parameters: []
-  '/lecture/{lecture_id}/':
+  '/lecture/position/{lecture_id}/':
     parameters:
       - schema:
           type: string
         name: lecture_id
         in: path
         required: true
-    delete:
-      summary: 'DELETE /lecture/{semesterlecture_id}/'
-      tags: []
-      responses:
-        '200':
-          description: OK
-      operationId: delete-lecture-lecture_id
-      description: '유저의 현재 학기별 테이블에서 강의를 삭제합니다.  '
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          description: Token Authentication
-          required: true
     put:
-      summary: 'PUT /lecture/{lecture_id}/'
+      summary: 'PUT /lecture/position/{lecture_id}/'
       tags: []
       responses:
         '200':
@@ -4040,7 +5335,7 @@ paths:
                           recognized_major_name: 교육학과
                           lecture_type: major_elective
       operationId: put-lecture-lecture_id
-      description: 유저의 학기별 테이블에 포함된 강의를 수정합니다. year와 semester_type를 수정해 강의를 다른 학기별 테이블로 이동시킬 수 있습니다. url에 들어가는 id는 수정되는 학기별 강의인 SemesterLecture의 id입니다.
+      description: 유저의 학기별 테이블에 포함된 강의를 수정합니다. year와 semester_type를 수정해 강의를 다른 학기별 테이블로 이동시킬 수 있습니다. url에 들어가는 id는 Lecture의 id입니다.
       requestBody:
         content:
           application/json:
@@ -4221,4 +5516,150 @@ paths:
           in: query
           name: search_keyword
           description: 해당 키워드로 전공을 검색할 수 있습니다.
-      description: '모든 전공들의 리스트를 조회할 수 있습니다. Query Params의 search_keyword를 이용하면 특정 키워드로 전공을 검색할 수도 있습니다.{}'
+      description: 모든 전공들의 리스트를 조회할 수 있습니다. Query Params의 search_keyword를 이용하면 특정 키워드로 전공을 검색할 수도 있습니다.
+  '/lecture/{lecture_id}/':
+    parameters:
+      - schema:
+          type: string
+        name: lecture_id
+        in: path
+        required: true
+    delete:
+      summary: 'DELETE /lecture/{lecture_id}/'
+      operationId: delete-lecture-lecture_id
+      responses:
+        '200':
+          description: OK
+      description: '유저의 현재 학기별 테이블에서 강의를 삭제합니다.  '
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
+  '/lecture/recognized_major/{lecture_id}/':
+    parameters:
+      - schema:
+          type: string
+        name: lecture_id
+        in: path
+        required: true
+    put:
+      summary: 'PUt /lecture/recognized_major/{lecture_id}/'
+      operationId: put-lecture-recognized_major-lecture_id
+      responses:
+        '200':
+          description: OK
+      description: |-
+        메인보드에 위치한 특정 강의의 강의구분을 사용자가 직접 변경할 수 있도록 지원하는 API입니다.
+
+        lecture_type에는 major나 general만 올 수 있습니다.
+        Case 1. 전공 -> 교양 = general
+        Case 2. 교양 -> 전공 =  major
+
+        Case 2인 경우에는 인정 학과별 강의 구분을 recognized_major1, 2와 lecture_type1, 2를 이용해 입력해주세요. 인정학과는 최대 2개까지 복수 인정됩니다.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+            examples:
+              example-1:
+                value:
+                  lecture_type: major
+                  recognized_major1: 1
+                  lecture_type1: major_requirement
+                  recognized_major2: 2
+                  lecture_type2: major_elective
+  '/plan/copy/{plan_id}/':
+    parameters:
+      - schema:
+          type: string
+        name: plan_id
+        in: path
+        required: true
+    post:
+      summary: 'POST /plan/copy/{plan_id}/'
+      operationId: post-plan-copy-plan_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  plan_name:
+                    type: string
+                    minLength: 1
+                  recent_scroll:
+                    type: number
+                  majors:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - major_name
+                        - major_type
+                      properties:
+                        id:
+                          type: number
+                        major_name:
+                          type: string
+                          minLength: 1
+                        major_type:
+                          type: string
+                          minLength: 1
+                  semesters:
+                    type: array
+                    items:
+                      required: []
+                      properties: {}
+                required:
+                  - id
+                  - plan_name
+                  - recent_scroll
+                  - majors
+                  - semesters
+                x-examples:
+                  example-1:
+                    id: 7
+                    plan_name: 짹짹이의 계획1
+                    recent_scroll: 0
+                    majors:
+                      - id: 69
+                        major_name: 경영학과
+                        major_type: major
+                      - id: 110
+                        major_name: 컴퓨터공학과
+                        major_type: double_major
+                    semesters: []
+              examples:
+                example-1:
+                  value:
+                    id: 7
+                    plan_name: 짹짹이의 계획1
+                    recent_scroll: 0
+                    majors:
+                      - id: 69
+                        major_name: 경영학과
+                        major_type: major
+                      - id: 110
+                        major_name: 컴퓨터공학과
+                        major_type: double_major
+                    semesters: []
+      description: 기존 계획을 복제하는 기능을 지원하는 API입니다.
