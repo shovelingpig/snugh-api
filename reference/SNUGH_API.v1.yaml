@@ -5555,8 +5555,9 @@ paths:
         메인보드에 위치한 특정 강의의 강의구분을 사용자가 직접 변경할 수 있도록 지원하는 API입니다.
 
         lecture_type에는 major나 general만 올 수 있습니다.
-        Case 1. 전공 -> 교양 = general
-        Case 2. 교양 -> 전공 =  major
+        Case 1. XX -> 교양 = general
+        Case 2. XX -> 전공 = major
+        Case 3. XX -> 일선 = general_elective
 
         Case 2인 경우에는 인정 학과별 강의 구분을 recognized_major1, 2와 lecture_type1, 2를 이용해 입력해주세요. 인정학과는 최대 2개까지 복수 인정됩니다.
       parameters:
@@ -5570,15 +5571,56 @@ paths:
         content:
           application/json:
             schema:
+              description: ''
               type: object
-              properties: {}
+              properties:
+                lecture_type:
+                  type: string
+                  minLength: 1
+                recognized_major_name1:
+                  type: string
+                  minLength: 1
+                recognized_major_type1:
+                  type: string
+                  minLength: 1
+                lecture_type1:
+                  type: string
+                  minLength: 1
+                recognized_major_name2:
+                  type: string
+                  minLength: 1
+                recognized_major_type2:
+                  type: string
+                  minLength: 1
+                lecture_type2:
+                  type: string
+                  minLength: 1
+              required:
+                - lecture_type
+                - recognized_major_name1
+                - recognized_major_type1
+                - lecture_type1
+                - recognized_major_name2
+                - recognized_major_type2
+                - lecture_type2
+              x-examples:
+                example-1:
+                  lecture_type: major
+                  recognized_major_name1: 컴퓨터공학과
+                  recognized_major_type1: major
+                  lecture_type1: major_requirement
+                  recognized_major_name2: 통계학과
+                  recognized_major_type2: double_major
+                  lecture_type2: major_elective
             examples:
               example-1:
                 value:
                   lecture_type: major
-                  recognized_major1: 1
+                  recognized_major_name1: 컴퓨터공학과
+                  recognized_major_type1: major
                   lecture_type1: major_requirement
-                  recognized_major2: 2
+                  recognized_major_name2: 통계학과
+                  recognized_major_type2: double_major
                   lecture_type2: major_elective
   '/plan/copy/{plan_id}/':
     parameters:
