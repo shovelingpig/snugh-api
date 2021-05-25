@@ -5554,7 +5554,7 @@ paths:
       description: |-
         메인보드에 위치한 특정 강의의 강의구분을 사용자가 직접 변경할 수 있도록 지원하는 API입니다.
 
-        lecture_type에는 major나 general만 올 수 있습니다.
+        lecture_type에는 major, general, general_elective만 올 수 있습니다.
         Case 1. XX -> 교양 = general
         Case 2. XX -> 전공 = major
         Case 3. XX -> 일선 = general_elective
