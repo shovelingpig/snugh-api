@@ -24,7 +24,7 @@ paths:
                   email:
                     type: string
                     minLength: 1
-                  year:
+                  entrance_year:
                     type: number
                   full_name:
                     type: string
@@ -34,10 +34,7 @@ paths:
                     uniqueItems: true
                     minItems: 1
                     items:
-                      required:
-                        - id
-                        - major_name
-                        - major_type
+                      type: object
                       properties:
                         id:
                           type: number
@@ -47,6 +44,10 @@ paths:
                         major_type:
                           type: string
                           minLength: 1
+                      required:
+                        - id
+                        - major_name
+                        - major_type
                   status:
                     type: string
                     minLength: 1
@@ -56,7 +57,7 @@ paths:
                 required:
                   - id
                   - email
-                  - year
+                  - entrance_year
                   - full_name
                   - majors
                   - status
@@ -64,19 +65,19 @@ paths:
               examples:
                 example-1:
                   value:
-                    id: 15
-                    email: bird123@snu.ac.kr
-                    year: 2019
+                    id: 5
+                    email: babyammo3@snu.ac.kr
+                    entrance_year: 2019
                     full_name: 김짹짹
                     majors:
-                      - id: 69
+                      - id: 23
                         major_name: 경영학과
                         major_type: major
-                      - id: 110
-                        major_name: 컴퓨터공학과
-                        major_type: double_major
+                      - id: 98
+                        major_name: 컴퓨터공학부
+                        major_type: major
                     status: active
-                    token: a3d1df9f5f3c4eff8186f18062ee8bb4df150a63
+                    token: 81fdd25bea08368cad6c48d45bc020cd00a6aaed
         '400':
           description: |-
             1. 모든 Required Body 항목을 채우지 않았을 때
@@ -130,7 +131,7 @@ paths:
                 password:
                   type: string
                   minLength: 1
-                year:
+                entrance_year:
                   type: number
                 full_name:
                   type: string
@@ -140,9 +141,7 @@ paths:
                   uniqueItems: true
                   minItems: 1
                   items:
-                    required:
-                      - major_name
-                      - major_type
+                    type: object
                     properties:
                       major_name:
                         type: string
@@ -150,28 +149,31 @@ paths:
                       major_type:
                         type: string
                         minLength: 1
+                    required:
+                      - major_name
+                      - major_type
                 status:
                   type: string
                   minLength: 1
               required:
                 - email
                 - password
-                - year
+                - entrance_year
                 - full_name
                 - majors
                 - status
             examples:
               example-1:
                 value:
-                  email: bird123@snu.ac.kr
-                  password: bird123*
-                  year: 2019
+                  email: babyammo3@snu.ac.kr
+                  password: babyammo3
+                  entrance_year: 2019
                   full_name: 김짹짹
                   majors:
                     - major_name: 경영학과
                       major_type: major
-                    - major_name: 컴퓨터공학과
-                      major_type: double_major
+                    - major_name: 컴퓨터공학부
+                      major_type: major
                   status: active
           application/xml:
             schema:
@@ -229,7 +231,7 @@ paths:
                   email:
                     type: string
                     minLength: 1
-                  year:
+                  entrance_year:
                     type: number
                   full_name:
                     type: string
@@ -239,10 +241,7 @@ paths:
                     uniqueItems: true
                     minItems: 1
                     items:
-                      required:
-                        - id
-                        - major_name
-                        - major_type
+                      type: object
                       properties:
                         id:
                           type: number
@@ -252,31 +251,35 @@ paths:
                         major_type:
                           type: string
                           minLength: 1
+                      required:
+                        - id
+                        - major_name
+                        - major_type
                   status:
                     type: string
                     minLength: 1
                 required:
                   - id
                   - email
-                  - year
+                  - entrance_year
                   - full_name
                   - majors
                   - status
               examples:
                 example-1:
                   value:
-                    id: 15
-                    email: bird123@snu.ac.kr
-                    year: 2020
-                    full_name: 김새
+                    id: 5
+                    email: babyammo3@snu.ac.kr
+                    entrance_year: 2020
+                    full_name: 김짹짹
                     majors:
-                      - id: 69
+                      - id: 23
                         major_name: 경영학과
                         major_type: major
-                      - id: 110
-                        major_name: 컴퓨터공학과
-                        major_type: double_major
-                    status: break
+                      - id: 98
+                        major_name: 컴퓨터공학부
+                        major_type: major
+                    status: active
         '401':
           description: Unauthorized
         '403':
@@ -310,7 +313,7 @@ paths:
                 password:
                   type: string
                   minLength: 1
-                year:
+                entrance_year:
                   type: number
                 full_name:
                   type: string
@@ -320,16 +323,19 @@ paths:
                   minLength: 1
               required:
                 - password
-                - year
+                - entrance_year
                 - full_name
                 - status
             examples:
               example-1:
                 value:
                   password: bird123!
-                  year: 2020
+                  entrance_year: 2020
                   full_name: 김새
                   status: break
+              example-2:
+                value:
+                  entrance_year: 2020
     get:
       summary: GET /user/me/
       operationId: get-user
@@ -347,7 +353,7 @@ paths:
                   email:
                     type: string
                     minLength: 1
-                  year:
+                  entrance_year:
                     type: number
                   full_name:
                     type: string
@@ -357,10 +363,7 @@ paths:
                     uniqueItems: true
                     minItems: 1
                     items:
-                      required:
-                        - id
-                        - major_name
-                        - major_type
+                      type: object
                       properties:
                         id:
                           type: number
@@ -370,30 +373,34 @@ paths:
                         major_type:
                           type: string
                           minLength: 1
+                      required:
+                        - id
+                        - major_name
+                        - major_type
                   status:
                     type: string
                     minLength: 1
                 required:
                   - id
                   - email
-                  - year
+                  - entrance_year
                   - full_name
                   - majors
                   - status
               examples:
                 example-1:
                   value:
-                    id: 15
-                    email: bird123@snu.ac.kr
-                    year: 2019
+                    id: 5
+                    email: babyammo3@snu.ac.kr
+                    entrance_year: 2019
                     full_name: 김짹짹
                     majors:
-                      - id: 69
+                      - id: 23
                         major_name: 경영학과
                         major_type: major
-                      - id: 110
-                        major_name: 컴퓨터공학과
-                        major_type: double_major
+                      - id: 98
+                        major_name: 컴퓨터공학부
+                        major_type: major
                     status: active
         '401':
           description: Unauthorized
@@ -446,6 +453,1009 @@ paths:
           name: Authorization
           required: true
           description: Token Authentication
+  /user/login/:
+    put:
+      summary: PUT /user/login/
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  email:
+                    type: string
+                    minLength: 1
+                  year:
+                    type: number
+                  full_name:
+                    type: string
+                    minLength: 1
+                  majors:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - major_name
+                        - major_type
+                      properties:
+                        id:
+                          type: number
+                        major_name:
+                          type: string
+                          minLength: 1
+                        major_type:
+                          type: string
+                          minLength: 1
+                  status:
+                    type: string
+                    minLength: 1
+                  token:
+                    type: string
+                    minLength: 1
+                required:
+                  - id
+                  - email
+                  - year
+                  - full_name
+                  - majors
+                  - status
+                  - token
+              examples:
+                example-1:
+                  value:
+                    id: 15
+                    email: bird123@snu.ac.kr
+                    year: 2019
+                    full_name: 김짹짹
+                    majors:
+                      - id: 69
+                        major_name: 경영학과
+                        major_type: major
+                      - id: 110
+                        major_name: 컴퓨터공학과
+                        major_type: double_major
+                    status: active
+                    token: a3d1df9f5f3c4eff8186f18062ee8bb4df150a63
+        '400':
+          description: |-
+            Bad Request
+            1. body에 username이 없을 때
+            2. body에 password가 없을 때
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: username missing
+                example-2:
+                  value:
+                    error: password missing
+        '403':
+          description: 'username에 해당하는 유저가 없거나 username은 맞지만, 비밀번호가 틀렸을 때'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: Wrong username or wrong password
+      operationId: put-user-login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+                password:
+                  type: string
+                  minLength: 1
+              required:
+                - email
+                - password
+            examples:
+              example-1:
+                value:
+                  email: babyammo3@snu.ac.kr
+                  password: babyammo3
+    parameters: []
+  /user/logout/:
+    get:
+      summary: GET /user/logout/
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-user-logout
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
+  /user/major/:
+    delete:
+      summary: DELETE /user/major/
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  majors:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - major_name
+                        - major_type
+                      properties:
+                        id:
+                          type: number
+                        major_name:
+                          type: string
+                          minLength: 1
+                        major_type:
+                          type: string
+                          minLength: 1
+                required:
+                  - majors
+              examples:
+                example-1:
+                  value:
+                    majors:
+                      - id: 69
+                        major_name: 경영학과
+                        major_type: single_major
+        '400':
+          description: |-
+            1. parameter에 major_id가 없을 때
+            2. major_id에 해당하는 major을 현재 유저가 듣고 있지 않을 때
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: major_id missing
+                example-2:
+                  value:
+                    error: major_id wrong
+        '401':
+          description: 인증 Token이 Header에 포함되지 않았을 때 발생하는 에러입니다.
+        '404':
+          description: major_id에 해당하는 major가 존재하지 않을 때 발생하는 에러입니다.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: major not_exist
+      operationId: delete-user-major
+      description: 사용자가 자신의 전공을 등록 취소할 때 사용하는 API입니다.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+          description: Token Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                major_name:
+                  type: string
+                  minLength: 1
+                major_type:
+                  type: string
+                  minLength: 1
+              required:
+                - major_name
+                - major_type
+            examples:
+              example-1:
+                value:
+                  major_name: 컴퓨터공학과
+                  major_type: double_major
+    post:
+      summary: POST /user/major/
+      tags: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  majors:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - major_name
+                        - major_type
+                      properties:
+                        id:
+                          type: number
+                        major_name:
+                          type: string
+                          minLength: 1
+                        major_type:
+                          type: string
+                          minLength: 1
+                required:
+                  - majors
+              examples:
+                example-1:
+                  value:
+                    majors:
+                      - id: 69
+                        major_name: 경영학과
+                        major_type: major
+                      - id: 110
+                        major_name: 컴퓨터공학과
+                        major_type: double_major
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+              examples:
+                example-1:
+                  value:
+                    error: major_name missing
+        '401':
+          description: 인증 Token이 Header에 포함되지 않았을 때 발생하는 에러입니다.
+        '404':
+          description: major_name과 major_type에 해당하는 major가 존재하지 않을 때 발생하는 에러입니다.
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+              examples:
+                example-1:
+                  value:
+                    error: major not_exist
+      operationId: post-user-major
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+          description: Token Authentication
+      description: 사용자가 자신의 전공을 등록할 때 사용하는 API입니다.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                major_name:
+                  type: string
+                  minLength: 1
+                major_type:
+                  type: string
+                  minLength: 1
+              required:
+                - major_name
+                - major_type
+            examples:
+              example-1:
+                value:
+                  major_name: 컴퓨터공학과
+                  major_type: double_major
+        description: ''
+    parameters: []
+  /plan/:
+    get:
+      summary: GET /plan/
+      tags: []
+      operationId: get-plan
+      description: 사용자의 모든 강의 계획을 리스트 형태로 반환합니다.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  required:
+                    - id
+                    - plan_name
+                    - recent_scroll
+                    - majors
+                    - semesters
+                  properties:
+                    id:
+                      type: number
+                    plan_name:
+                      type: string
+                      minLength: 1
+                    recent_scroll:
+                      type: number
+                    majors:
+                      type: array
+                      uniqueItems: true
+                      minItems: 1
+                      items:
+                        required:
+                          - id
+                          - major_name
+                          - major_type
+                        properties:
+                          id:
+                            type: number
+                          major_name:
+                            type: string
+                            minLength: 1
+                          major_type:
+                            type: string
+                            minLength: 1
+                    semesters:
+                      type: array
+                      items:
+                        properties: {}
+              examples:
+                example-1:
+                  value:
+                    - id: 1
+                      plan_name: 짹짹이의 계획1
+                      recent_scroll: 0
+                      majors:
+                        - id: 23
+                          major_name: 경영학과
+                          major_type: major
+                        - id: 98
+                          major_name: 컴퓨터공학부
+                          major_type: major
+                      semesters: []
+                    - id: 3
+                      plan_name: 짹짹이의 계획2
+                      recent_scroll: 0
+                      majors:
+                        - id: 23
+                          major_name: 경영학과
+                          major_type: major
+                        - id: 98
+                          major_name: 컴퓨터공학부
+                          major_type: major
+                      semesters: []
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
+    post:
+      summary: POST /plan/
+      tags: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  plan_name:
+                    type: string
+                    minLength: 1
+                  recent_scroll:
+                    type: number
+                  majors:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - major_name
+                        - major_type
+                      properties:
+                        id:
+                          type: number
+                        major_name:
+                          type: string
+                          minLength: 1
+                        major_type:
+                          type: string
+                          minLength: 1
+                  semesters:
+                    type: array
+                    items:
+                      properties: {}
+                required:
+                  - id
+                  - plan_name
+                  - recent_scroll
+                  - majors
+                  - semesters
+              examples:
+                example-1:
+                  value:
+                    id: 1
+                    plan_name: 짹짹이의 계획1
+                    recent_scroll: 0
+                    majors:
+                      - id: 23
+                        major_name: 경영학과
+                        major_type: major
+                      - id: 98
+                        major_name: 컴퓨터공학부
+                        major_type: major
+                    semesters: []
+      operationId: post-plan
+      description: 강의 계획을 추가합니다. 한번에 하나의 계획만 추가할 수 있습니다.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                plan_name:
+                  type: string
+                  minLength: 1
+                majors:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - major_name
+                      - major_type
+                    properties:
+                      major_name:
+                        type: string
+                        minLength: 1
+                      major_type:
+                        type: string
+                        minLength: 1
+              required:
+                - plan_name
+                - majors
+            examples:
+              example-1:
+                value:
+                  plan_name: 짹짹이의 계획1
+                  majors:
+                    - major_name: 경영학과
+                      major_type: major
+                    - major_name: 컴퓨터공학부
+                      major_type: major
+          application/xml:
+            schema:
+              description: ''
+              type: object
+              properties:
+                user_id:
+                  type: number
+                plan_name:
+                  type: string
+                  minLength: 1
+                recent_scroll:
+                  type: number
+              required:
+                - user_id
+        description: ''
+      parameters: []
+    parameters: []
+  /plan/major/:
+    get:
+      summary: GET /plan/major/
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  plan_name:
+                    type: string
+                    minLength: 1
+                  recent_scroll:
+                    type: number
+                  majors:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - major_name
+                        - major_type
+                      properties:
+                        id:
+                          type: number
+                        major_name:
+                          type: string
+                          minLength: 1
+                        major_type:
+                          type: string
+                          minLength: 1
+                  semesters:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - plan
+                        - year
+                        - semester_type
+                        - is_complete
+                        - major_requirement_credit
+                        - major_elective_credit
+                        - general_credit
+                        - general_elective_credit
+                      properties:
+                        id:
+                          type: number
+                        plan:
+                          type: number
+                        year:
+                          type: number
+                        semester_type:
+                          type: string
+                          minLength: 1
+                        is_complete:
+                          type: boolean
+                        major_requirement_credit:
+                          type: number
+                        major_elective_credit:
+                          type: number
+                        general_credit:
+                          type: number
+                        general_elective_credit:
+                          type: number
+                        lectures:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - semesterlecture_id
+                              - id
+                              - lecture_id
+                              - lecture_name
+                              - credit
+                              - open_semester
+                              - recognized_major_name
+                              - lecture_type
+                            properties:
+                              semesterlecture_id:
+                                type: number
+                              id:
+                                type: number
+                              lecture_id:
+                                type: string
+                                minLength: 1
+                              lecture_name:
+                                type: string
+                                minLength: 1
+                              credit:
+                                type: number
+                              open_semester:
+                                type: string
+                                minLength: 1
+                              recognized_major_name:
+                                type: string
+                                minLength: 1
+                              lecture_type:
+                                type: string
+                                minLength: 1
+                required:
+                  - id
+                  - plan_name
+                  - recent_scroll
+                  - majors
+                  - semesters
+              examples:
+                example-1:
+                  value:
+                    id: 9
+                    plan_name: 짹짹이의 계획3
+                    recent_scroll: 0
+                    majors:
+                      - id: 45
+                        major_name: 교육학과
+                        major_type: major
+                    semesters:
+                      - id: 16
+                        plan: 9
+                        year: 2020
+                        semester_type: first
+                        is_complete: false
+                        major_requirement_credit: 0
+                        major_elective_credit: 0
+                        general_credit: 0
+                        general_elective_credit: 0
+                        lectures:
+                          - semesterlecture_id: 51
+                            id: 3904
+                            lecture_id: 700.020A
+                            lecture_name: 특수교육학개론
+                            credit: 2
+                            open_semester: all
+                            recognized_major_name: none
+                            lecture_type: teaching
+                      - id: 17
+                        plan: 9
+                        year: 2020
+                        semester_type: second
+                        is_complete: false
+                        major_requirement_credit: 0
+                        major_elective_credit: 2
+                        general_credit: 0
+                        general_elective_credit: 0
+                        lectures:
+                          - semesterlecture_id: 52
+                            id: 4750
+                            lecture_id: '700.004'
+                            lecture_name: 교육사회
+                            credit: 2
+                            open_semester: all
+                            recognized_major_name: none
+                            lecture_type: teaching
+        '400':
+          description: parameter의 plan_id에 해당하는 plan이 없을 때
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    error: wrong plan_id
+        '401':
+          description: Unauthorized
+      operationId: get-plan-major
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+          description: Token Authentication
+        - schema:
+            type: string
+          in: query
+          name: plan_id
+          description: 조회하려는 plan
+          required: true
+      description: 특정 계획에 등록된 모든 전공들을 리스트 형태로 반환합니다.
+    put:
+      summary: PUT /plan/major/
+      operationId: put-plan-major
+      responses:
+        '200':
+          description: OK
+      description: 계획에 등록된 전공들의 리스트를 수정합니다.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+        - schema:
+            type: string
+          in: query
+          name: plan_id
+          description: major을 수정하려는 plan의 id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                post_list:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - major_name
+                      - major_type
+                    properties:
+                      major_name:
+                        type: string
+                        minLength: 1
+                      major_type:
+                        type: string
+                        minLength: 1
+                delete_list:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - major_name
+                      - major_type
+                    properties:
+                      major_name:
+                        type: string
+                        minLength: 1
+                      major_type:
+                        type: string
+                        minLength: 1
+              required:
+                - post_list
+                - delete_list
+            examples:
+              example-1:
+                value:
+                  post_list:
+                    - major_name: 언어학과
+                      major_type: major
+                  delete_list:
+                    - major_name: 경영학과
+                      major_type: major
+  '/plan/{plan_id}/':
+    parameters:
+      - schema:
+          type: string
+        name: plan_id
+        in: path
+        required: true
+    put:
+      summary: 'PUT /plan/{plan_id}/'
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  plan_name:
+                    type: string
+                    minLength: 1
+                  recent_scroll:
+                    type: number
+                  majors:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - major_name
+                        - major_type
+                      properties:
+                        id:
+                          type: number
+                        major_name:
+                          type: string
+                          minLength: 1
+                        major_type:
+                          type: string
+                          minLength: 1
+                  semesters:
+                    type: array
+                    items:
+                      properties: {}
+                required:
+                  - id
+                  - plan_name
+                  - recent_scroll
+                  - majors
+                  - semesters
+              examples:
+                example-1:
+                  value:
+                    id: 8
+                    plan_name: 짹짹이의 계획2(수정)
+                    recent_scroll: 50
+                    majors:
+                      - id: 69
+                        major_name: 경영학과
+                        major_type: major
+                      - id: 112
+                        major_name: 통계학과
+                        major_type: double_major
+                    semesters: []
+      operationId: put-plan-plan_id
+      description: 계획의 이름 또는 최근 스크롤 좌표를 수정합니다.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                plan_name:
+                  type: string
+                  minLength: 1
+                recent_scroll:
+                  type: number
+              required:
+                - plan_name
+                - recent_scroll
+            examples:
+              example-1:
+                value:
+                  plan_name: 짹짹이의 계획2(수정)
+                  recent_scroll: 50
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
+    delete:
+      summary: 'DELETE /plan/{plan_id}/'
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: delete-plan-plan_id
+      description: 계획을 삭제합니다.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+    get:
+      summary: 'GET /plan/{plan_id}/'
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: number
+                  plan_name:
+                    type: string
+                    minLength: 1
+                  recent_scroll:
+                    type: number
+                  majors:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - major_name
+                        - major_type
+                      properties:
+                        id:
+                          type: number
+                        major_name:
+                          type: string
+                          minLength: 1
+                        major_type:
+                          type: string
+                          minLength: 1
+                  semesters:
+                    type: array
+                    items:
+                      properties: {}
+                required:
+                  - id
+                  - plan_name
+                  - recent_scroll
+                  - majors
+                  - semesters
+              examples:
+                example-1:
+                  value:
+                    id: 8
+                    plan_name: 짹짹이의 계획2
+                    recent_scroll: 0
+                    majors:
+                      - id: 69
+                        major_name: 경영학과
+                        major_type: major
+                      - id: 112
+                        major_name: 통계학과
+                        major_type: double_major
+                    semesters: []
+      operationId: get-plan-plan_id
+      description: '특정 계획의 세부 정보를 반환합니다.  '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
   /requirement/:
     get:
       summary: GET /requirement/
@@ -1042,1009 +2052,6 @@ paths:
           description: Token Authentication
           required: true
     parameters: []
-  /user/login/:
-    put:
-      summary: PUT /user/login/
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                properties:
-                  id:
-                    type: number
-                  email:
-                    type: string
-                    minLength: 1
-                  year:
-                    type: number
-                  full_name:
-                    type: string
-                    minLength: 1
-                  majors:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - id
-                        - major_name
-                        - major_type
-                      properties:
-                        id:
-                          type: number
-                        major_name:
-                          type: string
-                          minLength: 1
-                        major_type:
-                          type: string
-                          minLength: 1
-                  status:
-                    type: string
-                    minLength: 1
-                  token:
-                    type: string
-                    minLength: 1
-                required:
-                  - id
-                  - email
-                  - year
-                  - full_name
-                  - majors
-                  - status
-                  - token
-              examples:
-                example-1:
-                  value:
-                    id: 15
-                    email: bird123@snu.ac.kr
-                    year: 2019
-                    full_name: 김짹짹
-                    majors:
-                      - id: 69
-                        major_name: 경영학과
-                        major_type: major
-                      - id: 110
-                        major_name: 컴퓨터공학과
-                        major_type: double_major
-                    status: active
-                    token: a3d1df9f5f3c4eff8186f18062ee8bb4df150a63
-        '400':
-          description: |-
-            Bad Request
-            1. body에 username이 없을 때
-            2. body에 password가 없을 때
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-              examples:
-                example-1:
-                  value:
-                    error: username missing
-                example-2:
-                  value:
-                    error: password missing
-        '403':
-          description: 'username에 해당하는 유저가 없거나 username은 맞지만, 비밀번호가 틀렸을 때'
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-              examples:
-                example-1:
-                  value:
-                    error: Wrong username or wrong password
-      operationId: put-user-login
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: ''
-              type: object
-              properties:
-                email:
-                  type: string
-                  minLength: 1
-                password:
-                  type: string
-                  minLength: 1
-              required:
-                - email
-                - password
-            examples:
-              example-1:
-                value:
-                  email: bird123@snu.ac.kr
-                  password: bird123*
-    parameters: []
-  /user/logout/:
-    get:
-      summary: GET /user/logout/
-      tags: []
-      responses:
-        '200':
-          description: OK
-      operationId: get-user-logout
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          description: Token Authentication
-          required: true
-  /user/major/:
-    delete:
-      summary: DELETE /user/major/
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                properties:
-                  majors:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - id
-                        - major_name
-                        - major_type
-                      properties:
-                        id:
-                          type: number
-                        major_name:
-                          type: string
-                          minLength: 1
-                        major_type:
-                          type: string
-                          minLength: 1
-                required:
-                  - majors
-              examples:
-                example-1:
-                  value:
-                    majors:
-                      - id: 69
-                        major_name: 경영학과
-                        major_type: single_major
-        '400':
-          description: |-
-            1. parameter에 major_id가 없을 때
-            2. major_id에 해당하는 major을 현재 유저가 듣고 있지 않을 때
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-              examples:
-                example-1:
-                  value:
-                    error: major_id missing
-                example-2:
-                  value:
-                    error: major_id wrong
-        '401':
-          description: 인증 Token이 Header에 포함되지 않았을 때 발생하는 에러입니다.
-        '404':
-          description: major_id에 해당하는 major가 존재하지 않을 때 발생하는 에러입니다.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-              examples:
-                example-1:
-                  value:
-                    error: major not_exist
-      operationId: delete-user-major
-      description: 사용자가 자신의 전공을 등록 취소할 때 사용하는 API입니다.
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          required: true
-          description: Token Authentication
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: ''
-              type: object
-              properties:
-                major_name:
-                  type: string
-                  minLength: 1
-                major_type:
-                  type: string
-                  minLength: 1
-              required:
-                - major_name
-                - major_type
-            examples:
-              example-1:
-                value:
-                  major_name: 컴퓨터공학과
-                  major_type: double_major
-    post:
-      summary: POST /user/major/
-      tags: []
-      responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                properties:
-                  majors:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - id
-                        - major_name
-                        - major_type
-                      properties:
-                        id:
-                          type: number
-                        major_name:
-                          type: string
-                          minLength: 1
-                        major_type:
-                          type: string
-                          minLength: 1
-                required:
-                  - majors
-              examples:
-                example-1:
-                  value:
-                    majors:
-                      - id: 69
-                        major_name: 경영학과
-                        major_type: major
-                      - id: 110
-                        major_name: 컴퓨터공학과
-                        major_type: double_major
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                properties:
-                  error:
-                    type: string
-                    minLength: 1
-                required:
-                  - error
-              examples:
-                example-1:
-                  value:
-                    error: major_name missing
-        '401':
-          description: 인증 Token이 Header에 포함되지 않았을 때 발생하는 에러입니다.
-        '404':
-          description: major_name과 major_type에 해당하는 major가 존재하지 않을 때 발생하는 에러입니다.
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                properties:
-                  error:
-                    type: string
-                    minLength: 1
-                required:
-                  - error
-              examples:
-                example-1:
-                  value:
-                    error: major not_exist
-      operationId: post-user-major
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          required: true
-          description: Token Authentication
-      description: 사용자가 자신의 전공을 등록할 때 사용하는 API입니다.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: ''
-              type: object
-              properties:
-                major_name:
-                  type: string
-                  minLength: 1
-                major_type:
-                  type: string
-                  minLength: 1
-              required:
-                - major_name
-                - major_type
-            examples:
-              example-1:
-                value:
-                  major_name: 컴퓨터공학과
-                  major_type: double_major
-        description: ''
-    parameters: []
-  /plan/major/:
-    get:
-      summary: GET /plan/major/
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                properties:
-                  id:
-                    type: number
-                  plan_name:
-                    type: string
-                    minLength: 1
-                  recent_scroll:
-                    type: number
-                  majors:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - id
-                        - major_name
-                        - major_type
-                      properties:
-                        id:
-                          type: number
-                        major_name:
-                          type: string
-                          minLength: 1
-                        major_type:
-                          type: string
-                          minLength: 1
-                  semesters:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - id
-                        - plan
-                        - year
-                        - semester_type
-                        - is_complete
-                        - major_requirement_credit
-                        - major_elective_credit
-                        - general_credit
-                        - general_elective_credit
-                      properties:
-                        id:
-                          type: number
-                        plan:
-                          type: number
-                        year:
-                          type: number
-                        semester_type:
-                          type: string
-                          minLength: 1
-                        is_complete:
-                          type: boolean
-                        major_requirement_credit:
-                          type: number
-                        major_elective_credit:
-                          type: number
-                        general_credit:
-                          type: number
-                        general_elective_credit:
-                          type: number
-                        lectures:
-                          type: array
-                          uniqueItems: true
-                          minItems: 1
-                          items:
-                            required:
-                              - semesterlecture_id
-                              - id
-                              - lecture_id
-                              - lecture_name
-                              - credit
-                              - open_semester
-                              - recognized_major_name
-                              - lecture_type
-                            properties:
-                              semesterlecture_id:
-                                type: number
-                              id:
-                                type: number
-                              lecture_id:
-                                type: string
-                                minLength: 1
-                              lecture_name:
-                                type: string
-                                minLength: 1
-                              credit:
-                                type: number
-                              open_semester:
-                                type: string
-                                minLength: 1
-                              recognized_major_name:
-                                type: string
-                                minLength: 1
-                              lecture_type:
-                                type: string
-                                minLength: 1
-                required:
-                  - id
-                  - plan_name
-                  - recent_scroll
-                  - majors
-                  - semesters
-              examples:
-                example-1:
-                  value:
-                    id: 9
-                    plan_name: 짹짹이의 계획3
-                    recent_scroll: 0
-                    majors:
-                      - id: 45
-                        major_name: 교육학과
-                        major_type: major
-                    semesters:
-                      - id: 16
-                        plan: 9
-                        year: 2020
-                        semester_type: first
-                        is_complete: false
-                        major_requirement_credit: 0
-                        major_elective_credit: 0
-                        general_credit: 0
-                        general_elective_credit: 0
-                        lectures:
-                          - semesterlecture_id: 51
-                            id: 3904
-                            lecture_id: 700.020A
-                            lecture_name: 특수교육학개론
-                            credit: 2
-                            open_semester: all
-                            recognized_major_name: none
-                            lecture_type: teaching
-                      - id: 17
-                        plan: 9
-                        year: 2020
-                        semester_type: second
-                        is_complete: false
-                        major_requirement_credit: 0
-                        major_elective_credit: 2
-                        general_credit: 0
-                        general_elective_credit: 0
-                        lectures:
-                          - semesterlecture_id: 52
-                            id: 4750
-                            lecture_id: '700.004'
-                            lecture_name: 교육사회
-                            credit: 2
-                            open_semester: all
-                            recognized_major_name: none
-                            lecture_type: teaching
-        '400':
-          description: parameter의 plan_id에 해당하는 plan이 없을 때
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-              examples:
-                example-1:
-                  value:
-                    error: wrong plan_id
-        '401':
-          description: Unauthorized
-      operationId: get-plan-major
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          required: true
-          description: Token Authentication
-        - schema:
-            type: string
-          in: query
-          name: plan_id
-          description: 조회하려는 plan
-          required: true
-      description: 특정 계획에 등록된 모든 전공들을 리스트 형태로 반환합니다.
-    put:
-      summary: PUT /plan/major/
-      operationId: put-plan-major
-      responses:
-        '200':
-          description: OK
-      description: 계획에 등록된 전공들의 리스트를 수정합니다.
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          description: Token Authentication
-        - schema:
-            type: string
-          in: query
-          name: plan_id
-          description: major을 수정하려는 plan의 id
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: ''
-              type: object
-              properties:
-                post_list:
-                  type: array
-                  uniqueItems: true
-                  minItems: 1
-                  items:
-                    required:
-                      - major_name
-                      - major_type
-                    properties:
-                      major_name:
-                        type: string
-                        minLength: 1
-                      major_type:
-                        type: string
-                        minLength: 1
-                delete_list:
-                  type: array
-                  uniqueItems: true
-                  minItems: 1
-                  items:
-                    required:
-                      - major_name
-                      - major_type
-                    properties:
-                      major_name:
-                        type: string
-                        minLength: 1
-                      major_type:
-                        type: string
-                        minLength: 1
-              required:
-                - post_list
-                - delete_list
-            examples:
-              example-1:
-                value:
-                  post_list:
-                    - major_name: 언어학과
-                      major_type: major
-                  delete_list:
-                    - major_name: 경영학과
-                      major_type: major
-  /plan/:
-    get:
-      summary: GET /plan/
-      tags: []
-      operationId: get-plan
-      description: 사용자의 모든 강의 계획을 리스트 형태로 반환합니다.
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                description: ''
-                minItems: 1
-                uniqueItems: true
-                items:
-                  type: object
-                  required:
-                    - id
-                    - plan_name
-                    - recent_scroll
-                    - majors
-                    - semesters
-                  properties:
-                    id:
-                      type: number
-                    plan_name:
-                      type: string
-                      minLength: 1
-                    recent_scroll:
-                      type: number
-                    majors:
-                      type: array
-                      uniqueItems: true
-                      minItems: 1
-                      items:
-                        required:
-                          - id
-                          - major_name
-                          - major_type
-                        properties:
-                          id:
-                            type: number
-                          major_name:
-                            type: string
-                            minLength: 1
-                          major_type:
-                            type: string
-                            minLength: 1
-                    semesters:
-                      type: array
-                      items:
-                        properties: {}
-              examples:
-                example-1:
-                  value:
-                    - id: 7
-                      plan_name: 짹짹이의 계획1
-                      recent_scroll: 0
-                      majors:
-                        - id: 69
-                          major_name: 경영학과
-                          major_type: major
-                        - id: 110
-                          major_name: 컴퓨터공학과
-                          major_type: double_major
-                      semesters: []
-                    - id: 8
-                      plan_name: 짹짹이의 계획2
-                      recent_scroll: 0
-                      majors:
-                        - id: 69
-                          major_name: 경영학과
-                          major_type: major
-                        - id: 112
-                          major_name: 통계학과
-                          major_type: double_major
-                      semesters: []
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          description: Token Authentication
-          required: true
-    post:
-      summary: POST /plan/
-      tags: []
-      responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                properties:
-                  id:
-                    type: number
-                  plan_name:
-                    type: string
-                    minLength: 1
-                  recent_scroll:
-                    type: number
-                  majors:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - id
-                        - major_name
-                        - major_type
-                      properties:
-                        id:
-                          type: number
-                        major_name:
-                          type: string
-                          minLength: 1
-                        major_type:
-                          type: string
-                          minLength: 1
-                  semesters:
-                    type: array
-                    items:
-                      properties: {}
-                required:
-                  - id
-                  - plan_name
-                  - recent_scroll
-                  - majors
-                  - semesters
-              examples:
-                example-1:
-                  value:
-                    id: 7
-                    plan_name: 짹짹이의 계획1
-                    recent_scroll: 0
-                    majors:
-                      - id: 69
-                        major_name: 경영학과
-                        major_type: major
-                      - id: 110
-                        major_name: 컴퓨터공학과
-                        major_type: double_major
-                    semesters: []
-      operationId: post-plan
-      description: 강의 계획을 추가합니다. 한번에 하나의 계획만 추가할 수 있습니다.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: ''
-              type: object
-              properties:
-                plan_name:
-                  type: string
-                  minLength: 1
-                majors:
-                  type: array
-                  uniqueItems: true
-                  minItems: 1
-                  items:
-                    required:
-                      - major_name
-                      - major_type
-                    properties:
-                      major_name:
-                        type: string
-                        minLength: 1
-                      major_type:
-                        type: string
-                        minLength: 1
-              required:
-                - plan_name
-                - majors
-            examples:
-              example-1:
-                value:
-                  plan_name: 짹짹이의 계획1
-                  majors:
-                    - major_name: 경영학과
-                      major_type: major
-                    - major_name: 컴퓨터공학과
-                      major_type: double_major
-          application/xml:
-            schema:
-              description: ''
-              type: object
-              properties:
-                user_id:
-                  type: number
-                plan_name:
-                  type: string
-                  minLength: 1
-                recent_scroll:
-                  type: number
-              required:
-                - user_id
-        description: ''
-      parameters: []
-    parameters: []
-  '/plan/{plan_id}/':
-    parameters:
-      - schema:
-          type: string
-        name: plan_id
-        in: path
-        required: true
-    put:
-      summary: 'PUT /plan/{plan_id}/'
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                properties:
-                  id:
-                    type: number
-                  plan_name:
-                    type: string
-                    minLength: 1
-                  recent_scroll:
-                    type: number
-                  majors:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - id
-                        - major_name
-                        - major_type
-                      properties:
-                        id:
-                          type: number
-                        major_name:
-                          type: string
-                          minLength: 1
-                        major_type:
-                          type: string
-                          minLength: 1
-                  semesters:
-                    type: array
-                    items:
-                      properties: {}
-                required:
-                  - id
-                  - plan_name
-                  - recent_scroll
-                  - majors
-                  - semesters
-              examples:
-                example-1:
-                  value:
-                    id: 8
-                    plan_name: 짹짹이의 계획2(수정)
-                    recent_scroll: 50
-                    majors:
-                      - id: 69
-                        major_name: 경영학과
-                        major_type: major
-                      - id: 112
-                        major_name: 통계학과
-                        major_type: double_major
-                    semesters: []
-      operationId: put-plan-plan_id
-      description: 계획의 이름 또는 최근 스크롤 좌표를 수정합니다.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: ''
-              type: object
-              properties:
-                plan_name:
-                  type: string
-                  minLength: 1
-                recent_scroll:
-                  type: number
-              required:
-                - plan_name
-                - recent_scroll
-            examples:
-              example-1:
-                value:
-                  plan_name: 짹짹이의 계획2(수정)
-                  recent_scroll: 50
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          description: Token Authentication
-          required: true
-    delete:
-      summary: 'DELETE /plan/{plan_id}/'
-      tags: []
-      responses:
-        '200':
-          description: OK
-      operationId: delete-plan-plan_id
-      description: 계획을 삭제합니다.
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          description: Token Authentication
-    get:
-      summary: 'GET /plan/{plan_id}/'
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                properties:
-                  id:
-                    type: number
-                  plan_name:
-                    type: string
-                    minLength: 1
-                  recent_scroll:
-                    type: number
-                  majors:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - id
-                        - major_name
-                        - major_type
-                      properties:
-                        id:
-                          type: number
-                        major_name:
-                          type: string
-                          minLength: 1
-                        major_type:
-                          type: string
-                          minLength: 1
-                  semesters:
-                    type: array
-                    items:
-                      properties: {}
-                required:
-                  - id
-                  - plan_name
-                  - recent_scroll
-                  - majors
-                  - semesters
-              examples:
-                example-1:
-                  value:
-                    id: 8
-                    plan_name: 짹짹이의 계획2
-                    recent_scroll: 0
-                    majors:
-                      - id: 69
-                        major_name: 경영학과
-                        major_type: major
-                      - id: 112
-                        major_name: 통계학과
-                        major_type: double_major
-                    semesters: []
-      operationId: get-plan-plan_id
-      description: '특정 계획의 세부 정보를 반환합니다.  '
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties: {}
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          description: Token Authentication
-          required: true
   /semester/:
     post:
       summary: POST /semester/
