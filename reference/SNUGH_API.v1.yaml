@@ -1153,9 +1153,9 @@ paths:
           required: true
     parameters: []
   '/plan/{plan_id}/major/':
-    get:
-      summary: 'GET /plan/{plan_id}/major/'
-      tags: []
+    put:
+      summary: 'PUT /plan/{plan_id}/major/'
+      operationId: put-plan-major
       responses:
         '200':
           description: OK
@@ -1224,40 +1224,10 @@ paths:
                       - id: 23
                         major_name: 경영학과
                         major_type: major
-                      - id: 98
-                        major_name: 컴퓨터공학부
+                      - id: 37
+                        major_name: 언어학과
                         major_type: major
                     semesters: []
-        '400':
-          description: parameter의 plan_id에 해당하는 plan이 없을 때
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-              examples:
-                example-1:
-                  value:
-                    error: wrong plan_id
-        '401':
-          description: Unauthorized
-      operationId: get-plan-major
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          required: true
-          description: Token Authentication
-      description: 특정 계획에 등록된 모든 전공들을 리스트 형태로 반환합니다.
-    put:
-      summary: 'PUT /plan/{plan_id}/major/'
-      operationId: put-plan-major
-      responses:
-        '200':
-          description: OK
       description: 계획에 등록된 전공들의 리스트를 수정합니다.
       parameters:
         - schema:
@@ -1313,7 +1283,7 @@ paths:
                     - major_name: 언어학과
                       major_type: major
                   delete_list:
-                    - major_name: 경영학과
+                    - major_name: 컴퓨터공학부
                       major_type: major
     parameters:
       - schema:
@@ -1549,142 +1519,220 @@ paths:
                 description: ''
                 type: object
                 properties:
-                  majors:
+                  all_progress:
+                    type: object
+                    properties:
+                      major:
+                        type: object
+                        properties:
+                          required_credit:
+                            type: number
+                          earned_credit:
+                            type: number
+                          progress:
+                            type: number
+                        required:
+                          - required_credit
+                          - earned_credit
+                          - progress
+                      general:
+                        type: object
+                        properties:
+                          required_credit:
+                            type: number
+                          earned_credit:
+                            type: number
+                          progress:
+                            type: number
+                        required:
+                          - required_credit
+                          - earned_credit
+                          - progress
+                      general_elective:
+                        type: object
+                        properties:
+                          required_credit:
+                            type: number
+                          earned_credit:
+                            type: number
+                          progress:
+                            type: number
+                        required:
+                          - required_credit
+                          - earned_credit
+                          - progress
+                      all:
+                        type: object
+                        properties:
+                          required_credit:
+                            type: number
+                          earned_credit:
+                            type: number
+                          progress:
+                            type: number
+                        required:
+                          - required_credit
+                          - earned_credit
+                          - progress
+                    required:
+                      - major
+                      - general
+                      - general_elective
+                      - all
+                  major_progress:
                     type: array
                     uniqueItems: true
                     minItems: 1
                     items:
                       required:
+                        - major_id
                         - major_name
                         - major_type
                       properties:
+                        major_id:
+                          type: number
                         major_name:
                           type: string
                           minLength: 1
                         major_type:
                           type: string
                           minLength: 1
-                        requirements:
-                          type: array
-                          uniqueItems: true
-                          minItems: 1
-                          items:
-                            required:
-                              - id
-                              - description
-                              - is_fulfilled
-                              - is_credit_requirement
-                              - requirement_type
-                              - requirement_type_detail
-                              - requirement_type_detail_detail
-                              - required_credit
-                              - earned_credit
-                            properties:
-                              id:
-                                type: number
-                              description:
-                                type: string
-                              is_fulfilled:
-                                type: boolean
-                              is_credit_requirement:
-                                type: boolean
-                              requirement_type:
-                                type: string
-                                minLength: 1
-                              requirement_type_detail:
-                                type: string
-                                minLength: 1
-                              requirement_type_detail_detail:
-                                type: string
-                                minLength: 1
-                              required_credit:
-                                type: number
-                              earned_credit:
-                                type: number
+                        major_requirement_credit:
+                          type: object
+                          properties:
+                            required_credit:
+                              type: number
+                            earned_credit:
+                              type: number
+                            progress:
+                              type: number
+                          required:
+                            - required_credit
+                            - earned_credit
+                            - progress
+                        major_elective_credit:
+                          type: object
+                          properties:
+                            required_credit:
+                              type: number
+                            earned_credit:
+                              type: number
+                            progress:
+                              type: number
+                          required:
+                            - required_credit
+                            - earned_credit
+                            - progress
+                  general_progress:
+                    type: object
+                    properties:
+                      required_credit:
+                        type: number
+                      earned_credit:
+                        type: number
+                      progress:
+                        type: number
+                    required:
+                      - required_credit
+                      - earned_credit
+                      - progress
                 required:
-                  - majors
+                  - all_progress
+                  - major_progress
+                  - general_progress
+                x-examples:
+                  example-1:
+                    all_progress:
+                      major:
+                        required_credit: 9
+                        earned_credit: 3
+                        progress: 0.33
+                      general:
+                        required_credit: 9
+                        earned_credit: 3
+                        progress: 0.33
+                      general_elective:
+                        required_credit: 9
+                        earned_credit: 3
+                        progress: 0.33
+                      all:
+                        required_credit: 9
+                        earned_credit: 3
+                        progress: 0.33
+                    major_progress:
+                      - major_id: 1
+                        major_name: 경영학과
+                        major_type: major
+                        major_requirement_credit:
+                          required_credit: 9
+                          earned_credit: 3
+                          progress: 0.33
+                        major_elective_credit:
+                          required_credit: 9
+                          earned_credit: 3
+                          progress: 0.33
+                      - major_id: 2
+                        major_name: 컴퓨터공학부
+                        major_type: major
+                        major_requirement_credit:
+                          required_credit: 9
+                          earned_credit: 3
+                          progress: 0.33
+                        major_elective_credit:
+                          required_credit: 9
+                          earned_credit: 3
+                          progress: 0.33
+                    general_progress:
+                      required_credit: 9
+                      earned_credit: 3
+                      progress: 0.33
               examples:
                 example-1:
                   value:
-                    majors:
-                      - major_name: 경영학과
+                    all_progress:
+                      major:
+                        required_credit: 9
+                        earned_credit: 3
+                        progress: 0.33
+                      general:
+                        required_credit: 9
+                        earned_credit: 3
+                        progress: 0.33
+                      general_elective:
+                        required_credit: 9
+                        earned_credit: 3
+                        progress: 0.33
+                      all:
+                        required_credit: 9
+                        earned_credit: 3
+                        progress: 0.33
+                    major_progress:
+                      - major_id: 1
+                        major_name: 경영학과
                         major_type: major
-                        requirements:
-                          - id: 1
-                            description: ''
-                            is_fulfilled: false
-                            is_credit_requirement: true
-                            requirement_type: all
-                            requirement_type_detail: none
-                            requirement_type_detail_detail: none
-                            required_credit: 130
-                            earned_credit: 69
-                          - id: 2
-                            description: ''
-                            is_fulfilled: false
-                            is_credit_requirement: true
-                            requirement_type: major_requirement
-                            requirement_type_detail: none
-                            requirement_type_detail_detail: none
-                            required_credit: 30
-                            earned_credit: 9
-                          - id: 3
-                            description: ''
-                            is_fulfilled: false
-                            is_credit_requirement: true
-                            requirement_type: major_elective
-                            requirement_type_detail: none
-                            requirement_type_detail_detail: none
-                            required_credit: 15
-                            earned_credit: 6
-                          - id: 4
-                            description: ''
-                            is_fulfilled: false
-                            is_credit_requirement: true
-                            requirement_type: general
-                            requirement_type_detail: none
-                            requirement_type_detail_detail: none
-                            required_credit: 15
-                            earned_credit: 9
-                      - major_name: 컴퓨터공학과
-                        major_type: double_major
-                        requirements:
-                          - id: 5
-                            description: ''
-                            is_fulfilled: false
-                            is_credit_requirement: true
-                            requirement_type: all
-                            requirement_type_detail: none
-                            requirement_type_detail_detail: none
-                            required_credit: 130
-                            earned_credit: 69
-                          - id: 6
-                            description: ''
-                            is_fulfilled: false
-                            is_credit_requirement: true
-                            requirement_type: major_requirement
-                            requirement_type_detail: none
-                            requirement_type_detail_detail: none
-                            required_credit: 30
-                            earned_credit: 9
-                          - id: 7
-                            description: ''
-                            is_fulfilled: false
-                            is_credit_requirement: true
-                            requirement_type: major_elective
-                            requirement_type_detail: none
-                            requirement_type_detail_detail: none
-                            required_credit: 15
-                            earned_credit: 6
-                          - id: 8
-                            description: ''
-                            is_fulfilled: false
-                            is_credit_requirement: true
-                            requirement_type: general
-                            requirement_type_detail: none
-                            requirement_type_detail_detail: none
-                            required_credit: 15
-                            earned_credit: 9
+                        major_requirement_credit:
+                          required_credit: 9
+                          earned_credit: 3
+                          progress: 0.33
+                        major_elective_credit:
+                          required_credit: 9
+                          earned_credit: 3
+                          progress: 0.33
+                      - major_id: 2
+                        major_name: 컴퓨터공학부
+                        major_type: major
+                        major_requirement_credit:
+                          required_credit: 9
+                          earned_credit: 3
+                          progress: 0.33
+                        major_elective_credit:
+                          required_credit: 9
+                          earned_credit: 3
+                          progress: 0.33
+                    general_progress:
+                      required_credit: 9
+                      earned_credit: 3
+                      progress: 0.33
             application/xml:
               schema:
                 type: object
@@ -1714,7 +1762,7 @@ paths:
                 type: object
                 properties: {}
       operationId: get-requirement
-      description: plan_id에 해당하는 계획의 졸업요건들을 전공별로 리스트 형태로 반환합니다.
+      description: plan_id에 해당하는 계획의 시뮬레이션 결과를 반환합니다.
       parameters:
         - schema:
             type: integer
@@ -3122,72 +3170,330 @@ paths:
           content:
             application/json:
               schema:
+                type: array
                 description: ''
-                type: object
-                properties:
-                  id:
-                    type: number
-                  plan_name:
-                    type: string
-                    minLength: 1
-                  recent_scroll:
-                    type: number
-                  majors:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - id
-                        - major_name
-                        - major_type
-                      properties:
-                        id:
-                          type: number
-                        major_name:
-                          type: string
-                          minLength: 1
-                        major_type:
-                          type: string
-                          minLength: 1
-                  semesters:
-                    type: array
-                    items:
-                      required: []
-                      properties: {}
-                required:
-                  - id
-                  - plan_name
-                  - recent_scroll
-                  - majors
-                  - semesters
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  required:
+                    - id
+                    - plan_name
+                    - recent_scroll
+                    - majors
+                    - semesters
+                  properties:
+                    id:
+                      type: number
+                    plan_name:
+                      type: string
+                      minLength: 1
+                    recent_scroll:
+                      type: number
+                    majors:
+                      type: array
+                      uniqueItems: true
+                      minItems: 1
+                      items:
+                        required:
+                          - id
+                          - major_name
+                          - major_type
+                        properties:
+                          id:
+                            type: number
+                          major_name:
+                            type: string
+                            minLength: 1
+                          major_type:
+                            type: string
+                            minLength: 1
+                    semesters:
+                      type: array
+                      uniqueItems: true
+                      minItems: 1
+                      items:
+                        required:
+                          - id
+                          - plan
+                          - year
+                          - semester_type
+                          - is_complete
+                          - major_requirement_credit
+                          - major_elective_credit
+                          - general_credit
+                          - general_elective_credit
+                        properties:
+                          id:
+                            type: number
+                          plan:
+                            type: number
+                          year:
+                            type: number
+                          semester_type:
+                            type: string
+                            minLength: 1
+                          is_complete:
+                            type: boolean
+                          major_requirement_credit:
+                            type: number
+                          major_elective_credit:
+                            type: number
+                          general_credit:
+                            type: number
+                          general_elective_credit:
+                            type: number
+                          lectures:
+                            type: array
+                            uniqueItems: true
+                            minItems: 1
+                            items:
+                              required:
+                                - semesterlecture_id
+                                - lecture_id
+                                - lecture_code
+                                - lecture_name
+                                - credit
+                                - open_semester
+                                - lecture_type
+                                - recognized_major_name1
+                                - lecture_type1
+                                - recognized_major_name2
+                                - lecture_type2
+                                - is_modified
+                                - recent_sequence
+                              properties:
+                                semesterlecture_id:
+                                  type: number
+                                lecture_id:
+                                  type: number
+                                lecture_code:
+                                  type: string
+                                  minLength: 1
+                                lecture_name:
+                                  type: string
+                                  minLength: 1
+                                credit:
+                                  type: number
+                                open_semester:
+                                  type: string
+                                  minLength: 1
+                                lecture_type:
+                                  type: string
+                                  minLength: 1
+                                recognized_major_name1:
+                                  type: string
+                                  minLength: 1
+                                lecture_type1:
+                                  type: string
+                                  minLength: 1
+                                recognized_major_name2:
+                                  type: string
+                                  minLength: 1
+                                lecture_type2:
+                                  type: string
+                                  minLength: 1
+                                is_modified:
+                                  type: boolean
+                                recent_sequence:
+                                  type: number
                 x-examples:
                   example-1:
-                    id: 7
-                    plan_name: 짹짹이의 계획1
-                    recent_scroll: 0
-                    majors:
-                      - id: 69
-                        major_name: 경영학과
-                        major_type: major
-                      - id: 110
-                        major_name: 컴퓨터공학과
-                        major_type: double_major
-                    semesters: []
+                    - id: 5
+                      plan_name: 홍길동의 계획1
+                      recent_scroll: 0
+                      majors:
+                        - id: 23
+                          major_name: 경영학과
+                          major_type: major
+                        - id: 98
+                          major_name: 컴퓨터공학부
+                          major_type: major
+                      semesters:
+                        - id: 1
+                          plan: 5
+                          year: 2019
+                          semester_type: first
+                          is_complete: false
+                          major_requirement_credit: 9
+                          major_elective_credit: 0
+                          general_credit: 0
+                          general_elective_credit: 0
+                          lectures:
+                            - semesterlecture_id: 14
+                              lecture_id: 1006
+                              lecture_code: '251.103'
+                              lecture_name: 경제원론
+                              credit: 3
+                              open_semester: UNKNOWN
+                              lecture_type: major_requirement
+                              recognized_major_name1: 경영학과
+                              lecture_type1: major_requirement
+                              recognized_major_name2: none
+                              lecture_type2: none
+                              is_modified: false
+                              recent_sequence: 0
+                            - semesterlecture_id: 15
+                              lecture_id: 3362
+                              lecture_code: '251.301'
+                              lecture_name: 재무관리
+                              credit: 3
+                              open_semester: ALL
+                              lecture_type: major_requirement
+                              recognized_major_name1: 경영학과
+                              lecture_type1: major_requirement
+                              recognized_major_name2: none
+                              lecture_type2: none
+                              is_modified: false
+                              recent_sequence: 1
+                            - semesterlecture_id: 16
+                              lecture_id: 3364
+                              lecture_code: '251.321'
+                              lecture_name: 마케팅관리
+                              credit: 3
+                              open_semester: ALL
+                              lecture_type: major_requirement
+                              recognized_major_name1: 경영학과
+                              lecture_type1: major_requirement
+                              recognized_major_name2: none
+                              lecture_type2: none
+                              is_modified: true
+                              recent_sequence: 2
+                        - id: 2
+                          plan: 5
+                          year: 2019
+                          semester_type: second
+                          is_complete: false
+                          major_requirement_credit: 0
+                          major_elective_credit: 0
+                          general_credit: 0
+                          general_elective_credit: 0
+                          lectures: []
+                        - id: 4
+                          plan: 5
+                          year: 2020
+                          semester_type: first
+                          is_complete: false
+                          major_requirement_credit: 0
+                          major_elective_credit: 0
+                          general_credit: 0
+                          general_elective_credit: 0
+                          lectures: []
+                    - id: 6
+                      plan_name: 홍길동의 계획2
+                      recent_scroll: 0
+                      majors:
+                        - id: 99
+                          major_name: 경영학과
+                          major_type: single_major
+                      semesters: []
+                    - id: 8
+                      plan_name: 홍길동의 계획3
+                      recent_scroll: 0
+                      majors:
+                        - id: 100
+                          major_name: 컴퓨터공학부
+                          major_type: single_major
+                      semesters: []
               examples:
                 example-1:
                   value:
-                    id: 7
-                    plan_name: 짹짹이의 계획1
-                    recent_scroll: 0
-                    majors:
-                      - id: 69
-                        major_name: 경영학과
-                        major_type: major
-                      - id: 110
-                        major_name: 컴퓨터공학과
-                        major_type: double_major
-                    semesters: []
+                    - id: 5
+                      plan_name: 홍길동의 계획1
+                      recent_scroll: 0
+                      majors:
+                        - id: 23
+                          major_name: 경영학과
+                          major_type: major
+                        - id: 98
+                          major_name: 컴퓨터공학부
+                          major_type: major
+                      semesters:
+                        - id: 1
+                          plan: 5
+                          year: 2019
+                          semester_type: first
+                          is_complete: false
+                          major_requirement_credit: 9
+                          major_elective_credit: 0
+                          general_credit: 0
+                          general_elective_credit: 0
+                          lectures:
+                            - semesterlecture_id: 14
+                              lecture_id: 1006
+                              lecture_code: '251.103'
+                              lecture_name: 경제원론
+                              credit: 3
+                              open_semester: UNKNOWN
+                              lecture_type: major_requirement
+                              recognized_major_name1: 경영학과
+                              lecture_type1: major_requirement
+                              recognized_major_name2: none
+                              lecture_type2: none
+                              is_modified: false
+                              recent_sequence: 0
+                            - semesterlecture_id: 15
+                              lecture_id: 3362
+                              lecture_code: '251.301'
+                              lecture_name: 재무관리
+                              credit: 3
+                              open_semester: ALL
+                              lecture_type: major_requirement
+                              recognized_major_name1: 경영학과
+                              lecture_type1: major_requirement
+                              recognized_major_name2: none
+                              lecture_type2: none
+                              is_modified: false
+                              recent_sequence: 1
+                            - semesterlecture_id: 16
+                              lecture_id: 3364
+                              lecture_code: '251.321'
+                              lecture_name: 마케팅관리
+                              credit: 3
+                              open_semester: ALL
+                              lecture_type: major_requirement
+                              recognized_major_name1: 경영학과
+                              lecture_type1: major_requirement
+                              recognized_major_name2: none
+                              lecture_type2: none
+                              is_modified: true
+                              recent_sequence: 2
+                        - id: 2
+                          plan: 5
+                          year: 2019
+                          semester_type: second
+                          is_complete: false
+                          major_requirement_credit: 0
+                          major_elective_credit: 0
+                          general_credit: 0
+                          general_elective_credit: 0
+                          lectures: []
+                        - id: 4
+                          plan: 5
+                          year: 2020
+                          semester_type: first
+                          is_complete: false
+                          major_requirement_credit: 0
+                          major_elective_credit: 0
+                          general_credit: 0
+                          general_elective_credit: 0
+                          lectures: []
+                    - id: 6
+                      plan_name: 홍길동의 계획2
+                      recent_scroll: 0
+                      majors:
+                        - id: 99
+                          major_name: 경영학과
+                          major_type: single_major
+                      semesters: []
+                    - id: 8
+                      plan_name: 홍길동의 계획3
+                      recent_scroll: 0
+                      majors:
+                        - id: 100
+                          major_name: 컴퓨터공학부
+                          major_type: single_major
+                      semesters: []
       description: 기존 계획을 복제하는 기능을 지원하는 API입니다.
   '/plan/{plan_id}/calculate/':
     parameters:
