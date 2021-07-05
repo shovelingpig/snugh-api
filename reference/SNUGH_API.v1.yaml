@@ -1152,9 +1152,9 @@ paths:
           description: Token Authentication
           required: true
     parameters: []
-  /plan/major/:
+  '/plan/{plan_id}/major/':
     get:
-      summary: GET /plan/major/
+      summary: 'GET /plan/{plan_id}/major/'
       tags: []
       responses:
         '200':
@@ -1251,15 +1251,9 @@ paths:
           name: Authorization
           required: true
           description: Token Authentication
-        - schema:
-            type: string
-          in: query
-          name: plan_id
-          description: 조회하려는 plan의 id
-          required: true
       description: 특정 계획에 등록된 모든 전공들을 리스트 형태로 반환합니다.
     put:
-      summary: PUT /plan/major/
+      summary: 'PUT /plan/{plan_id}/major/'
       operationId: put-plan-major
       responses:
         '200':
@@ -1271,11 +1265,7 @@ paths:
           in: header
           name: Authorization
           description: Token Authentication
-        - schema:
-            type: string
-          in: query
-          name: plan_id
-          description: major을 수정하려는 plan의 id
+          required: true
       requestBody:
         content:
           application/json:
@@ -1325,6 +1315,12 @@ paths:
                   delete_list:
                     - major_name: 경영학과
                       major_type: major
+    parameters:
+      - schema:
+          type: string
+        name: plan_id
+        in: path
+        required: true
   '/plan/{plan_id}/':
     parameters:
       - schema:
@@ -3354,7 +3350,7 @@ paths:
         in: path
         required: true
     put:
-      summary: 'PUT /lecture/{lecture_id}/recognized_major/'
+      summary: 'PUT /lecture/{semesterlecture_id}/recognized_major/'
       operationId: put-lecture-recognized_major-lecture_id
       responses:
         '200':
@@ -3430,7 +3426,7 @@ paths:
                   recognized_major_name2: 컴퓨터공학부
                   recognized_major_type2: major
                   lecture_type2: major_elective
-  '/plan/copy/{plan_id}/':
+  '/plan/{plan_id}/copy/':
     parameters:
       - schema:
           type: string
@@ -3438,7 +3434,7 @@ paths:
         in: path
         required: true
     post:
-      summary: 'POST /plan/copy/{plan_id}/'
+      summary: 'POST /plan/{plan_id}/copy/'
       operationId: post-plan-copy-plan_id
       responses:
         '200':
@@ -3513,3 +3509,16 @@ paths:
                         major_type: double_major
                     semesters: []
       description: 기존 계획을 복제하는 기능을 지원하는 API입니다.
+  '/plan/{plan_id}/calculate/':
+    parameters:
+      - schema:
+          type: string
+        name: plan_id
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: put-plan-plan_id-calculate
+      responses:
+        '200':
+          description: OK
