@@ -638,6 +638,7 @@ paths:
                 value:
                   email: hgd@snu.ac.kr
                   password: hgd123*
+      description: 로그인 API입니다.
     parameters: []
   /user/logout/:
     get:
