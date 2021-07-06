@@ -3496,6 +3496,13 @@ paths:
                           major_type: single_major
                       semesters: []
       description: 기존 계획을 복제하는 기능을 지원하는 API입니다.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
   '/plan/{plan_id}/calculate/':
     parameters:
       - schema:
@@ -3509,3 +3516,10 @@ paths:
       responses:
         '200':
           description: OK
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Token Authentication
+          required: true
