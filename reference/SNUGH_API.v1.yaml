@@ -2616,8 +2616,8 @@ paths:
         - schema:
             type: string
           in: query
-          name: major
-          description: 강의를 조회하고자 하는 전공의 id입니다.
+          name: major_name
+          description: 강의를 조회하고자 하는 전공의 이름입니다.
           required: true
         - schema:
             type: string
