@@ -3560,8 +3560,14 @@ paths:
                           type: number
                         auto_calculate:
                           type: boolean
+                  all:
+                    type: number
+                  general:
+                    type: number
                 required:
                   - majors
+                  - all
+                  - general
                 x-examples:
                   example-1:
                     majors:
@@ -3575,6 +3581,8 @@ paths:
                         major_credit: 9
                         major_requirement_credit: 6
                         auto_calculate: true
+                    all: 130
+                    general: 9
               examples:
                 example-1:
                   value:
@@ -3589,6 +3597,8 @@ paths:
                         major_credit: 9
                         major_requirement_credit: 6
                         auto_calculate: true
+                    all: 130
+                    general: 9
       operationId: get-requirement-setting
       description: ''
       parameters:
@@ -3634,8 +3644,14 @@ paths:
                           type: number
                         auto_calculate:
                           type: boolean
+                  all:
+                    type: number
+                  general:
+                    type: number
                 required:
                   - majors
+                  - all
+                  - general
                 x-examples:
                   example-1:
                     majors:
@@ -3649,6 +3665,8 @@ paths:
                         major_credit: 9
                         major_requirement_credit: 6
                         auto_calculate: true
+                    all: 130
+                    general: 9
               examples:
                 example-1:
                   value:
@@ -3663,6 +3681,8 @@ paths:
                         major_credit: 9
                         major_requirement_credit: 6
                         auto_calculate: true
+                    all: 130
+                    general: 9
       requestBody:
         content:
           application/json:
@@ -3694,8 +3714,14 @@ paths:
                         type: number
                       auto_calculate:
                         type: boolean
+                all:
+                  type: number
+                general:
+                  type: number
               required:
                 - majors
+                - all
+                - general
               x-examples:
                 example-1:
                   majors:
@@ -3709,6 +3735,8 @@ paths:
                       major_credit: 9
                       major_requirement_credit: 6
                       auto_calculate: true
+                  all: 130
+                  general: 9
             examples:
               example-1:
                 value:
@@ -3723,6 +3751,8 @@ paths:
                       major_credit: 9
                       major_requirement_credit: 6
                       auto_calculate: true
+                  all: 130
+                  general: 9
         description: ''
       parameters:
         - schema:
