@@ -3071,6 +3071,30 @@ paths:
           name: Authorization
           description: Token Authentication
           required: true
+    put:
+      summary: 'PUT /lecture/{semesterlecture_id}/'
+      operationId: put-lecture-semesterlecture_id
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                is_modified:
+                  type: boolean
+              required:
+                - is_modified
+              x-examples:
+                example-1:
+                  is_modified: true
+            examples:
+              example-1:
+                value:
+                  is_modified: true
   '/lecture/{lecture_id}/recognized_major/':
     parameters:
       - schema:
