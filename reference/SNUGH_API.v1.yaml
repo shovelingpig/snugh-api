@@ -3523,3 +3523,84 @@ paths:
           name: Authorization
           description: Token Authentication
           required: true
+  /requirement/settings/:
+    get:
+      summary: GET /requirement/settings/
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  majors:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - major_name
+                        - major_type
+                        - major_credit
+                        - major_requirement_credit
+                        - auto_calculate
+                      properties:
+                        major_name:
+                          type: string
+                          minLength: 1
+                        major_type:
+                          type: string
+                          minLength: 1
+                        major_credit:
+                          type: number
+                        major_requirement_credit:
+                          type: number
+                        auto_calculate:
+                          type: boolean
+                required:
+                  - majors
+                x-examples:
+                  example-1:
+                    majors:
+                      - major_name: 경영학과
+                        major_type: major
+                        major_credit: 9
+                        major_requirement_credit: 6
+                        auto_calculate: true
+                      - major_name: 컴퓨터공학부
+                        major_type: major
+                        major_credit: 9
+                        major_requirement_credit: 6
+                        auto_calculate: true
+              examples:
+                example-1:
+                  value:
+                    majors:
+                      - major_name: 경영학과
+                        major_type: major
+                        major_credit: 9
+                        major_requirement_credit: 6
+                        auto_calculate: true
+                      - major_name: 컴퓨터공학부
+                        major_type: major
+                        major_credit: 9
+                        major_requirement_credit: 6
+                        auto_calculate: true
+      operationId: get-requirement-setting
+      description: ''
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: plan_id
+          required: true
+    parameters: []
+    put:
+      summary: PUT /requirement/settings/
+      operationId: put-requirement-settings
+      responses:
+        '200':
+          description: OK
