@@ -2437,10 +2437,10 @@ paths:
                     - major_requirement
                     - major_requirement
                     - major_requirement
-                  recognized_major_id:
-                    - 23
-                    - 23
-                    - 23
+                  recognized_major_names:
+                    - 경영학과
+                    - 경영학과
+                    - 경영학과
       parameters:
         - schema:
             type: string
