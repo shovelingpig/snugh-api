@@ -1520,48 +1520,9 @@ paths:
                 description: ''
                 type: object
                 properties:
-                  all_progress:
+                  all_progress_:
                     type: object
                     properties:
-                      major:
-                        type: object
-                        properties:
-                          required_credit:
-                            type: number
-                          earned_credit:
-                            type: number
-                          progress:
-                            type: number
-                        required:
-                          - required_credit
-                          - earned_credit
-                          - progress
-                      general:
-                        type: object
-                        properties:
-                          required_credit:
-                            type: number
-                          earned_credit:
-                            type: number
-                          progress:
-                            type: number
-                        required:
-                          - required_credit
-                          - earned_credit
-                          - progress
-                      general_elective:
-                        type: object
-                        properties:
-                          required_credit:
-                            type: number
-                          earned_credit:
-                            type: number
-                          progress:
-                            type: number
-                        required:
-                          - required_credit
-                          - earned_credit
-                          - progress
                       all:
                         type: object
                         properties:
@@ -1575,11 +1536,57 @@ paths:
                           - required_credit
                           - earned_credit
                           - progress
+                      major:
+                        type: object
+                        properties:
+                          earned_credit:
+                            type: number
+                          progress:
+                            type: number
+                        required:
+                          - earned_credit
+                          - progress
+                      general:
+                        type: object
+                        properties:
+                          earned_credit:
+                            type: number
+                          progress:
+                            type: number
+                        required:
+                          - earned_credit
+                          - progress
+                      other:
+                        type: object
+                        properties:
+                          earned_credit:
+                            type: number
+                        required:
+                          - earned_credit
+                      current_planmajors:
+                        type: array
+                        uniqueItems: true
+                        minItems: 1
+                        items:
+                          required:
+                            - id
+                            - major_name
+                            - major_type
+                          properties:
+                            id:
+                              type: number
+                            major_name:
+                              type: string
+                              minLength: 1
+                            major_type:
+                              type: string
+                              minLength: 1
                     required:
+                      - all
                       - major
                       - general
-                      - general_elective
-                      - all
+                      - other
+                      - current_planmajors
                   major_progress:
                     type: array
                     uniqueItems: true
@@ -1611,7 +1618,7 @@ paths:
                             - required_credit
                             - earned_credit
                             - progress
-                        major_elective_credit:
+                        major_all_credit:
                           type: object
                           properties:
                             required_credit:
@@ -1624,116 +1631,100 @@ paths:
                             - required_credit
                             - earned_credit
                             - progress
-                  general_progress:
-                    type: object
-                    properties:
-                      required_credit:
-                        type: number
-                      earned_credit:
-                        type: number
-                      progress:
-                        type: number
-                    required:
-                      - required_credit
-                      - earned_credit
-                      - progress
                 required:
-                  - all_progress
+                  - all_progress_
                   - major_progress
-                  - general_progress
                 x-examples:
                   example-1:
-                    all_progress:
-                      major:
-                        required_credit: 121
-                        earned_credit: 9
-                        progress: 0.07
-                      general:
-                        required_credit: 80
-                        earned_credit: 0
-                        progress: 0
-                      general_elective:
-                        required_credit: 6
-                        earned_credit: 0
-                        progress: 1
+                    all_progress_:
                       all:
-                        required_credit: 207
-                        earned_credit: 9
-                        progress: 0.04
+                        required_credit: 130
+                        earned_credit: 24
+                        progress: 0.18
+                      major:
+                        earned_credit: 18
+                        progress: 0.25
+                      general:
+                        earned_credit: 6
+                        progress: 0.17
+                      other:
+                        earned_credit: 0
+                      current_planmajors:
+                        - id: 69
+                          major_name: 고고미술사학과
+                          major_type: major
+                        - id: 326
+                          major_name: 철학과
+                          major_type: minor
                     major_progress:
-                      - major_id: 23
-                        major_name: 경영학과
+                      - major_id: 69
+                        major_name: 고고미술사학과
                         major_type: major
                         major_requirement_credit:
-                          required_credit: 41
-                          earned_credit: 9
-                          progress: 0.22
-                        major_elective_credit:
-                          required_credit: 20
-                          earned_credit: 0
-                          progress: 0
-                      - major_id: 98
-                        major_name: 컴퓨터공학부
-                        major_type: major
-                        major_requirement_credit:
+                          required_credit: 15
+                          earned_credit: 6
+                          progress: 0.4
+                        major_all_credit:
                           required_credit: 39
-                          earned_credit: 0
-                          progress: 0
-                        major_elective_credit:
-                          required_credit: 21
-                          earned_credit: 0
-                          progress: 0
-                    general_progress:
-                      required_credit: 80
-                      earned_credit: 0
-                      progress: 0
+                          earned_credit: 12
+                          progress: 0.31
+                      - major_id: 326
+                        major_name: 철학과
+                        major_type: minor
+                        major_requirement_credit:
+                          required_credit: 9
+                          earned_credit: 6
+                          progress: 0.67
+                        major_all_credit:
+                          required_credit: 33
+                          earned_credit: 6
+                          progress: 0.18
               examples:
                 example-1:
                   value:
-                    all_progress:
-                      major:
-                        required_credit: 121
-                        earned_credit: 9
-                        progress: 0.07
-                      general:
-                        required_credit: 80
-                        earned_credit: 0
-                        progress: 0
-                      general_elective:
-                        required_credit: 6
-                        earned_credit: 0
-                        progress: 1
+                    all_progress_:
                       all:
-                        required_credit: 207
-                        earned_credit: 9
-                        progress: 0.04
+                        required_credit: 130
+                        earned_credit: 24
+                        progress: 0.18
+                      major:
+                        earned_credit: 18
+                        progress: 0.25
+                      general:
+                        earned_credit: 6
+                        progress: 0.17
+                      other:
+                        earned_credit: 0
+                      current_planmajors:
+                        - id: 69
+                          major_name: 고고미술사학과
+                          major_type: major
+                        - id: 326
+                          major_name: 철학과
+                          major_type: minor
                     major_progress:
-                      - major_id: 23
-                        major_name: 경영학과
+                      - major_id: 69
+                        major_name: 고고미술사학과
                         major_type: major
                         major_requirement_credit:
-                          required_credit: 41
-                          earned_credit: 9
-                          progress: 0.22
-                        major_elective_credit:
-                          required_credit: 20
-                          earned_credit: 0
-                          progress: 0
-                      - major_id: 98
-                        major_name: 컴퓨터공학부
-                        major_type: major
-                        major_requirement_credit:
+                          required_credit: 15
+                          earned_credit: 6
+                          progress: 0.4
+                        major_all_credit:
                           required_credit: 39
-                          earned_credit: 0
-                          progress: 0
-                        major_elective_credit:
-                          required_credit: 21
-                          earned_credit: 0
-                          progress: 0
-                    general_progress:
-                      required_credit: 80
-                      earned_credit: 0
-                      progress: 0
+                          earned_credit: 12
+                          progress: 0.31
+                      - major_id: 326
+                        major_name: 철학과
+                        major_type: minor
+                        major_requirement_credit:
+                          required_credit: 9
+                          earned_credit: 6
+                          progress: 0.67
+                        major_all_credit:
+                          required_credit: 33
+                          earned_credit: 6
+                          progress: 0.18
             application/xml:
               schema:
                 type: object
@@ -3547,9 +3538,9 @@ paths:
           name: Authorization
           description: Token Authentication
           required: true
-  /requirement/settings/:
+  '/requirement/{plan_id}/loading/':
     get:
-      summary: GET /requirement/settings/
+      summary: 'GET /requirement/{plan_id}/loading/'
       tags: []
       responses:
         '200':
@@ -3625,15 +3616,22 @@ paths:
                     general: 9
       operationId: get-requirement-setting
       description: ''
-      parameters:
-        - schema:
-            type: integer
-          in: query
-          name: plan_id
-          required: true
-    parameters: []
+      parameters: []
+    parameters:
+      - schema:
+          type: string
+        name: plan_id
+        in: path
+        required: true
+  '/requirement/{plan_id}/setting/':
+    parameters:
+      - schema:
+          type: string
+        name: plan_id
+        in: path
+        required: true
     put:
-      summary: PUT /requirement/settings/
+      summary: 'PUT /requirement/{plan_id}/setting/'
       operationId: put-requirement-settings
       responses:
         '200':
@@ -3778,9 +3776,4 @@ paths:
                   all: 130
                   general: 9
         description: ''
-      parameters:
-        - schema:
-            type: integer
-          in: query
-          name: plan_id
-          required: true
+      parameters: []
