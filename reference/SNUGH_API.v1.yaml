@@ -1519,121 +1519,6 @@ paths:
               schema:
                 description: ''
                 type: object
-                properties:
-                  all_progress_:
-                    type: object
-                    properties:
-                      all:
-                        type: object
-                        properties:
-                          required_credit:
-                            type: number
-                          earned_credit:
-                            type: number
-                          progress:
-                            type: number
-                        required:
-                          - required_credit
-                          - earned_credit
-                          - progress
-                      major:
-                        type: object
-                        properties:
-                          earned_credit:
-                            type: number
-                          progress:
-                            type: number
-                        required:
-                          - earned_credit
-                          - progress
-                      general:
-                        type: object
-                        properties:
-                          earned_credit:
-                            type: number
-                          progress:
-                            type: number
-                        required:
-                          - earned_credit
-                          - progress
-                      other:
-                        type: object
-                        properties:
-                          earned_credit:
-                            type: number
-                        required:
-                          - earned_credit
-                      current_planmajors:
-                        type: array
-                        uniqueItems: true
-                        minItems: 1
-                        items:
-                          required:
-                            - id
-                            - major_name
-                            - major_type
-                          properties:
-                            id:
-                              type: number
-                            major_name:
-                              type: string
-                              minLength: 1
-                            major_type:
-                              type: string
-                              minLength: 1
-                    required:
-                      - all
-                      - major
-                      - general
-                      - other
-                      - current_planmajors
-                  major_progress:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - major_id
-                        - major_name
-                        - major_type
-                      properties:
-                        major_id:
-                          type: number
-                        major_name:
-                          type: string
-                          minLength: 1
-                        major_type:
-                          type: string
-                          minLength: 1
-                        major_requirement_credit:
-                          type: object
-                          properties:
-                            required_credit:
-                              type: number
-                            earned_credit:
-                              type: number
-                            progress:
-                              type: number
-                          required:
-                            - required_credit
-                            - earned_credit
-                            - progress
-                        major_all_credit:
-                          type: object
-                          properties:
-                            required_credit:
-                              type: number
-                            earned_credit:
-                              type: number
-                            progress:
-                              type: number
-                          required:
-                            - required_credit
-                            - earned_credit
-                            - progress
-                required:
-                  - all_progress_
-                  - major_progress
                 x-examples:
                   example-1:
                     all_progress_:
@@ -1679,10 +1564,127 @@ paths:
                           required_credit: 33
                           earned_credit: 6
                           progress: 0.18
+                properties:
+                  all_progress:
+                    type: object
+                    required:
+                      - all
+                      - major
+                      - general
+                      - other
+                      - current_planmajors
+                    properties:
+                      all:
+                        type: object
+                        required:
+                          - required_credit
+                          - earned_credit
+                          - progress
+                        properties:
+                          required_credit:
+                            type: number
+                          earned_credit:
+                            type: number
+                          progress:
+                            type: number
+                      major:
+                        type: object
+                        required:
+                          - earned_credit
+                          - progress
+                        properties:
+                          earned_credit:
+                            type: number
+                          progress:
+                            type: number
+                      general:
+                        type: object
+                        required:
+                          - earned_credit
+                          - progress
+                        properties:
+                          earned_credit:
+                            type: number
+                          progress:
+                            type: number
+                      other:
+                        type: object
+                        required:
+                          - earned_credit
+                        properties:
+                          earned_credit:
+                            type: number
+                      current_planmajors:
+                        type: array
+                        uniqueItems: true
+                        minItems: 1
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                            major_name:
+                              type: string
+                              minLength: 1
+                            major_type:
+                              type: string
+                              minLength: 1
+                          required:
+                            - id
+                            - major_name
+                            - major_type
+                  major_progress:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        major_id:
+                          type: number
+                        major_name:
+                          type: string
+                          minLength: 1
+                        major_type:
+                          type: string
+                          minLength: 1
+                        major_requirement_credit:
+                          type: object
+                          properties:
+                            required_credit:
+                              type: number
+                            earned_credit:
+                              type: number
+                            progress:
+                              type: number
+                          required:
+                            - required_credit
+                            - earned_credit
+                            - progress
+                        major_all_credit:
+                          type: object
+                          properties:
+                            required_credit:
+                              type: number
+                            earned_credit:
+                              type: number
+                            progress:
+                              type: number
+                          required:
+                            - required_credit
+                            - earned_credit
+                            - progress
+                      required:
+                        - major_id
+                        - major_name
+                        - major_type
+                required:
+                  - all_progress
+                  - major_progress
               examples:
                 example-1:
                   value:
-                    all_progress_:
+                    all_progress:
                       all:
                         required_credit: 130
                         earned_credit: 24
