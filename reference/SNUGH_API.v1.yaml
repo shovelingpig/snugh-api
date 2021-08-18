@@ -3088,11 +3088,11 @@ paths:
               example-1:
                 value:
                   is_modified: true
-  '/lecture/{lecture_id}/recognized_major/':
+  '/lecture/{semesterlecture_id}/recognized_major/':
     parameters:
       - schema:
           type: string
-        name: lecture_id
+        name: semesterlecture_id
         in: path
         required: true
     put:
